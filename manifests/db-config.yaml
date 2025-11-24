@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-config
+data:
+  db-config.yaml: |
+    db:
+      host: my-postgres.default.svc.cluster.local
+      port: 5432
+      name: my_app_db
+      user: my_app_user
+      password: supersecret

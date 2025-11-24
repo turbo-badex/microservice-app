@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: db-client
+spec:
+  containers:
+  - name: app
+    image: alpine:3.20
+    command: ["/bin/sh", "-c"]
+    args:
+      # Demo: just show the config on startup
+      - "echo 'DB config file:'; cat /etc/db-config/db-config.yaml; sleep 3600"
+    volumeMounts:
+      - name: db-config-volume
+        mountPath: /etc/db-config
+        readOnly: true
+    env:
+      - name: DB_CONFIG_PATH
+        value: /etc/db-config/db-config.yaml
+  volumes:
+  - name: db-config-volume
+    configMap:
+      name: db-config

@@ -1,0 +1,94 @@
+name: Auth Service CI
+
+on:
+  push:
+    paths:
+      - 'auth-service/**'
+      - '.github/workflows/auth-service-ci.yml'
+  pull_request:
+    paths:
+      - 'auth-service/**'
+      - '.github/workflows/auth-service-ci.yml'
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: authdb
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    defaults:
+      run:
+        working-directory: ./auth-service
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        pip install pytest flake8 pytest-cov psycopg2-binary
+
+    - name: Initialize Database
+      run: |
+        # Wait for DB to be ready (handled by service healthcheck, but good to be safe)
+        # We need to run init.sql. It is in the parent directory relative to auth-service
+        # But working-directory is ./auth-service.
+        # So init.sql is at ../init.sql
+        
+        # We can use python to run the sql script since we have psycopg2
+        python -c "
+        import psycopg2
+        import os
+        
+        conn = psycopg2.connect(
+            dbname='authdb',
+            user='user',
+            password='password',
+            host='localhost',
+            port='5432'
+        )
+        with conn.cursor() as cur:
+            with open('../init.sql', 'r') as f:
+                cur.execute(f.read())
+        conn.commit()
+        conn.close()
+        "
+
+    - name: Lint with flake8
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+    - name: Test with pytest and coverage
+      env:
+        POSTGRES_USER: user
+        POSTGRES_PASSWORD: password
+        POSTGRES_HOST: localhost
+        POSTGRES_DB: authdb
+      run: |
+        pytest --cov=app --cov-report=term-missing
+
+    - name: Build Docker image
+      run: |
+        docker build . --file Dockerfile --tag auth-service:latest

@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: game-service
+  namespace: crash-course
+spec:
+  replicas: 1
+  selector:
+    matchLabels: { app: game-service }
+  template:
+    metadata:
+      labels: { app: game-service }
+    spec:
+      imagePullSecrets:
+        - name: dockerhub-cred
+      containers:
+      - name: game-service
+        image: badex/game-service:newest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8081
+        env:
+        # Pass database connection info as separate variables
+        - name: POSTGRES_HOST
+          value: "postgres-rw.crash-course.svc.cluster.local"
+        - name: POSTGRES_DB
+          value: "dbname"
+        # Fetch credentials securely from the secret
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: postgres-app
+              key: username
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-app
+              key: password
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
