@@ -148,20 +148,17 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-
       - name: Docker Meta
         id: meta
         uses: docker/metadata-action@v4
         with:
           images: ${{ secrets.DOCKER_USERNAME }}/auth-service
           tags: |
-            # 💡 FIX: Use the 'semver' type and a custom pattern to extract the version
-            # The pattern is: strip 'auth/' from the start, leaving 'v1.0.1' or just '1.0.1'
-            type=semver,pattern=^auth/v(?P<version>.*)$,value=${{ github.ref_name }}
-
-            # You can also keep the major/minor, ensuring you use the same regex to strip the prefix
-            type=semver,pattern=^auth/v(?P<major>\d+).(?P<minor>\d+).(?P<patch>\d+)$,value=${{ github.ref_name }},enable=${{ startsWith(github.ref, 'refs/tags/auth/v') }}
+            # 1. Primary Tag: Strips 'auth/v' prefix and uses resulting number (e.g., 1.0.2)
+            # The 'value' is the reference (the tag name) and the 'pattern' tells it what to strip.
+            type=semver,value=${{ github.ref_name }},pattern=^auth/v(?P<version>.*)$
             
+            # 2. Latest Tag: This is clean and standard
             type=raw,value=latest
 
       - name: Build and Push Production
