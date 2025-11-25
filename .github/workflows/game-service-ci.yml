@@ -148,19 +148,25 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Extract Clean Version Tag
+        id: versioning
+        shell: bash
+        run: echo "VERSION_TAG=${GITHUB_REF_NAME//game\/v/}" >> $GITHUB_ENV
+      
       - name: Docker Meta
         id: meta
         uses: docker/metadata-action@v4
         with:
           images: ${{ secrets.DOCKER_USERNAME }}/game-service
           tags: |
-            # 💡 FIX: Use the 'semver' type and a custom pattern to extract the version
-            # The pattern is: strip 'game/' from the start, leaving 'v1.0.1' or just '1.0.1'
-            type=semver,pattern=^game/v(?P<version>.*)$,value=${{ github.ref_name }}
-
-            # You can also keep the major/minor, ensuring you use the same regex to strip the prefix
-            type=semver,pattern=^game/v(?P<major>\d+).(?P<minor>\d+).(?P<patch>\d+)$,value=${{ github.ref_name }},enable=${{ startsWith(github.ref, 'refs/tags/game/v') }}
+            # 1. FIX: Added pattern={{version}} to satisfy the required attribute check.
+            # This generates Major/Minor Tags (1.0, 1) from the clean version.
+            type=semver,value=${{ env.VERSION_TAG }},pattern={{version}} 
             
+            # 2. Use the clean version as the main version tag (e.g., 1.0.7)
+            type=raw,value=${{ env.VERSION_TAG }}
+            
+            # 3. Latest Tag
             type=raw,value=latest
 
       - name: Build and Push Production
