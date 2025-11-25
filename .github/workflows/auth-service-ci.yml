@@ -1,19 +1,27 @@
-name: Auth Service CI
+name: Auth Service CI/CD
 
 on:
   push:
+    branches: [ "main" ]
     paths:
       - 'auth-service/**'
       - '.github/workflows/auth-service-ci.yml'
+    tags:
+      - 'v*'
   pull_request:
+    branches: [ "main" ]
     paths:
       - 'auth-service/**'
       - '.github/workflows/auth-service-ci.yml'
 
 jobs:
-  build-and-test:
+  test:
+    name: Test & Lint
     runs-on: ubuntu-latest
-    
+    defaults:
+      run:
+        working-directory: ./auth-service
+
     services:
       postgres:
         image: postgres:15
@@ -28,10 +36,6 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-
-    defaults:
-      run:
-        working-directory: ./auth-service
 
     steps:
     - uses: actions/checkout@v3
@@ -49,16 +53,9 @@ jobs:
 
     - name: Initialize Database
       run: |
-        # Wait for DB to be ready (handled by service healthcheck, but good to be safe)
-        # We need to run init.sql. It is in the parent directory relative to auth-service
-        # But working-directory is ./auth-service.
-        # So init.sql is at ../init.sql
-        
-        # We can use python to run the sql script since we have psycopg2
         python -c "
         import psycopg2
         import os
-        
         conn = psycopg2.connect(
             dbname='authdb',
             user='user',
@@ -75,9 +72,7 @@ jobs:
 
     - name: Lint with flake8
       run: |
-        # stop the build if there are Python syntax errors or undefined names
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
     - name: Test with pytest and coverage
@@ -89,6 +84,82 @@ jobs:
       run: |
         pytest --cov=app --cov-report=term-missing
 
-    - name: Build Docker image
-      run: |
-        docker build . --file Dockerfile --tag auth-service:latest
+  deploy-staging:
+    name: Deploy to Staging
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    environment: staging
+    
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and Export to Docker
+        uses: docker/build-push-action@v4
+        with:
+          context: ./auth-service
+          load: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/auth-service:test
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: '${{ secrets.DOCKER_USERNAME }}/auth-service:test'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+
+      - name: Build and Push Staging
+        uses: docker/build-push-action@v4
+        with:
+          context: ./auth-service
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/auth-service:staging
+
+  deploy-prod:
+    name: Deploy to Production
+    needs: test
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    environment: production
+    
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Docker Meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ secrets.DOCKER_USERNAME }}/auth-service
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=raw,value=latest
+
+      - name: Build and Push Production
+        uses: docker/build-push-action@v4
+        with:
+          context: ./auth-service
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
