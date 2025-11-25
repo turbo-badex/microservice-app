@@ -11,6 +11,8 @@ COPY app.py .
 RUN useradd -m appuser && chown -R appuser /app
 USER appuser
 
+#other stages
+
 EXPOSE 8080
 # Use gunicorn for production
 CMD ["gunicorn", "--workers=4", "--bind=0.0.0.0:8080", "--log-level=debug", "app:app"]
