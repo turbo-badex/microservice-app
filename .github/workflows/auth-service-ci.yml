@@ -7,7 +7,7 @@ on:
       - 'auth-service/**'
       - '.github/workflows/auth-service-ci.yml'
     tags:
-      - 'v*'
+      - 'authv*'
   pull_request:
     branches: [ "master" ]
     paths:
@@ -148,14 +148,20 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+
       - name: Docker Meta
         id: meta
         uses: docker/metadata-action@v4
         with:
           images: ${{ secrets.DOCKER_USERNAME }}/auth-service
           tags: |
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
+            # 💡 FIX: Use the 'semver' type and a custom pattern to extract the version
+            # The pattern is: strip 'auth/' from the start, leaving 'v1.0.1' or just '1.0.1'
+            type=semver,pattern=^auth/v(?P<version>.*)$,value=${{ github.ref_name }}
+
+            # You can also keep the major/minor, ensuring you use the same regex to strip the prefix
+            type=semver,pattern=^auth/v(?P<major>\d+).(?P<minor>\d+).(?P<patch>\d+)$,value=${{ github.ref_name }},enable=${{ startsWith(github.ref, 'refs/tags/auth/v') }}
+            
             type=raw,value=latest
 
       - name: Build and Push Production
