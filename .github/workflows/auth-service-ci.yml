@@ -161,11 +161,11 @@ jobs:
         with:
           images: ${{ secrets.DOCKER_USERNAME }}/auth-service
           tags: |
-            # 1. Generate Major/Minor Tags (1.0, 1) from the clean version
-            type=semver,value=${{ env.VERSION_TAG }}
+            # 1. FIX: Added pattern={{version}} to satisfy the required attribute check.
+            # This generates Major/Minor Tags (1.0, 1) from the clean version.
+            type=semver,value=${{ env.VERSION_TAG }},pattern={{version}} 
             
-            # 2. Use the clean version as the main version tag (e.g., 1.0.5)
-            # We use 'raw' to avoid the internal SemVer checks that caused the error.
+            # 2. Use the clean version as the main version tag (e.g., 1.0.7)
             type=raw,value=${{ env.VERSION_TAG }}
             
             # 3. Latest Tag
