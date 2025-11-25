@@ -57,7 +57,7 @@ jobs:
         import psycopg2
         import os
         conn = psycopg2.connect(
-            dbname='authdb',
+            dbname='gamedb',
             user='user',
             password='password',
             host='localhost',
