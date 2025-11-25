@@ -154,12 +154,13 @@ jobs:
         with:
           images: ${{ secrets.DOCKER_USERNAME }}/auth-service
           tags: |
-            # 1. Primary Tag: Strips 'auth/v' prefix and uses resulting number (e.g., 1.0.2)
-            # The 'value' is the reference (the tag name) and the 'pattern' tells it what to strip.
-            type=semver,value=${{ github.ref_name }},pattern=^auth/v(?P<version>.*)$
+            # 1. Primary Tag: Strips the 'auth/v' prefix and extracts the version number.
+            # The action automatically uses ${{ github.ref_name }} as the input value.
+            type=semver,pattern=^auth/v(?P<version>.*)$
             
-            # 2. Latest Tag: This is clean and standard
+            # 2. Latest Tag: Simple raw tag
             type=raw,value=latest
+            
 
       - name: Build and Push Production
         uses: docker/build-push-action@v4
