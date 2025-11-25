@@ -127,7 +127,7 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/game-service:staging
 
-          #Production
+          #Production testing
 
   deploy-prod:
     name: Deploy to Production
