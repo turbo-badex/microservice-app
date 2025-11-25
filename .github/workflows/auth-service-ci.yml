@@ -148,17 +148,27 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+# 1. NEW STEP: Extract the clean version number using simple shell scripting
+      - name: Extract Clean Version Tag
+        id: versioning
+        shell: bash
+        # github.ref_name is 'auth/v1.0.5'. We strip 'auth/v' to get '1.0.5'.
+        run: echo "VERSION_TAG=${GITHUB_REF_NAME//auth\/v/}" >> $GITHUB_ENV
+      
       - name: Docker Meta
         id: meta
         uses: docker/metadata-action@v4
         with:
           images: ${{ secrets.DOCKER_USERNAME }}/auth-service
           tags: |
-            # 1. Primary Tag: Strips the 'auth/v' prefix and extracts the version number.
-            # The action automatically uses ${{ github.ref_name }} as the input value.
-            type=semver,pattern=^auth/v(?P<version>.*)$
+            # 💡 FIX: Use the clean, pre-processed variable directly.
+            # This is a clean SemVer string (e.g., 1.0.5) that the action loves.
+            type=semver,value=${{ env.VERSION_TAG }}
             
-            # 2. Latest Tag: Simple raw tag
+            # Use the full clean version as a raw tag as well (e.g., 1.0.5)
+            type=raw,value=${{ env.VERSION_TAG }}
+            
+            # Latest Tag
             type=raw,value=latest
             
 
