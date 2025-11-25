@@ -161,14 +161,14 @@ jobs:
         with:
           images: ${{ secrets.DOCKER_USERNAME }}/auth-service
           tags: |
-            # 💡 FIX: Use the clean, pre-processed variable directly.
-            # This is a clean SemVer string (e.g., 1.0.5) that the action loves.
+            # 1. Generate Major/Minor Tags (1.0, 1) from the clean version
             type=semver,value=${{ env.VERSION_TAG }}
             
-            # Use the full clean version as a raw tag as well (e.g., 1.0.5)
+            # 2. Use the clean version as the main version tag (e.g., 1.0.5)
+            # We use 'raw' to avoid the internal SemVer checks that caused the error.
             type=raw,value=${{ env.VERSION_TAG }}
             
-            # Latest Tag
+            # 3. Latest Tag
             type=raw,value=latest
             
 
