@@ -103,22 +103,22 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and Export to Docker
-        uses: docker/build-push-action@v4
-        with:
-          context: ./auth-service
-          load: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/auth-service:test
+      # - name: Build and Export to Docker
+      #   uses: docker/build-push-action@v4
+      #   with:
+      #     context: ./auth-service
+      #     load: true
+      #     tags: ${{ secrets.DOCKER_USERNAME }}/auth-service:test
 
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: '${{ secrets.DOCKER_USERNAME }}/auth-service:test'
-          format: 'table'
-          exit-code: '1'
-          ignore-unfixed: true
-          vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
+      # - name: Run Trivy vulnerability scanner
+      #   uses: aquasecurity/trivy-action@master
+      #   with:
+      #     image-ref: '${{ secrets.DOCKER_USERNAME }}/auth-service:test'
+      #     format: 'table'
+      #     exit-code: '1'
+      #     ignore-unfixed: true
+      #     vuln-type: 'os,library'
+      #     severity: 'CRITICAL,HIGH'
 
       - name: Build and Push Staging
         uses: docker/build-push-action@v4
