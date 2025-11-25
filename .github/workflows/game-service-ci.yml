@@ -7,7 +7,7 @@ on:
       - 'game-service/**'
       - '.github/workflows/game-service-ci.yml'
     tags:
-      - 'v*'
+      - 'game/v*'
   pull_request:
     branches: [ "master" ]
     paths:
