@@ -127,6 +127,8 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/auth-service:staging
 
+          #Production
+
   deploy-prod:
     name: Deploy to Production
     needs: test
