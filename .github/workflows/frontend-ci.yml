@@ -57,12 +57,40 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and Push (Test Tag)
+      - name: Build Image
         uses: docker/build-push-action@v4
         with:
           context: ./frontend
-          push: true
+          push: false
+          load: true
           tags: ${{ secrets.DOCKER_USERNAME }}/frontend:test
+
+      - name: Test container health
+        run: |
+          docker run -d --name test-frontend ${{ secrets.DOCKER_USERNAME }}/frontend:test
+          for i in {1..12}; do
+            status=$(docker inspect --format='{{.State.Health.Status}}' test-frontend)
+            if [ "$status" = "healthy" ]; then
+              echo "Container is healthy"
+              docker rm -f test-frontend
+              exit 0
+            fi
+            if [ "$status" = "unhealthy" ]; then
+              echo "Container is unhealthy"
+              docker logs test-frontend
+              docker rm -f test-frontend
+              exit 1
+            fi
+            echo "Waiting for container to become healthy... ($i/12)"
+            sleep 5
+          done
+          echo "Timeout waiting for container to become healthy"
+          docker logs test-frontend
+          docker rm -f test-frontend
+          exit 1
+
+      - name: Push Image
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/frontend:test
 
   staging:
     name: Staging Scan & Gate
