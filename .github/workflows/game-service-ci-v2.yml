@@ -6,26 +6,31 @@ on:
     paths:
       - 'game-service/**'
       - '.github/workflows/game-service-ci-v2.yml'
-    tags:
-      - 'game/v*'
   pull_request:
     branches: [ "master" ]
     paths:
       - 'game-service/**'
       - '.github/workflows/game-service-ci-v2.yml'
 
+  # Production release - triggered by tag push (separate workflow trigger)
+  create:
+    tags:
+      - 'game/v*'
+
 env:
   IMAGE_NAME: game-service
 
 jobs:
+  # ============================================
+  # TEST - Runs on master push and PRs
+  # ============================================
   test:
     name: Test & Lint
     runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event_name == 'pull_request'
     defaults:
       run:
         working-directory: ./game-service
-
-    # No PostgreSQL service needed - tests only verify JWT tokens
 
     steps:
     - uses: actions/checkout@v4
@@ -56,28 +61,26 @@ jobs:
         # Warnings (non-blocking)
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
-    # - name: Test with pytest
-    #   run: pytest -v --tb=short
+    - name: Test with pytest
+      run: pytest -v --tb=short
 
+  # ============================================
+  # BUILD - Only on master push (builds once)
+  # ============================================
   build:
-    name: Build Image
+    name: Build & Push Image
     needs: test
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     outputs:
       image_tag: ${{ steps.image_tag.outputs.tag }}
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Determine image tag
+      - name: Generate image tag
         id: image_tag
-        run: |
-          if [[ "${{ github.ref }}" == refs/tags/game/v* ]]; then
-            echo "tag=${GITHUB_REF_NAME//game\/v/}" >> $GITHUB_OUTPUT
-          else
-            echo "tag=staging-${{ github.sha }}" >> $GITHUB_OUTPUT
-          fi
+        run: echo "tag=staging-${{ github.sha }}" >> $GITHUB_OUTPUT
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -93,16 +96,18 @@ jobs:
         with:
           context: ./game-service
           push: true
-          tags: |
-            ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ steps.image_tag.outputs.tag }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ steps.image_tag.outputs.tag }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
+  # ============================================
+  # STAGING - Scan and promote to staging tag
+  # ============================================
   staging:
-    name: Staging - Security Scan
+    name: Staging - Scan & Promote
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     environment: staging
 
     steps:
@@ -128,28 +133,24 @@ jobs:
           docker tag ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:staging-${{ github.sha }} \
                      ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:staging
           docker push ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:staging
+          echo "✅ Promoted staging-${{ github.sha }} → staging"
 
+  # ============================================
+  # PRODUCTION - Promote staging image (no rebuild)
+  # ============================================
   production:
-    name: Production Release
-    needs: build
+    name: Production - Promote Staging Image
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/game/v')
+    if: github.event_name == 'create' && startsWith(github.ref, 'refs/tags/game/v')
     environment: production
 
     steps:
-      - name: Extract version
+      - name: Extract version from tag
         id: version
-        run: echo "VERSION=${GITHUB_REF_NAME//game\/v/}" >> $GITHUB_OUTPUT
-
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: '${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ steps.version.outputs.VERSION }}'
-          format: 'table'
-          exit-code: '1'
-          ignore-unfixed: true
-          vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
+        run: |
+          VERSION=${GITHUB_REF_NAME#game/v}
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "📦 Releasing version: $VERSION"
 
       - name: Login to Docker Hub
         uses: docker/login-action@v3
@@ -157,11 +158,31 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Tag and Push Production Images
+      - name: Pull staging image
         run: |
-          docker pull ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ steps.version.outputs.VERSION }}
+          docker pull ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:staging
+          echo "✅ Pulled staging image"
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: '${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:staging'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+
+      - name: Promote to production tags
+        run: |
+          # Tag with version
+          docker tag ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:staging \
+                     ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ steps.version.outputs.version }}
+          docker push ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ steps.version.outputs.version }}
 
           # Tag with latest
-          docker tag ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ steps.version.outputs.VERSION }} \
+          docker tag ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:staging \
                      ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
           docker push ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
+
+          echo "✅ Promoted staging → ${{ steps.version.outputs.version }}, latest"
