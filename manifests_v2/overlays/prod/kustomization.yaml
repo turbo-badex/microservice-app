@@ -37,7 +37,7 @@ images:
 - name: badex/frontend
   newTag: 1.1.4
 - name: badex/game-service
-  newTag: v1.0.0
+  newTag: 1.1.4
 
 # Patches for production-specific configurations
   # Increase replicas for production
