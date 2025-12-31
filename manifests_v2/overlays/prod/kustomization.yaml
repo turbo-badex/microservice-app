@@ -33,7 +33,7 @@ commonAnnotations:
 # Image tags for production (use specific version tags, not latest)
 images:
 - name: badex/auth-service
-  newTag: v1.0.0
+  newTag: 1.1.4
 - name: badex/frontend
   newTag: 1.1.4
 - name: badex/game-service
