@@ -96,9 +96,25 @@ jobs:
         with:
           context: ./game-service
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ steps.image_tag.outputs.tag }}
+          tags: |
+            ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ steps.image_tag.outputs.tag }}
+            ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:dev
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      - name: Trigger GitOps promotion (dev)
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+          event-type: promote-image
+          client-payload: |
+            {
+              "service": "${{ env.IMAGE_NAME }}",
+              "image": "${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}",
+              "tag": "dev",
+              "environment": "dev",
+              "sha": "${{ github.sha }}"
+            }
 
   # ============================================
   # STAGING - Scan and promote to staging tag

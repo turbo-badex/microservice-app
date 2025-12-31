@@ -26,6 +26,7 @@ on:
         required: true
         type: choice
         options:
+          - dev
           - staging
           - prod
 
@@ -68,7 +69,7 @@ jobs:
           echo "Environment: ${{ env.ENVIRONMENT }}"
           echo "SHA: ${{ env.SHA }}"
 
-          if [[ ! "${{ env.ENVIRONMENT }}" =~ ^(staging|prod)$ ]]; then
+          if [[ ! "${{ env.ENVIRONMENT }}" =~ ^(dev|staging|prod)$ ]]; then
             echo "::error::Invalid environment: ${{ env.ENVIRONMENT }}"
             exit 1
           fi
