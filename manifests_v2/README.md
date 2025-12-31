@@ -193,11 +193,22 @@ The service CI/CD workflows automatically trigger GitOps promotions:
 ┌─────────────────────────────────────────────────────────────────────────┐
 │  Service Workflow (auth-service-ci.yml, etc.)                           │
 ├─────────────────────────────────────────────────────────────────────────┤
-│  1. Test & Lint                                                         │
-│  2. Build & Push image (staging-{sha} tag)                              │
-│  3. Trivy security scan                                                 │
-│  4. Re-tag image (:staging or :version)                                 │
-│  5. Trigger: repository_dispatch → promote-image                        │
+│                                                                         │
+│  BUILD JOB (on master push):                                            │
+│    1. Test & Lint                                                       │
+│    2. Build & Push image (:staging-{sha} and :dev tags)                 │
+│    3. Trigger gitops-promote → updates dev overlay                      │
+│                                                                         │
+│  STAGING JOB (after build):                                             │
+│    4. Trivy security scan                                               │
+│    5. Re-tag image to :staging                                          │
+│    6. Trigger gitops-promote → updates staging overlay                  │
+│                                                                         │
+│  PRODUCTION JOB (on git tag, e.g., auth/v1.0.0):                        │
+│    7. Trivy security scan                                               │
+│    8. Re-tag image to :v1.0.0 and :latest                               │
+│    9. Trigger gitops-promote → updates prod overlay                     │
+│                                                                         │
 └─────────────────────────────────────────────────────────────────────────┘
                               │
                               ▼
@@ -215,6 +226,18 @@ The service CI/CD workflows automatically trigger GitOps promotions:
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
+### Docker Hub Tags
+
+After CI runs, Docker Hub contains these tags for each service:
+
+| Tag | Created By | Purpose |
+|-----|------------|---------|
+| `:staging-{sha}` | Build job | Immutable build artifact |
+| `:dev` | Build job | Latest dev deployment |
+| `:staging` | Staging job | Latest staging deployment |
+| `:v1.0.0` | Prod job | Versioned release |
+| `:latest` | Prod job | Latest production release |
+
 ### Promotion Flow
 
 ```
@@ -225,31 +248,37 @@ The service CI/CD workflows automatically trigger GitOps promotions:
 │  1. Push to master                                                      │
 │       │                                                                 │
 │       ▼                                                                 │
-│  2. CI builds image :staging-abc123                                     │
+│  2. CI builds image :staging-abc123 and :dev                            │
 │       │                                                                 │
 │       ▼                                                                 │
-│  3. CI promotes to :staging tag                                         │
+│  3. gitops-promote updates overlays/dev/kustomization.yaml              │
 │       │                                                                 │
 │       ▼                                                                 │
-│  4. gitops-promote updates overlays/staging/kustomization.yaml          │
+│  4. ArgoCD auto-syncs dev (automated sync policy)                       │
 │       │                                                                 │
 │       ▼                                                                 │
-│  5. ArgoCD shows staging "OutOfSync" → Click Sync                       │
+│  5. CI promotes to :staging tag                                         │
 │       │                                                                 │
 │       ▼                                                                 │
-│  6. Test in staging ✓                                                   │
+│  6. gitops-promote updates overlays/staging/kustomization.yaml          │
 │       │                                                                 │
 │       ▼                                                                 │
-│  7. Create git tag: auth/v1.0.0                                         │
+│  7. ArgoCD shows staging "OutOfSync" → Click Sync                       │
 │       │                                                                 │
 │       ▼                                                                 │
-│  8. CI promotes to :v1.0.0 tag                                          │
+│  8. Test in staging ✓                                                   │
 │       │                                                                 │
 │       ▼                                                                 │
-│  9. gitops-promote updates overlays/prod/kustomization.yaml             │
+│  9. Create git tag: auth/v1.0.0                                         │
 │       │                                                                 │
 │       ▼                                                                 │
-│  10. ArgoCD shows prod "OutOfSync" → Click Sync                         │
+│  10. CI promotes to :v1.0.0 tag                                         │
+│       │                                                                 │
+│       ▼                                                                 │
+│  11. gitops-promote updates overlays/prod/kustomization.yaml            │
+│       │                                                                 │
+│       ▼                                                                 │
+│  12. ArgoCD shows prod "OutOfSync" → Click Sync                         │
 │                                                                         │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
@@ -264,7 +293,7 @@ GitHub → Actions → "GitOps - Update Kustomize Overlay" → Run workflow
   Service:     [auth-service ▼]
   Image:       [badex/auth-service]
   Tag:         [v1.2.3]
-  Environment: [prod ▼]
+  Environment: [dev | staging | prod ▼]
 
   [Run workflow]
 ```
@@ -351,7 +380,7 @@ postgres-dev-superuser    # Superuser credentials
 | App Replicas | 1 | 2 | 3 |
 | PostgreSQL Instances | 1 | 2 | 3 (HA) |
 | PostgreSQL Storage | 5Gi | 10Gi | 50Gi |
-| Image Tag | `staging` | `staging` | `v1.0.0` |
+| Image Tag | `:dev` | `:staging` | `:v1.0.0` |
 | Log Level | `debug` | `info` | `warning` |
 | App HPA | No | No | Yes (3-10 pods) |
 | ArgoCD Sync | Auto | Manual | Manual |
