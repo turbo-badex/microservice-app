@@ -52,7 +52,7 @@ jobs:
       run: npm test -- --watchAll=false --passWithNoTests
 
   # ============================================
-  # BUILD - Only on master push (builds onced)
+  # BUILD - Only on master push (builds once)
   # ============================================
   build:
     name: Build & Push Image
