@@ -1,0 +1,68 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+metadata:
+  name: microservice-app-dev
+
+# Reference the base configuration components
+resources:
+  - ../../base
+  - ../../auth-service
+  - ../../game-service
+  - ../../frontend
+  - namespace.yaml
+  - postgres-cluster.yaml
+  - sealed-dockerhub-secret.yaml
+  - sealed-auth-service-secret.yaml
+  - sealed-game-service-secret.yaml
+
+# Override namespace for dev environment
+namespace: microservice-app-dev
+
+# Labels for dev environment
+labels:
+  - pairs:
+      environment: dev
+    includeSelectors: true
+
+# Common annotations
+commonAnnotations:
+  app.kubernetes.io/environment: development
+
+# Image tags for dev (use latest or dev-specific tags)
+images:
+  - name: badex/auth-service
+    newTag: dev
+  - name: badex/game-service
+    newTag: dev
+  - name: badex/frontend
+    newTag: dev
+
+# Patches for dev-specific configurations
+patches:
+  # Reduce replicas in dev
+  - patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 1
+    target:
+      kind: Deployment
+  # Strategic merge patch for CNPG secret references
+  - path: cnpg-secret-patch.yaml
+
+# ConfigMap overrides for dev
+configMapGenerator:
+  - name: auth-service-config
+    behavior: merge
+    literals:
+      - POSTGRES_HOST=postgres-dev-rw
+      - POSTGRES_DB=gamedb
+      - FLASK_ENV=development
+      - LOG_LEVEL=debug
+  - name: game-service-config
+    behavior: merge
+    literals:
+      - POSTGRES_HOST=postgres-dev-rw
+      - POSTGRES_DB=gamedb
+      - FLASK_ENV=development
+      - LOG_LEVEL=debug

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: microservice-app-prod
+  labels:
+    app.kubernetes.io/part-of: microservice-app
+    environment: prod
+  annotations:
+    openshift.io/description: "Microservice application - Production environment"
+    openshift.io/display-name: "Microservice App (Production)"
+    argocd.argoproj.io/sync-wave: "-2"

@@ -1,0 +1,68 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+metadata:
+  name: microservice-app-staging
+
+# Reference the base configuration components
+resources:
+  - ../../base
+  - ../../auth-service
+  - ../../game-service
+  - ../../frontend
+  - namespace.yaml
+  - postgres-cluster.yaml
+  - sealed-dockerhub-secret.yaml
+  - sealed-auth-service-secret.yaml
+  - sealed-game-service-secret.yaml
+
+# Override namespace for staging environment
+namespace: microservice-app-staging
+
+# Labels for staging environment
+labels:
+  - pairs:
+      environment: staging
+    includeSelectors: true
+
+# Common annotations
+commonAnnotations:
+  app.kubernetes.io/environment: staging
+
+# Image tags for staging (use staging-specific tags)
+images:
+  - name: badex/auth-service
+    newTag: staging
+  - name: badex/game-service
+    newTag: staging
+  - name: badex/frontend
+    newTag: staging
+
+# Patches for staging-specific configurations
+patches:
+  # 2 replicas for staging (same as base)
+  - patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 2
+    target:
+      kind: Deployment
+  # Strategic merge patch for CNPG secret references
+  - path: cnpg-secret-patch.yaml
+
+# ConfigMap overrides for staging
+configMapGenerator:
+  - name: auth-service-config
+    behavior: merge
+    literals:
+      - POSTGRES_HOST=postgres-staging-rw
+      - POSTGRES_DB=gamedb
+      - FLASK_ENV=staging
+      - LOG_LEVEL=info
+  - name: game-service-config
+    behavior: merge
+    literals:
+      - POSTGRES_HOST=postgres-staging-rw
+      - POSTGRES_DB=gamedb
+      - FLASK_ENV=staging
+      - LOG_LEVEL=info

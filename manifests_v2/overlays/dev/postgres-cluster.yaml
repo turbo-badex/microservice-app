@@ -1,0 +1,85 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgres-dev
+  labels:
+    app.kubernetes.io/name: postgres
+    app.kubernetes.io/component: database
+    app.kubernetes.io/part-of: microservice-app
+    environment: dev
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  description: "PostgreSQL cluster for microservice-app development"
+
+  # Single instance for development (no HA needed)
+  instances: 1
+
+  # PostgreSQL 16 - latest stable, compatible with psycopg2 2.9.9
+  imageName: ghcr.io/cloudnative-pg/postgresql:16.4
+
+  # Primary update strategy
+  primaryUpdateStrategy: unsupervised
+
+  # Storage configuration - uses default storage class
+  storage:
+    size: 5Gi
+
+  # Resource limits for dev (minimal)
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "250m"
+    limits:
+      memory: "512Mi"
+      cpu: "500m"
+
+  # Bootstrap configuration - create database and run init SQL
+  bootstrap:
+    initdb:
+      database: gamedb
+      owner: app
+      postInitSQL:
+        - |
+          -- Create tables for auth-service
+          CREATE TABLE IF NOT EXISTS users (
+            id SERIAL PRIMARY KEY,
+            username VARCHAR(255) UNIQUE NOT NULL,
+            password_hash BYTEA NOT NULL
+          );
+
+          -- Create table for Snake game scores
+          CREATE TABLE IF NOT EXISTS snake_high_scores (
+            id SERIAL PRIMARY KEY,
+            user_id INTEGER REFERENCES users(id),
+            score INTEGER DEFAULT 0
+          );
+
+          -- Create table for other game stats
+          CREATE TABLE IF NOT EXISTS games_stats (
+            id SERIAL PRIMARY KEY,
+            user_id INTEGER REFERENCES users(id),
+            game_type VARCHAR(50) NOT NULL,
+            wins INTEGER DEFAULT 0,
+            losses INTEGER DEFAULT 0
+          );
+
+          -- Add indexes for performance
+          CREATE INDEX IF NOT EXISTS idx_snake_high_scores_user_id ON snake_high_scores(user_id);
+          CREATE INDEX IF NOT EXISTS idx_games_stats_user_id ON games_stats(user_id);
+          CREATE INDEX IF NOT EXISTS idx_games_stats_game_type ON games_stats(game_type);
+
+  # PostgreSQL configuration
+  postgresql:
+    parameters:
+      # Logging for debugging in dev
+      log_statement: "all"
+      log_min_duration_statement: "0"
+    pg_hba:
+      - host all all 10.0.0.0/8 md5
+      - host all all 172.16.0.0/12 md5
+      - host all all 192.168.0.0/16 md5
+
+  # Monitoring
+  monitoring:
+    enablePodMonitor: true

@@ -1,0 +1,3521 @@
+
+╭─── Claude Code v2.0.76 ──────────────────────────────────────────────────────╮
+│                                                    │ Tips for getting        │
+│                 Welcome back Taiwo!                │ started                 │
+│                                                    │ Run /init to create a … │
+│                    * ▗ ▗   ▖ ▖ *                   │ ─────────────────────── │
+│                   *             *                  │ Recent activity         │
+│                    *   ▘▘ ▝▝   *                   │ No recent activity      │
+│                                                    │                         │
+│      Opus 4.5 · Claude Pro · taiwo@badex.tv's      │                         │
+│      Organization                                  │                         │
+│            ~/Documents/microservice-app            │                         │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  A gift for you
+  Your rate limits are 2x higher through 12/31. Enjoy the extra room to think!
+
+> /clear 
+  ⎿  (no content)
+
+> /agents 
+  ⎿  Agents dialog dismissed
+
+> /context 
+  ⎿  
+      Context Usage
+     ⛁ ⛀ ⛁ ⛁ ⛁ ⛁ ⛁ ⛁ ⛁ ⛁   claude-opus-4-5-20251101 · 65k/200k tokens (32%)
+     ⛀ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ 
+     ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶   ⛁ System prompt: 3.2k tokens (1.6%)
+     ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶   ⛁ System tools: 16.6k tokens (8.3%)
+     ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶   ⛁ Messages: 91 tokens (0.0%)
+     ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶   ⛶ Free space: 135k (67.6%)
+     ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶   ⛝ Autocompact buffer: 45.0k tokens (22.5%)
+     ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛶ ⛝ ⛝ ⛝ 
+     ⛝ ⛝ ⛝ ⛝ ⛝ ⛝ ⛝ ⛝ ⛝ ⛝ 
+     ⛝ ⛝ ⛝ ⛝ ⛝ ⛝ ⛝ ⛝ ⛝ ⛝ 
+     
+     Skills and slash commands · /skills
+     
+     User
+     └ sc:recommend: 8.0k tokens
+     └ sc:pm: 4.9k tokens
+     └ sc:spec-panel: 4.4k tokens
+     └ sc:help: 2.0k tokens
+     └ sc:brainstorm: 1.2k tokens
+     └ sc:workflow: 1.1k tokens
+     └ sc:implement: 1.0k tokens
+     └ sc:reflect: 939 tokens
+     └ sc:improve: 929 tokens
+     └ sc:task: 923 tokens
+     └ sc:estimate: 919 tokens
+     └ sc:index: 892 tokens
+     └ sc:spawn: 887 tokens
+     └ sc:explain: 883 tokens
+     └ sc:select-tool: 873 tokens
+     └ sc:save: 867 tokens
+     └ sc:cleanup: 848 tokens
+     └ sc:load: 842 tokens
+     └ sc:troubleshoot: 807 tokens
+     └ sc:build: 790 tokens
+     └ sc:design: 778 tokens
+     └ sc:document: 773 tokens
+     └ sc:analyze: 766 tokens
+     └ sc:research: 738 tokens
+     └ sc:test: 722 tokens
+     └ sc:business-panel: 697 tokens
+     └ sc:agent: 696 tokens
+     └ sc:index-repo: 657 tokens
+     └ sc:sc: 629 tokens
+     └ sc:git: 575 tokens
+     └ sc:README: 189 tokens
+     
+     
+
+> /doctor 
+  ⎿  Claude Code diagnostics dismissed
+
+> /memory 
+  ⎿  Opened memory file at ~/.claude/CLAUDE.md
+     
+     > To use a different editor, set the $EDITOR or $VISUAL environment variable.
+
+> /security-review 
+  ⎿  Error: Bash command failed for pattern "!`git log --no-decorate origin/HEAD...`": [stderr]
+     fatal: ambiguous argument 'origin/HEAD...': unknown revision or path not in the working tree.
+     Use '--' to separate paths from revisions, like this:
+     'git <command> [<revision>...] -- [<file>...]'
+
+> /todos 
+  ⎿  No todos currently tracked
+     
+
+> /todos create manifests in microservice-app 
+  ⎿  No todos currently tracked
+     
+
+> /model 
+  ⎿  Kept model as Opus
+
+> create a new subfolder called manifests_v2 in this directry. in there, for
+ eventual deployment of this app to openshift, i'd like you to prepare 
+manifests for deployments, service, configmaps, secrets for the 
+auth-service, game-service and fronted. create a documentation for it. 
+
+⏺ I'll help you create OpenShift manifests for your microservices. Let me first explore the codebase to understand the service configurations, ports, and environment variables needed.
+
+⏺ Explore(Explore microservices configuration)
+  ⎿  Done (41 tool uses · 45.6k tokens · 55s)                              
+
+⏺ Now I have a comprehensive understanding of the services. Let me create the manifests.
+
+⏺ Bash(mkdir -p /Users/badex/Documents/microservice-app/manifests_v2/{auth-servi
+      ce,game-service,frontend,base})
+  ⎿  (No content)
+
+⏺ Write(manifests_v2/auth-service/deployment.yaml)
+  ⎿  Wrote 72 lines to manifests_v2/auth-service/deployment.yaml
+       1 apiVersion: apps/v1
+       2 kind: Deployment
+       3 metadata:
+       4   name: auth-service
+       5   labels:
+       6     app: auth-service
+       7     app.kubernetes.io/name: auth-service
+       8     app.kubernetes.io/component: backend
+       9     app.kubernetes.io/part-of: microservice-app
+      10 spec:
+     … +62 lines (ctrl+o to expand)
+
+⏺ Write(manifests_v2/auth-service/service.yaml)
+  ⎿  Wrote 19 lines to manifests_v2/auth-service/service.yaml
+       1 apiVersion: v1
+       2 kind: Service
+       3 metadata:
+       4   name: auth-service
+       5   labels:
+       6     app: auth-service
+       7     app.kubernetes.io/name: auth-service
+       8     app.kubernetes.io/component: backend
+       9     app.kubernetes.io/part-of: microservice-app
+      10 spec:
+     … +9 lines (ctrl+o to expand)
+
+⏺ Write(manifests_v2/auth-service/configmap.yaml)
+  ⎿  Wrote 18 lines to manifests_v2/auth-service/configmap.yaml
+       1 apiVersion: v1
+       2 kind: ConfigMap
+       3 metadata:
+       4   name: auth-service-config
+       5   labels:
+       6     app: auth-service
+       7     app.kubernetes.io/name: auth-service
+       8     app.kubernetes.io/component: backend
+       9     app.kubernetes.io/part-of: microservice-app
+      10 data:
+     … +8 lines (ctrl+o to expand)
+
+⏺ Write(manifests_v2/auth-service/secret.yaml)
+  ⎿  Wrote 18 lines to manifests_v2/auth-service/secret.yaml
+       1 apiVersion: v1
+       2 kind: Secret
+       3 metadata:
+       4   name: auth-service-secret
+       5   labels:
+       6     app: auth-service
+       7     app.kubernetes.io/name: auth-service
+       8     app.kubernetes.io/component: backend
+       9     app.kubernetes.io/part-of: microservice-app
+      10 type: Opaque
+     … +8 lines (ctrl+o to expand)
+
+⏺ Write(manifests_v2/game-service/deployment.yaml)
+  ⎿  Wrote 72 lines to manifests_v2/game-service/deployment.yaml
+       1 apiVersion: apps/v1
+       2 kind: Deployment
+       3 metadata:
+       4   name: game-service
+       5   labels:
+       6     app: game-service
+       7     app.kubernetes.io/name: game-service
+       8     app.kubernetes.io/component: backend
+       9     app.kubernetes.io/part-of: microservice-app
+      10 spec:
+     … +62 lines (ctrl+o to expand)
+
+⏺ Write(manifests_v2/game-service/service.yaml)
+  ⎿  Wrote 19 lines to manifests_v2/game-service/service.yaml
+       1 apiVersion: v1
+       2 kind: Service
+       3 metadata:
+       4   name: game-service
+       5   labels:
+       6     app: game-service
+       7     app.kubernetes.io/name: game-service
+       8     app.kubernetes.io/component: backend
+       9     app.kubernetes.io/part-of: microservice-app
+      10 spec:
+     … +9 lines (ctrl+o to expand)
+
+⏺ Write(manifests_v2/game-service/configmap.yaml)
+  ⎿  Wrote 18 lines to manifests_v2/game-service/configmap.yaml
+       1 apiVersion: v1
+       2 kind: ConfigMap
+       3 metadata:
+       4   name: game-service-config
+       5   labels:
+       6     app: game-service
+       7     app.kubernetes.io/name: game-service
+       8     app.kubernetes.io/component: backend
+       9     app.kubernetes.io/part-of: microservice-app
+      10 data:
+     … +8 lines (ctrl+o to expand)
+
+⏺ Write(manifests_v2/game-service/secret.yaml)
+  ⎿  Wrote 18 lines to manifests_v2/game-service/secret.yaml
+       1 apiVersion: v1
+       2 kind: Secret
+       3 metadata:
+       4   name: game-service-secret
+       5   labels:
+       6     app: game-service
+       7     app.kubernetes.io/name: game-service
+       8     app.kubernetes.io/component: backend
+       9     app.kubernetes.io/part-of: microservice-app
+      10 type: Opaque
+     … +8 lines (ctrl+o to expand)
+
+⏺ Write(manifests_v2/frontend/deployment.yaml)
+  ⎿  Wrote 83 lines to manifests_v2/frontend/deployment.yaml
+       1 apiVersion: apps/v1
+       2 kind: Deployment
+       3 metadata:
+       4   name: frontend
+       5   labels:
+       6     app: frontend
+       7     app.kubernetes.io/name: frontend
+       8     app.kubernetes.io/component: frontend
+       9     app.kubernetes.io/part-of: microservice-app
+      10 spec:
+     … +73 lines (ctrl+o to expand)
+
+⏺ Write(manifests_v2/frontend/service.yaml)
+  ⎿  Wrote 19 lines to manifests_v2/frontend/service.yaml
+       1 apiVersion: v1
+       2 kind: Service
+       3 metadata:
+       4   name: frontend
+       5   labels:
+       6     app: frontend
+       7     app.kubernetes.io/name: frontend
+       8     app.kubernetes.io/component: frontend
+       9     app.kubernetes.io/part-of: microservice-app
+      10 spec:
+     … +9 lines (ctrl+o to expand)
+
+⏺ Write(manifests_v2/frontend/configmap.yaml)
+  ⎿  Wrote 14 lines to manifests_v2/frontend/configmap.yaml
+       1 apiVersion: v1
+       2 kind: ConfigMap
+       3 metadata:
+       4   name: frontend-config
+       5   labels:
+       6     app: frontend
+       7     app.kubernetes.io/name: frontend
+       8     app.kubernetes.io/component: frontend
+       9     app.kubernetes.io/part-of: microservice-app
+      10 data:
+     … +4 lines (ctrl+o to expand)
+
+⏺ Write(manifests_v2/frontend/nginx-configmap.yaml)
+  ⎿  Wrote 71 lines to manifests_v2/frontend/nginx-configmap.yaml
+       1 apiVersion: v1
+       2 kind: ConfigMap
+       3 metadata:
+       4   name: frontend-nginx-config
+       5   labels:
+       6     app: frontend
+       7     app.kubernetes.io/name: frontend
+       8     app.kubernetes.io/component: frontend
+       9     app.kubernetes.io/part-of: microservice-app
+      10 data:
+     … +61 lines (ctrl+o to expand)
+
+⏺ Write(manifests_v2/frontend/route.yaml)
+  ⎿  Wrote 23 lines to manifests_v2/frontend/route.yaml 
+       1 apiVersion: route.openshift.io/v1
+       2 kind: Route
+       3 metadata:
+       4   name: frontend
+       5   labels:
+       6     app: frontend
+       7     app.kubernetes.io/name: frontend
+       8     app.kubernetes.io/component: frontend
+       9     app.kubernetes.io/part-of: microservice-app
+      10 spec:
+     … +13 lines (ctrl+o to expand)
+
+⏺ Now let me create base/shared manifests and the documentation.
+
+⏺ Write(manifests_v2/base/namespace.yaml)
+  ⎿  Wrote 10 lines to manifests_v2/base/namespace.yaml                  
+      1 apiVersion: v1
+      2 kind: Namespace
+      3 metadata:
+      4   name: microservice-app
+      5   labels:
+      6     app.kubernetes.io/part-of: microservice-app
+      7   annotations:
+      8     openshift.io/description: "Microservice application namespace
+        "
+      9     openshift.io/display-name: "Microservice App"
+
+⏺ Write(manifests_v2/base/image-pull-secret.yaml)
+  ⎿  Wrote 17 lines to manifests_v2/base/image-pull-secret.yaml          
+       1 apiVersion: v1
+       2 kind: Secret
+       3 metadata:
+       4   name: dockerhub-cred
+       5   labels:
+       6     app.kubernetes.io/part-of: microservice-app
+       7 type: kubernetes.io/dockerconfigjson
+       8 data:
+       9   # IMPORTANT: Replace with your base64-encoded Docker config JS
+         ON
+      10   # Generate with: kubectl create secret docker-registry dockerh
+         ub-cred \
+     … +7 lines (ctrl+o to expand)
+
+⏺ Write(manifests_v2/base/network-policy.yaml)
+  ⎿  Wrote 53 lines to manifests_v2/base/network-policy.yaml
+       1 apiVersion: networking.k8s.io/v1
+       2 kind: NetworkPolicy
+       3 metadata:
+       4   name: default-deny-ingress
+       5   labels:
+       6     app.kubernetes.io/part-of: microservice-app
+       7 spec:
+       8   podSelector: {}
+       9   policyTypes:
+      10     - Ingress
+     … +43 lines (ctrl+o to expand)
+
+⏺ Write(manifests_v2/README.md)
+  ⎿  Wrote 264 lines to manifests_v2/README.md                           
+      1 # OpenShift/Kubernetes Manifests for Microservice App
+      2 This directory contains Kubernetes manifests for deploying the mi
+        croservice application to OpenShift.
+      3 ## Directory Structure
+      4 ```
+      5 manifests_v2/
+      6 ├── base/                      # Shared resources
+      7 │   ├── namespace.yaml         # Namespace definition
+     … +254 lines (ctrl+o to expand)
+
+⏺ Bash(find /Users/badex/Documents/microservice-app/manifests_v2 -type f | sort)
+  ⎿ /Users/badex/Documents/microservice-app/manifests_v2/README.md         
+    /Users/badex/Documents/microservice-app/manifests_v2/auth-service/confi
+    gmap.yaml
+    … +30 lines (ctrl+o to expand)
+
+
+⏺ Done! I've created the manifests_v2 directory with all OpenShift manifests.
+
+  Created Structure
+
+  manifests_v2/
+  ├── base/
+  │   ├── namespace.yaml           # Namespace definition
+  │   ├── image-pull-secret.yaml   # Docker Hub credentials
+  │   └── network-policy.yaml      # Network security policies
+  ├── auth-service/
+  │   ├── deployment.yaml          # 2 replicas, port 8080
+  │   ├── service.yaml             # ClusterIP service
+  │   ├── configmap.yaml           # PostgreSQL host/db config
+  │   └── secret.yaml              # DB credentials & JWT key
+  ├── game-service/
+  │   ├── deployment.yaml          # 2 replicas, port 8081
+  │   ├── service.yaml             # ClusterIP service
+  │   ├── configmap.yaml           # PostgreSQL host/db config
+  │   └── secret.yaml              # DB credentials & JWT key
+  ├── frontend/
+  │   ├── deployment.yaml          # 2 replicas, nginx on 8080
+  │   ├── service.yaml             # ClusterIP service, port 80
+  │   ├── configmap.yaml           # Runtime config
+  │   ├── nginx-configmap.yaml     # Reverse proxy configuration
+  │   └── route.yaml               # OpenShift Route with TLS
+  └── README.md                    # Full documentation
+
+  Key Features
+
+  - Security hardened: Non-root containers, dropped capabilities, network policies
+  - Health checks: Liveness and readiness probes on all services
+  - Prometheus metrics: Scrape annotations enabled
+  - TLS: Edge termination with HTTP redirect
+  - Resource limits: Memory and CPU constraints defined
+
+  Before Deploying
+
+  1. Update secrets with actual credentials (marked with REPLACE_WITH_*)
+  2. Update POSTGRES_HOST in ConfigMaps to match your database
+  3. Create the Docker registry secret
+
+  See manifests_v2/README.md for complete deployment instructions.
+
+> add kustomize support for the manifests and explain how it works then 
+revise the readme file to include the kustomization bit and how its used 
+
+⏺ I'll add Kustomize support with base configurations and environment overlays.
+
+⏺ Write(manifests_v2/base/kustomization.yaml)
+  ⎿  Wrote 11 lines to manifests_v2/base/kustomization.yaml
+      1 apiVersion: kustomize.config.k8s.io/v1beta1
+      2 kind: Kustomization
+      3 metadata:
+      4   name: base-resources
+      5 resources:
+      6   - namespace.yaml
+      7   - image-pull-secret.yaml
+      8   - network-policy.yaml
+     … +1 line (ctrl+o to expand)
+
+⏺ Write(manifests_v2/auth-service/kustomization.yaml)
+  ⎿  Wrote 17 lines to manifests_v2/auth-service/kustomization.yaml
+      1 apiVersion: kustomize.config.k8s.io/v1beta1
+      2 kind: Kustomization
+      3 metadata:
+      4   name: auth-service
+      5 resources:
+      6   - deployment.yaml
+      7   - service.yaml
+      8   - configmap.yaml
+     … +7 lines (ctrl+o to expand)
+
+⏺ Write(manifests_v2/game-service/kustomization.yaml)
+  ⎿  Wrote 17 lines to manifests_v2/game-service/kustomization.yaml
+      1 apiVersion: kustomize.config.k8s.io/v1beta1
+      2 kind: Kustomization
+      3 metadata:
+      4   name: game-service
+      5 resources:
+      6   - deployment.yaml
+      7   - service.yaml
+      8   - configmap.yaml
+     … +7 lines (ctrl+o to expand)
+
+⏺ Write(manifests_v2/frontend/kustomization.yaml)
+  ⎿  Wrote 18 lines to manifests_v2/frontend/kustomization.yaml
+      1 apiVersion: kustomize.config.k8s.io/v1beta1
+      2 kind: Kustomization
+      3 metadata:
+      4   name: frontend
+      5 resources:
+      6   - deployment.yaml
+      7   - service.yaml
+      8   - configmap.yaml
+     … +8 lines (ctrl+o to expand)
+
+⏺ Write(manifests_v2/kustomization.yaml)
+  ⎿  Wrote 21 lines to manifests_v2/kustomization.yaml
+      1 apiVersion: kustomize.config.k8s.io/v1beta1
+      2 kind: Kustomization
+      3 metadata:
+      4   name: microservice-app
+      5 # Include all service components
+      6 resources:
+      7   - base
+      8   - auth-service
+     … +11 lines (ctrl+o to expand)
+
+⏺ Bash(mkdir -p /Users/badex/Documents/microservice-app/manifests_v2/overlays/{d
+      ev,staging,prod})
+  ⎿  (No content)
+
+⏺ Write(manifests_v2/overlays/dev/kustomization.yaml)
+  ⎿  Wrote 58 lines to manifests_v2/overlays/dev/kustomization.yaml
+      1 apiVersion: kustomize.config.k8s.io/v1beta1
+      2 kind: Kustomization
+      3 metadata:
+      4   name: microservice-app-dev
+      5 # Reference the base configuration
+      6 resources:
+      7   - ../../
+     … +48 lines (ctrl+o to expand)
+
+⏺ Write(manifests_v2/overlays/dev/namespace.yaml)
+  ⎿  Wrote 11 lines to manifests_v2/overlays/dev/namespace.yaml          
+       1 apiVersion: v1
+       2 kind: Namespace
+       3 metadata:
+       4   name: microservice-app-dev
+       5   labels:
+       6     app.kubernetes.io/part-of: microservice-app
+       7     environment: dev
+       8   annotations:
+       9     openshift.io/description: "Microservice application - Develo
+         pment environment"
+      10     openshift.io/display-name: "Microservice App (Dev)"
+     … +1 line (ctrl+o to expand)
+
+⏺ Write(manifests_v2/overlays/staging/kustomization.yaml)
+  ⎿  Wrote 58 lines to manifests_v2/overlays/staging/kustomization.yaml
+      1 apiVersion: kustomize.config.k8s.io/v1beta1
+      2 kind: Kustomization
+      3 metadata:
+      4   name: microservice-app-staging
+      5 # Reference the base configuration
+      6 resources:
+      7   - ../../
+     … +48 lines (ctrl+o to expand)
+
+⏺ Write(manifests_v2/overlays/staging/namespace.yaml)
+  ⎿  Wrote 11 lines to manifests_v2/overlays/staging/namespace.yaml      
+       1 apiVersion: v1
+       2 kind: Namespace
+       3 metadata:
+       4   name: microservice-app-staging
+       5   labels:
+       6     app.kubernetes.io/part-of: microservice-app
+       7     environment: staging
+       8   annotations:
+       9     openshift.io/description: "Microservice application - Stagin
+         g environment"
+      10     openshift.io/display-name: "Microservice App (Staging)"
+     … +1 line (ctrl+o to expand)
+
+⏺ Write(manifests_v2/overlays/prod/kustomization.yaml)
+  ⎿  Wrote 94 lines to manifests_v2/overlays/prod/kustomization.yaml
+      1 apiVersion: kustomize.config.k8s.io/v1beta1
+      2 kind: Kustomization
+      3 metadata:
+      4   name: microservice-app-prod
+      5 # Reference the base configuration
+      6 resources:
+      7   - ../../
+      8   - hpa.yaml
+     … +84 lines (ctrl+o to expand)
+
+⏺ Write(manifests_v2/overlays/prod/namespace.yaml)
+  ⎿  Wrote 11 lines to manifests_v2/overlays/prod/namespace.yaml         
+       1 apiVersion: v1
+       2 kind: Namespace
+       3 metadata:
+       4   name: microservice-app-prod
+       5   labels:
+       6     app.kubernetes.io/part-of: microservice-app
+       7     environment: prod
+       8   annotations:
+       9     openshift.io/description: "Microservice application - Produc
+         tion environment"
+      10     openshift.io/display-name: "Microservice App (Production)"
+     … +1 line (ctrl+o to expand)
+
+⏺ Write(manifests_v2/overlays/prod/hpa.yaml)
+  ⎿  Wrote 122 lines to manifests_v2/overlays/prod/hpa.yaml
+       1 apiVersion: autoscaling/v2
+       2 kind: HorizontalPodAutoscaler
+       3 metadata:
+       4   name: prod-auth-service-hpa
+       5   labels:
+       6     app: auth-service
+       7 spec:
+       8   scaleTargetRef:
+       9     apiVersion: apps/v1
+      10     kind: Deployment
+     … +112 lines (ctrl+o to expand)
+
+⏺ Read(manifests_v2/README.md)
+  ⎿  Read 264 lines
+
+⏺ Write(manifests_v2/README.md)
+  ⎿  Added 337 lines, removed 127 lines                                  
+        1  # OpenShift/Kubernetes Manifests for Microservice App
+        2  
+        3 -This directory contains Kubernetes manifests for deploying the
+          - microservice application to OpenShift.                       
+        3 +This directory contains Kubernetes manifests for deploying the
+          + microservice application to OpenShift, with full Kustomize su
+          +pport for managing multiple environments.                     
+        4  
+        5  ## Directory Structure
+        6  
+        7  ```
+        8  manifests_v2/
+        9 -├── base/                      # Shared resources             
+       10 -│   ├── namespace.yaml         # Namespace definition         
+       11 -│   ├── image-pull-secret.yaml # Docker registry credentials  
+       12 -│   └── network-policy.yaml    # Network security policies    
+       13 -├── auth-service/              # Authentication service       
+        9 +├── kustomization.yaml              # Root kustomization (comb
+          +ines all components)                                          
+       10 +├── base/                           # Shared resources        
+       11 +│   ├── kustomization.yaml                                    
+       12 +│   ├── namespace.yaml                                        
+       13 +│   ├── image-pull-secret.yaml                                
+       14 +│   └── network-policy.yaml                                   
+       15 +├── auth-service/                   # Authentication service  
+       16 +│   ├── kustomization.yaml                                    
+       17  │   ├── deployment.yaml
+       18  │   ├── service.yaml
+       19  │   ├── configmap.yaml
+       20  │   └── secret.yaml
+       18 -├── game-service/              # Game statistics service      
+       21 +├── game-service/                   # Game statistics service 
+       22 +│   ├── kustomization.yaml                                    
+       23  │   ├── deployment.yaml
+       24  │   ├── service.yaml
+       25  │   ├── configmap.yaml
+       26  │   └── secret.yaml
+       23 -├── frontend/                  # React frontend               
+       27 +├── frontend/                       # React frontend          
+       28 +│   ├── kustomization.yaml                                    
+       29  │   ├── deployment.yaml
+       30  │   ├── service.yaml
+       31  │   ├── configmap.yaml
+       27 -│   ├── nginx-configmap.yaml   # Nginx reverse proxy config   
+       28 -│   └── route.yaml             # OpenShift Route for external 
+          -access                                                        
+       29 -└── README.md                                                 
+       32 +│   ├── nginx-configmap.yaml                                  
+       33 +│   └── route.yaml                                            
+       34 +└── overlays/                       # Environment-specific con
+          +figurations                                                   
+       35 +    ├── dev/                                                  
+       36 +    │   ├── kustomization.yaml                                
+       37 +    │   └── namespace.yaml                                    
+       38 +    ├── staging/                                              
+       39 +    │   ├── kustomization.yaml                                
+       40 +    │   └── namespace.yaml                                    
+       41 +    └── prod/                                                 
+       42 +        ├── kustomization.yaml                                
+       43 +        ├── namespace.yaml                                    
+       44 +        └── hpa.yaml                # HorizontalPodAutoscaler 
+          +for production                                                
+       45  ```
+       46  
+       47 +## What is Kustomize?                                         
+       48 +                                                              
+       49 +Kustomize is a Kubernetes-native configuration management tool
+          + that allows you to customize YAML manifests without using tem
+          +plates. It's built into `kubectl` (v1.14+) and `oc`.          
+       50 +                                                              
+       51 +### Key Concepts                                              
+       52 +                                                              
+       53 +| Concept | Description |                                     
+       54 +|---------|-------------|                                     
+       55 +| **Base** | The original, unmodified manifests that define yo
+          +ur application |                                              
+       56 +| **Overlay** | Environment-specific customizations that layer
+          + on top of the base |                                         
+       57 +| **Patch** | A partial YAML that modifies specific fields in 
+          +the base |                                                    
+       58 +| **Kustomization** | A `kustomization.yaml` file that declare
+          +s resources and transformations |                             
+       59 +                                                              
+       60 +### How It Works                                              
+       61 +                                                              
+       62 +```                                                           
+       63 +┌─────────────────────────────────────────────────────────────
+          +────┐                                                         
+       64 +│                         Kustomize Flow                      
+          +    │                                                         
+       65 +├─────────────────────────────────────────────────────────────
+          +────┤                                                         
+       66 +│                                                             
+          +    │                                                         
+       67 +│   BASE MANIFESTS              OVERLAY                OUTPUT 
+          +    │                                                         
+       68 +│   ┌──────────────┐      ┌──────────────┐      ┌─────────────
+          +─┐ │                                                          
+       69 +│   │ deployment   │      │ + replicas:3 │      │ deployment  
+          + │ │                                                          
+       70 +│   │ replicas: 2  │  ──► │ + image:v1.0 │  ──► │ replicas: 3 
+          + │ │                                                          
+       71 +│   │ image:latest │      │ + namespace  │      │ image:v1.0  
+          + │ │                                                          
+       72 +│   └──────────────┘      └──────────────┘      └─────────────
+          +─┘ │                                                          
+       73 +│                                                             
+          +    │                                                         
+       74 +│   Same base manifests + different overlays = different envs 
+          +   │                                                          
+       75 +│                                                             
+          +    │                                                         
+       76 +└─────────────────────────────────────────────────────────────
+          +────┘                                                         
+       77 +```                                                           
+       78 +                                                              
+       79 +### Why Use Kustomize?                                        
+       80 +                                                              
+       81 +1. **No Templating**: Unlike Helm, Kustomize works with plain 
+          +YAML - no template syntax to learn                            
+       82 +2. **DRY Principle**: Define resources once in base, customize
+          + per environment in overlays                                  
+       83 +3. **Native Support**: Built into `kubectl` and `oc` - no addi
+          +tional tools needed                                           
+       84 +4. **GitOps Friendly**: Each environment is a directory, easy 
+          +to track in version control                                   
+       85 +5. **Composable**: Combine multiple bases and overlays as need
+          +ed                                                            
+       86 +                                                              
+       87  ## Prerequisites
+       88  
+       34 -1. **OpenShift CLI (oc)** or **kubectl** installed            
+       35 -2. **PostgreSQL database** deployed and accessible (e.g., via 
+          -CloudNativePG operator)                                       
+       89 +1. **OpenShift CLI (oc)** or **kubectl** (v1.14+) installed   
+       90 +2. **PostgreSQL database** deployed and accessible            
+       91  3. **Docker Hub credentials** for pulling container images
+       92  
+       38 -## Quick Start                                                
+       93 +## Deployment Options                                         
+       94  
+       40 -### 1. Create Namespace                                       
+       95 +### Option 1: Deploy Base Configuration (Default)             
+       96  
+       97 +Deploy the base manifests directly:                           
+       98 +                                                              
+       99  ```bash
+       43 -oc apply -f manifests_v2/base/namespace.yaml                  
+       44 -oc project microservice-app                                   
+      100 +# Preview what will be applied                                
+      101 +oc kustomize manifests_v2/                                    
+      102 +                                                              
+      103 +# Apply base configuration                                    
+      104 +oc apply -k manifests_v2/                                     
+      105  ```
+      106  
+       47 -### 2. Configure Secrets                                      
+      107 +### Option 2: Deploy to Specific Environment (Recommended)    
+      108  
+       49 -Before deploying, update the secret files with actual values: 
+      109 +Use overlays for environment-specific deployments:            
+      110  
+       51 -#### Docker Registry Secret                                   
+      111  ```bash
+       53 -# Create image pull secret                                    
+       54 -oc create secret docker-registry dockerhub-cred \             
+       55 -  --docker-server=https://index.docker.io/v1/ \               
+       56 -  --docker-username=YOUR_USERNAME \                           
+       57 -  --docker-password=YOUR_PASSWORD \                           
+       58 -  --docker-email=YOUR_EMAIL                                   
+      112 +# Development environment                                     
+      113 +oc apply -k manifests_v2/overlays/dev/                        
+      114 +                                                              
+      115 +# Staging environment                                         
+      116 +oc apply -k manifests_v2/overlays/staging/                    
+      117 +                                                              
+      118 +# Production environment                                      
+      119 +oc apply -k manifests_v2/overlays/prod/                       
+      120  ```
+      121  
+       61 -#### Database Credentials                                     
+       62 -Edit the secret files and replace placeholder values:         
+       63 -- `manifests_v2/auth-service/secret.yaml`                     
+       64 -- `manifests_v2/game-service/secret.yaml`                     
+      122 +### Option 3: Preview Before Applying                         
+      123  
+       66 -Replace:                                                      
+       67 -- `REPLACE_WITH_ACTUAL_USERNAME` - PostgreSQL username        
+       68 -- `REPLACE_WITH_ACTUAL_PASSWORD` - PostgreSQL password        
+       69 -- `REPLACE_WITH_STRONG_SECRET_KEY` - JWT signing key (must be 
+          -same for auth-service and game-service)                       
+      124 +Always preview changes before applying:                       
+      125  
+       71 -**For production, consider using:**                           
+       72 -- [Sealed Secrets](https://github.com/bitnami-labs/sealed-secr
+          -ets)                                                          
+       73 -- [External Secrets Operator](https://external-secrets.io/)   
+       74 -- [HashiCorp Vault](https://www.vaultproject.io/)             
+      126 +```bash                                                       
+      127 +# See what will be created for dev                            
+      128 +oc kustomize manifests_v2/overlays/dev/                       
+      129  
+       76 -### 3. Update ConfigMaps                                      
+      130 +# Diff against current state                                  
+      131 +oc diff -k manifests_v2/overlays/prod/                        
+      132  
+       78 -Edit the ConfigMaps to match your environment:                
+      133 +# Save to file for review                                     
+      134 +oc kustomize manifests_v2/overlays/prod/ > prod-manifests.yaml
+      135 +```                                                           
+      136  
+      137 +## Environment Comparison                                     
+      138 +                                                              
+      139 +| Feature | Dev | Staging | Prod |                            
+      140 +|---------|-----|---------|------|                            
+      141 +| Namespace | `microservice-app-dev` | `microservice-app-stagi
+          +ng` | `microservice-app-prod` |                               
+      142 +| Replicas | 1 | 2 | 3 |                                      
+      143 +| Image Tag | `dev` | `staging` | `v1.0.0` |                  
+      144 +| Log Level | `debug` | `info` | `warning` |                  
+      145 +| Resources | Default | Default | Increased |                 
+      146 +| HPA | No | No | Yes (3-10 pods) |                           
+      147 +| Name Prefix | `dev-` | `staging-` | `prod-` |               
+      148 +                                                              
+      149 +## Kustomization Features Used                                
+      150 +                                                              
+      151 +### 1. Resource Composition                                   
+      152 +                                                              
+      153 +The root `kustomization.yaml` combines all service components:
+      154 +                                                              
+      155  ```yaml
+       81 -# In auth-service/configmap.yaml and game-service/configmap.ya
+          -ml                                                            
+       82 -POSTGRES_HOST: "your-postgres-host.namespace.svc.cluster.local
+          -"                                                             
+       83 -POSTGRES_DB: "your-database-name"                             
+      156 +resources:                                                    
+      157 +  - base                                                      
+      158 +  - auth-service                                              
+      159 +  - game-service                                              
+      160 +  - frontend                                                  
+      161  ```
+      162  
+       86 -### 4. Deploy Services                                        
+      163 +### 2. Common Labels                                          
+      164  
+       88 -Deploy in order (base resources first):                       
+      165 +Labels applied automatically to all resources:                
+      166  
+       90 -```bash                                                       
+       91 -# Apply base resources                                        
+       92 -oc apply -f manifests_v2/base/                                
+      167 +```yaml                                                       
+      168 +commonLabels:                                                 
+      169 +  app.kubernetes.io/managed-by: kustomize                     
+      170 +  app.kubernetes.io/part-of: microservice-app                 
+      171 +  environment: dev  # varies by overlay                       
+      172 +```                                                           
+      173  
+       94 -# Deploy backend services                                     
+       95 -oc apply -f manifests_v2/auth-service/                        
+       96 -oc apply -f manifests_v2/game-service/                        
+      174 +### 3. Namespace Override                                     
+      175  
+       98 -# Deploy frontend                                             
+       99 -oc apply -f manifests_v2/frontend/                            
+      176 +Each overlay sets its own namespace:                          
+      177 +                                                              
+      178 +```yaml                                                       
+      179 +namespace: microservice-app-dev                               
+      180  ```
+      181  
+      102 -Or deploy everything at once:                                 
+      103 -```bash                                                       
+      104 -oc apply -R -f manifests_v2/                                  
+      182 +### 4. Name Prefix                                            
+      183 +                                                              
+      184 +Resources are prefixed per environment:                       
+      185 +                                                              
+      186 +```yaml                                                       
+      187 +namePrefix: dev-  # Results in: dev-auth-service, dev-frontend
+          +, etc.                                                        
+      188  ```
+      189  
+      107 -### 5. Verify Deployment                                      
+      190 +### 5. Image Tags                                             
+      191  
+      192 +Override image tags without editing base manifests:           
+      193 +                                                              
+      194 +```yaml                                                       
+      195 +images:                                                       
+      196 +  - name: badex/auth-service                                  
+      197 +    newTag: v1.0.0                                            
+      198 +  - name: badex/game-service                                  
+      199 +    newTag: v1.0.0                                            
+      200 +```                                                           
+      201 +                                                              
+      202 +### 6. JSON Patches                                           
+      203 +                                                              
+      204 +Modify specific fields:                                       
+      205 +                                                              
+      206 +```yaml                                                       
+      207 +patches:                                                      
+      208 +  - patch: |-                                                 
+      209 +      - op: replace                                           
+      210 +        path: /spec/replicas                                  
+      211 +        value: 3                                              
+      212 +    target:                                                   
+      213 +      kind: Deployment                                        
+      214 +```                                                           
+      215 +                                                              
+      216 +### 7. ConfigMap Generator                                    
+      217 +                                                              
+      218 +Merge or create ConfigMaps:                                   
+      219 +                                                              
+      220 +```yaml                                                       
+      221 +configMapGenerator:                                           
+      222 +  - name: auth-service-config                                 
+      223 +    behavior: merge                                           
+      224 +    literals:                                                 
+      225 +      - POSTGRES_HOST=new-host.svc.cluster.local              
+      226 +      - LOG_LEVEL=debug                                       
+      227 +```                                                           
+      228 +                                                              
+      229 +## Configuration                                              
+      230 +                                                              
+      231 +### Before Deploying                                          
+      232 +                                                              
+      233 +#### 1. Configure Secrets                                     
+      234 +                                                              
+      235 +Create the Docker registry secret:                            
+      236 +                                                              
+      237  ```bash
+      110 -# Check pod status                                            
+      111 -oc get pods                                                   
+      238 +oc create secret docker-registry dockerhub-cred \             
+      239 +  --docker-server=https://index.docker.io/v1/ \               
+      240 +  --docker-username=YOUR_USERNAME \                           
+      241 +  --docker-password=YOUR_PASSWORD \                           
+      242 +  --docker-email=YOUR_EMAIL \                                 
+      243 +  -n microservice-app-dev  # Adjust namespace per environment 
+      244 +```                                                           
+      245  
+      113 -# Check services                                              
+      114 -oc get svc                                                    
+      246 +Edit secret files and replace placeholders:                   
+      247 +- `REPLACE_WITH_ACTUAL_USERNAME` - PostgreSQL username        
+      248 +- `REPLACE_WITH_ACTUAL_PASSWORD` - PostgreSQL password        
+      249 +- `REPLACE_WITH_STRONG_SECRET_KEY` - JWT signing key          
+      250  
+      116 -# Get the route URL                                           
+      117 -oc get route frontend                                         
+      251 +#### 2. Update Database Host                                  
+      252 +                                                              
+      253 +Edit the overlay's `kustomization.yaml` or base ConfigMaps:   
+      254 +                                                              
+      255 +```yaml                                                       
+      256 +# In overlays/dev/kustomization.yaml                          
+      257 +configMapGenerator:                                           
+      258 +  - name: auth-service-config                                 
+      259 +    behavior: merge                                           
+      260 +    literals:                                                 
+      261 +      - POSTGRES_HOST=your-postgres-host.namespace.svc.cluster
+          +.local                                                        
+      262  ```
+      263  
+      264  ## Service Details
+     ...
+      267  | Property | Value |
+      268  |----------|-------|
+      269  | Port | 8080 |
+      126 -| Replicas | 2 |                                              
+      127 -| Image | `badex/auth-service:latest` |                       
+      128 -| Endpoints | `POST /register`, `POST /login` |               
+      270 +| Base Replicas | 2 |                                         
+      271 +| Image | `badex/auth-service` |                              
+      272 +| Endpoints | `POST /register`, `POST /login`, `GET /health` |
+      273  
+      274  ### Game Service
+      275  | Property | Value |
+      276  |----------|-------|
+      277  | Port | 8081 |
+      134 -| Replicas | 2 |                                              
+      135 -| Image | `badex/game-service:latest` |                       
+      136 -| Endpoints | `GET /users/scores`, `POST /snake/score`, `POST 
+          -/game/stats` |                                                
+      278 +| Base Replicas | 2 |                                         
+      279 +| Image | `badex/game-service` |                              
+      280 +| Endpoints | `GET /users/scores`, `POST /snake/score`, `POST 
+          +/game/stats`, `GET /health` |                                 
+      281  
+      282  ### Frontend
+      283  | Property | Value |
+      284  |----------|-------|
+      285  | Port | 8080 (nginx) |
+      142 -| Replicas | 2 |                                              
+      143 -| Image | `badex/frontend:latest` |                           
+      286 +| Base Replicas | 2 |                                         
+      287 +| Image | `badex/frontend` |                                  
+      288  | Features | React SPA, nginx reverse proxy |
+      289  
+      146 -## Configuration                                              
+      290 +## Common Kustomize Commands                                  
+      291  
+      148 -### Environment Variables                                     
+      292 +```bash                                                       
+      293 +# Build and preview manifests                                 
+      294 +oc kustomize manifests_v2/overlays/dev/                       
+      295  
+      150 -#### Auth Service & Game Service                              
+      151 -| Variable | Description | Source |                           
+      152 -|----------|-------------|--------|                           
+      153 -| `POSTGRES_HOST` | PostgreSQL hostname | ConfigMap |         
+      154 -| `POSTGRES_DB` | Database name | ConfigMap |                 
+      155 -| `POSTGRES_USER` | Database username | Secret |              
+      156 -| `POSTGRES_PASSWORD` | Database password | Secret |          
+      157 -| `JWT_SECRET_KEY` | JWT signing key | Secret |               
+      296 +# Apply manifests                                             
+      297 +oc apply -k manifests_v2/overlays/dev/                        
+      298  
+      159 -### Resource Limits                                           
+      299 +# Delete all resources                                        
+      300 +oc delete -k manifests_v2/overlays/dev/                       
+      301  
+      161 -All services are configured with:                             
+      162 -- **Requests**: 64Mi memory, 250m CPU (100m for frontend)     
+      163 -- **Limits**: 128Mi memory, 500m CPU (250m for frontend)      
+      302 +# Show difference with current cluster state                  
+      303 +oc diff -k manifests_v2/overlays/prod/                        
+      304  
+      165 -Adjust these based on your workload requirements.             
+      305 +# Build to file                                               
+      306 +oc kustomize manifests_v2/overlays/prod/ -o prod.yaml         
+      307  
+      308 +# Validate without applying                                   
+      309 +oc apply -k manifests_v2/overlays/dev/ --dry-run=client       
+      310 +                                                              
+      311 +# Apply with server-side validation                           
+      312 +oc apply -k manifests_v2/overlays/dev/ --dry-run=server       
+      313 +```                                                           
+      314 +                                                              
+      315 +## Creating a New Environment                                 
+      316 +                                                              
+      317 +To create a new environment (e.g., `qa`):                     
+      318 +                                                              
+      319 +```bash                                                       
+      320 +mkdir -p manifests_v2/overlays/qa                             
+      321 +```                                                           
+      322 +                                                              
+      323 +Create `manifests_v2/overlays/qa/kustomization.yaml`:         
+      324 +                                                              
+      325 +```yaml                                                       
+      326 +apiVersion: kustomize.config.k8s.io/v1beta1                   
+      327 +kind: Kustomization                                           
+      328 +                                                              
+      329 +resources:                                                    
+      330 +  - ../../                                                    
+      331 +                                                              
+      332 +namespace: microservice-app-qa                                
+      333 +namePrefix: qa-                                               
+      334 +                                                              
+      335 +commonLabels:                                                 
+      336 +  environment: qa                                             
+      337 +                                                              
+      338 +images:                                                       
+      339 +  - name: badex/auth-service                                  
+      340 +    newTag: qa                                                
+      341 +  - name: badex/game-service                                  
+      342 +    newTag: qa                                                
+      343 +  - name: badex/frontend                                      
+      344 +    newTag: qa                                                
+      345 +                                                              
+      346 +patches:                                                      
+      347 +  - patch: |-                                                 
+      348 +      - op: replace                                           
+      349 +        path: /spec/replicas                                  
+      350 +        value: 2                                              
+      351 +    target:                                                   
+      352 +      kind: Deployment                                        
+      353 +```                                                           
+      354 +                                                              
+      355  ## Security Features
+      356  
+      357  ### Pod Security
+     ...
+      375  - **Liveness Probe**: Restarts unhealthy containers
+      376  - **Readiness Probe**: Controls traffic routing to ready pods
+      377  
+      190 -Endpoints:                                                    
+      191 -- Auth/Game services: `GET /health` on respective ports       
+      192 -- Frontend: `GET /` on port 8080                              
+      193 -                                                              
+      378  ## Monitoring
+      379  
+      380  Prometheus metrics are enabled via annotations:
+      381 +                                                              
+      382  ```yaml
+      383  prometheus.io/scrape: "true"
+      199 -prometheus.io/port: "8080"  # or 8081 for game-service        
+      384 +prometheus.io/port: "8080"                                    
+      385  ```
+      386  
+      202 -## Scaling                                                    
+      387 +## Production Autoscaling                                     
+      388  
+      204 -To scale services:                                            
+      389 +The production overlay includes HorizontalPodAutoscalers:     
+      390 +                                                              
+      391  ```bash
+      206 -# Scale auth-service to 3 replicas                            
+      207 -oc scale deployment auth-service --replicas=3                 
+      392 +# View HPA status                                             
+      393 +oc get hpa -n microservice-app-prod                           
+      394  
+      209 -# Scale game-service                                          
+      210 -oc scale deployment game-service --replicas=3                 
+      211 -                                                              
+      212 -# Scale frontend                                              
+      213 -oc scale deployment frontend --replicas=3                     
+      395 +# Example output:                                             
+      396 +# NAME                    REFERENCE                    TARGETS
+          +   MINPODS   MAXPODS                                          
+      397 +# prod-auth-service-hpa   Deployment/prod-auth-service   45%/7
+          +0%   3         10                                             
+      398  ```
+      399  
+      216 -For autoscaling:                                              
+      217 -```bash                                                       
+      218 -oc autoscale deployment/auth-service --min=2 --max=5 --cpu-per
+          -cent=80                                                       
+      219 -```                                                           
+      220 -                                                              
+      400  ## Troubleshooting
+      401  
+      402  ### Check Logs
+      403  ```bash
+      225 -oc logs deployment/auth-service                               
+      226 -oc logs deployment/game-service                               
+      227 -oc logs deployment/frontend                                   
+      404 +oc logs deployment/dev-auth-service -n microservice-app-dev   
+      405 +oc logs deployment/prod-frontend -n microservice-app-prod     
+      406  ```
+      407  
+      408  ### Debug Pod
+      409  ```bash
+      232 -oc debug deployment/auth-service                              
+      410 +oc debug deployment/dev-auth-service -n microservice-app-dev  
+      411  ```
+      412  
+      235 -### Check Events                                              
+      236 -```bash                                                       
+      237 -oc get events --sort-by='.lastTimestamp'                      
+      238 -```                                                           
+      239 -                                                              
+      413  ### Common Issues
+      414  
+      242 -1. **ImagePullBackOff**: Check `dockerhub-cred` secret is corr
+          -ect                                                           
+      243 -2. **CrashLoopBackOff**: Check logs for startup errors, verify
+          - DB connectivity                                              
+      244 -3. **Connection refused**: Verify services and network policie
+          -s                                                             
+      245 -4. **Database errors**: Verify PostgreSQL is running and crede
+          -ntials are correct                                            
+      415 +1. **ImagePullBackOff**: Check `dockerhub-cred` secret exists 
+          +in the namespace                                              
+      416 +2. **CrashLoopBackOff**: Check logs, verify DB connectivity   
+      417 +3. **ConfigMap hash suffix**: Kustomize adds hashes to ConfigM
+          +aps - this is expected                                        
+      418 +4. **Resource not found**: Ensure you're in the correct namesp
+          +ace                                                           
+      419  
+      247 -## Updating Images                                            
+      420 +### Verify Kustomize Output                                   
+      421  
+      249 -To update to a new image version:                             
+      422  ```bash
+      251 -oc set image deployment/auth-service auth-service=badex/auth-s
+          -ervice:v1.2.0                                                 
+      252 -oc set image deployment/game-service game-service=badex/game-s
+          -ervice:v1.2.0                                                 
+      253 -oc set image deployment/frontend frontend=badex/frontend:v1.2.
+          -0                                                             
+      423 +# Check if resources are generated correctly                  
+      424 +oc kustomize manifests_v2/overlays/dev/ | grep -A5 "kind: Depl
+          +oyment"                                                       
+      425  ```
+      426  
+      427  ## Cleanup
+      428  
+      258 -To remove all resources:                                      
+      429  ```bash
+      260 -oc delete -R -f manifests_v2/                                 
+      261 -# Or delete the entire namespace                              
+      262 -oc delete namespace microservice-app                          
+      430 +# Delete specific environment                                 
+      431 +oc delete -k manifests_v2/overlays/dev/                       
+      432 +                                                              
+      433 +# Delete all environments                                     
+      434 +oc delete -k manifests_v2/overlays/dev/                       
+      435 +oc delete -k manifests_v2/overlays/staging/                   
+      436 +oc delete -k manifests_v2/overlays/prod/                      
+      437 +                                                              
+      438 +# Or delete namespaces directly                               
+      439 +oc delete namespace microservice-app-dev microservice-app-stag
+          +ing microservice-app-prod                                     
+      440  ```
+      441 +                                                              
+      442 +## CI/CD Integration                                          
+      443 +                                                              
+      444 +### GitHub Actions Example                                    
+      445 +                                                              
+      446 +```yaml                                                       
+      447 +- name: Deploy to Dev                                         
+      448 +  run: |                                                      
+      449 +    oc apply -k manifests_v2/overlays/dev/                    
+      450 +                                                              
+      451 +- name: Deploy to Prod                                        
+      452 +  run: |                                                      
+      453 +    # Update image tag in overlay                             
+      454 +    cd manifests_v2/overlays/prod                             
+      455 +    kustomize edit set image badex/auth-service:${{ github.sha
+          + }}                                                           
+      456 +    oc apply -k .                                             
+      457 +```                                                           
+      458 +                                                              
+      459 +### ArgoCD Example                                            
+      460 +                                                              
+      461 +```yaml                                                       
+      462 +apiVersion: argoproj.io/v1alpha1                              
+      463 +kind: Application                                             
+      464 +metadata:                                                     
+      465 +  name: microservice-app-prod                                 
+      466 +spec:                                                         
+      467 +  source:                                                     
+      468 +    repoURL: https://github.com/your-org/microservice-app     
+      469 +    path: manifests_v2/overlays/prod                          
+      470 +  destination:                                                
+      471 +    server: https://kubernetes.default.svc                    
+      472 +    namespace: microservice-app-prod                          
+      473 +```                                                           
+
+⏺ Bash(find /Users/badex/Documents/microservice-app/manifests_v2 -type f -name
+      "*.yaml" -o -name "*.md" | sort)
+  ⎿ /Users/badex/Documents/microservice-app/manifests_v2/README.md         
+    /Users/badex/Documents/microservice-app/manifests_v2/auth-service/confi
+    gmap.yaml
+    … +53 lines (ctrl+o to expand)
+
+
+⏺ Done! I've added full Kustomize support with environment overlays.
+
+  Summary of Changes
+
+  New Kustomization Files Added
+
+  manifests_v2/
+  ├── kustomization.yaml              # Root - combines all components
+  ├── base/kustomization.yaml         # Base shared resources
+  ├── auth-service/kustomization.yaml
+  ├── game-service/kustomization.yaml
+  ├── frontend/kustomization.yaml
+  └── overlays/
+      ├── dev/
+      │   ├── kustomization.yaml      # 1 replica, debug logging, dev tags
+      │   └── namespace.yaml
+      ├── staging/
+      │   ├── kustomization.yaml      # 2 replicas, info logging, staging tags
+      │   └── namespace.yaml
+      └── prod/
+          ├── kustomization.yaml      # 3 replicas, increased resources, version tags
+          ├── namespace.yaml
+          └── hpa.yaml                # Autoscaling (3-10 pods)
+
+  How Kustomize Works
+
+  Base + Overlay = Final Manifests
+
+  BASE (plain YAML)     +    OVERLAY (patches)    =    OUTPUT
+  ─────────────────────────────────────────────────────────────
+  replicas: 2                replicas: 3               replicas: 3
+  image: latest              image: v1.0.0             image: v1.0.0
+  namespace: default         namespace: prod           namespace: prod
+
+  Quick Usage
+
+  # Deploy to dev
+  oc apply -k manifests_v2/overlays/dev/
+
+  # Deploy to staging  
+  oc apply -k manifests_v2/overlays/staging/
+
+  # Deploy to production
+  oc apply -k manifests_v2/overlays/prod/
+
+  # Preview before applying
+  oc kustomize manifests_v2/overlays/prod/
+
+  Environment Differences
+
+  | Environment | Replicas | Image Tag | Log Level | HPA        |
+  |-------------|----------|-----------|-----------|------------|
+  | Dev         | 1        | dev       | debug     | No         |
+  | Staging     | 2        | staging   | info      | No         |
+  | Prod        | 3        | v1.0.0    | warning   | Yes (3-10) |
+
+  The README (manifests_v2/README.md) includes comprehensive documentation covering all Kustomize concepts, features used, commands, and CI/CD integration examples.
+
+> i've got a few Noob questions. i noticed i need to create the secret for 
+access to docker for my images. with ocp, if i was using internal image 
+registry, i wouldn't need that to authenticate and pull in images right? 
+this is typically the case in production OCP cluster right? 
+
+⏺ Correct on both counts.
+
+  OpenShift Internal Registry
+
+  When using OpenShift's internal image registry:
+
+  1. No pull secret needed - Pods automatically authenticate using their ServiceAccount. OpenShift injects the credentials.
+  2. How it works:
+  Pod → ServiceAccount → imagePullSecrets (auto-attached) → Internal Registry
+
+  2. The default ServiceAccount in each namespace already has permission to pull from the internal registry.
+  3. Image reference format:
+  # Internal registry format
+  image-registry.openshift-image-registry.svc:5000/namespace/image:tag
+
+  # Or using the imagestream
+  image: auth-service:latest  # with an ImageStream in the same namespace
+
+  Production Patterns
+
+  | Approach                                          | Pull Secret Needed? | Typical Use Case         |
+  |---------------------------------------------------|---------------------|--------------------------|
+  | Internal registry                                 | No                  | Most production clusters |
+  | External private registry (Docker Hub, Quay, ECR) | Yes                 | Hybrid/multi-cloud       |
+  | Public images                                     | No                  | Base images, tools       |
+
+  Why Production Prefers Internal Registry
+
+  - Security: Images stay within cluster network
+  - Speed: No external network latency
+  - Control: Integrated with RBAC and image policies
+  - CI/CD: BuildConfigs push directly to it
+  - ImageStreams: Automatic rollouts on image updates
+
+  If You Switch to Internal Registry
+
+  You could simplify your manifests by:
+
+  1. Removing imagePullSecrets from deployments
+  2. Changing image references:
+  # From:
+  image: badex/auth-service:latest
+
+  # To:
+  image: image-registry.openshift-image-registry.svc:5000/microservice-app/auth-service:latest
+  3. Or better - use ImageStreams and just reference:
+  image: auth-service:latest
+
+  The dockerhub-cred secret in the manifests is only needed because you're currently pulling from Docker Hub (badex/*).
+
+> another question - for the database, i intend to use cloudnativePG 
+operator to provision and manage the postgresql database. i presume its 
+those values from there i'd plug into the secret files right? also we've 
+used kustomize and intend to have this deployed to different namespace 
+(dev,staging and prod). i suppose i'll provision a cloudnativepg postgresql 
+cluster for each namespace (dev, staging and prod) right? 
+
+⏺ Correct on both points.
+
+  CloudNativePG Credentials
+
+  When you create a CNPG Cluster, it automatically generates secrets:
+
+  <cluster-name>-app         # Application credentials (use this one)
+  <cluster-name>-superuser   # Superuser credentials (admin only)
+
+  The -app secret contains:
+  username: app
+  password: <auto-generated>
+  host: <cluster-name>-rw.<namespace>.svc
+  port: 5432
+  dbname: app
+  uri: postgresql://app:password@host:5432/app
+
+  Two Options for Using CNPG Credentials
+
+  Option 1: Reference CNPG Secret Directly (Recommended)
+
+  Instead of duplicating credentials, reference the CNPG-generated secret in your deployments:
+
+  # In deployment.yaml
+  env:
+    - name: POSTGRES_USER
+      valueFrom:
+        secretKeyRef:
+          name: postgres-cluster-app    # CNPG generated secret
+          key: username
+    - name: POSTGRES_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: postgres-cluster-app
+          key: password
+    - name: POSTGRES_HOST
+      valueFrom:
+        secretKeyRef:
+          name: postgres-cluster-app
+          key: host
+
+  Option 2: Copy Values to Your Secrets
+
+  Extract and copy to your secret files (less ideal - credentials can drift).
+
+  One PostgreSQL Cluster Per Environment
+
+  Yes, provision separate CNPG clusters:
+
+  microservice-app-dev/
+  └── postgres-dev-cluster        → postgres-dev-cluster-rw.microservice-app-dev.svc
+
+  microservice-app-staging/
+  └── postgres-staging-cluster    → postgres-staging-cluster-rw.microservice-app-staging.svc
+
+  microservice-app-prod/
+  └── postgres-prod-cluster       → postgres-prod-cluster-rw.microservice-app-prod.svc
+
+  Why Separate Clusters?
+
+  | Reason    | Benefit                        |
+  |-----------|--------------------------------|
+  | Isolation | Dev mistakes don't affect prod |
+  | Scaling   | Prod can have more replicas    |
+  | Backups   | Different retention policies   |
+  | Resources | Prod gets more CPU/memory      |
+  | Testing   | Can wipe dev DB freely         |
+
+  Example CNPG Cluster Per Environment
+
+  # overlays/dev/postgres-cluster.yaml
+  apiVersion: postgresql.cnpg.io/v1
+  kind: Cluster
+  metadata:
+    name: postgres-dev
+  spec:
+    instances: 1              # Single instance for dev
+    storage:
+      size: 5Gi
+  ---
+  # overlays/prod/postgres-cluster.yaml
+  apiVersion: postgresql.cnpg.io/v1
+  kind: Cluster
+  metadata:
+    name: postgres-prod
+  spec:
+    instances: 3              # HA for prod
+    storage:
+      size: 50Gi
+    backup:
+      barmanObjectStore: ...  # S3 backups for prod
+
+  Would you like me to update the manifests to reference CNPG secrets directly instead of using separate secret files?
+
+> before we update the manifests with CNPG secret, ofcourse we need to 
+create the DB instance. also, in the spirit of gitops i suppose creating 
+these DBs declarartively, is probably better than creating them in the UI 
+for the future replication right? don't write any code yet 
+
+⏺ Exactly right. GitOps for databases is the way to go.
+
+  Declarative vs UI
+
+  | Approach                | Pros                                | Cons                                                |
+  |-------------------------|-------------------------------------|-----------------------------------------------------|
+  | UI/CLI (imperative)     | Quick for testing                   | No audit trail, hard to replicate, tribal knowledge |
+  | Manifests (declarative) | Reproducible, versioned, reviewable | Initial setup effort                                |
+
+  Benefits of Declarative CNPG
+
+  1. Reproducibility - Spin up identical DB in new environment/cluster
+  2. Version control - Track changes, rollback if needed
+  3. Code review - Team reviews DB config changes via PR
+  4. Disaster recovery - Rebuild entire stack from git
+  5. Environment parity - Dev/staging/prod defined consistently
+  6. Documentation - Manifests ARE the documentation
+
+  Where to Put CNPG Manifests
+
+  Two common patterns:
+
+  Pattern A: Alongside App Manifests (Simpler)
+
+  manifests_v2/
+  └── overlays/
+      ├── dev/
+      │   ├── kustomization.yaml
+      │   └── postgres-cluster.yaml    # DB lives with app
+      ├── staging/
+      │   └── postgres-cluster.yaml
+      └── prod/
+          └── postgres-cluster.yaml
+
+  Pattern B: Separate Database Repo/Directory (More Separation)
+
+  infrastructure/
+  └── databases/
+      ├── dev/
+      │   └── postgres-cluster.yaml
+      ├── staging/
+      └── prod/
+
+  manifests_v2/           # App manifests only
+  └── overlays/
+
+  What CNPG Manifests Would Define
+
+  - Instance count (1 for dev, 3 for prod HA)
+  - Storage size and class
+  - PostgreSQL version
+  - Resource limits
+  - Backup configuration (prod)
+  - Monitoring/metrics
+  - Database name, users
+
+  Deployment Order
+
+  1. Namespace          → oc apply -k overlays/dev/
+  2. CNPG Cluster       → Wait for DB to be ready
+  3. App Deployments    → Apps connect using CNPG-generated secrets
+
+  ArgoCD/Flux can handle this ordering with sync waves or health checks.
+
+  ---
+  Do you want me to:
+  1. Add CNPG cluster manifests to each overlay (Pattern A)?
+  2. Keep them separate and just show you the structure?
+
+  Also - do you have a preferred PostgreSQL version or storage class on your cluster?
+
+> lets go for option 1. assess the codebase and infer the right and safe 
+postgres version from the codebase. use the default storage class on my 
+cluster.  even though we're adopting gitops, with openshift, i presume its 
+advisable first install cloudnativePG via operators in OCP UI right? 
+
+⏺ Yes, install the CloudNativePG operator first via OCP UI (OperatorHub). The operator is cluster-scoped and needs to be installed once by a cluster admin before any Cluster CRs can be created.
+
+  Let me check the codebase for PostgreSQL version requirements.
+
+⏺ Search(pattern: "**/requirements.txt")
+  ⎿  Found 3 files (ctrl+o to expand)
+
+⏺ Search(pattern: "**/docker-compose*.{yml,yaml}")
+  ⎿  Found 0 files 
+
+⏺ Search(pattern: "**/init.sql")
+  ⎿  Found 0 files 
+
+⏺ Read(auth-service/requirements.txt)
+  ⎿  Read 9 lines
+
+⏺ Read(game-service/requirements.txt)
+  ⎿  Read 8 lines
+
+⏺ Search(pattern: "**/*.sql")
+  ⎿  Found 1 file (ctrl+o to expand)
+
+⏺ Read(init.sql)
+  ⎿  Read 36 lines
+
+⏺ Read(auth-service/app.py)
+  ⎿  Read 117 lines
+
+⏺ Analysis Results
+
+  Dependencies:
+  - psycopg2-binary==2.9.9 - Supports PostgreSQL 9.5 to 16
+
+  SQL Features Used (init.sql):
+  - CREATE TABLE IF NOT EXISTS - PostgreSQL 9.1+
+  - CREATE INDEX IF NOT EXISTS - PostgreSQL 9.5+
+  - SERIAL, BYTEA, REFERENCES - Basic features
+  - No advanced features (JSON, CTEs, partitions)
+
+  Recommendation: PostgreSQL 16
+  - Latest stable version
+  - Fully supported by psycopg2 2.9.9 and CNPG
+  - All your SQL features work fine
+  - Best security patches and performance
+
+  ---
+  Operator Installation
+
+  Yes, install CloudNativePG via OperatorHub first:
+
+  OCP Console → Operators → OperatorHub → Search "CloudNativePG" → Install
+
+  Choose:
+  - Installation mode: All namespaces (cluster-wide)
+  - Update approval: Automatic (recommended) or Manual
+
+  Once the operator is running, your Cluster CRs will work.
+
+  ---
+  Now I'll create the CNPG manifests for each overlay.
+
+⏺ Write(manifests_v2/overlays/dev/postgres-cluster.yaml)
+  ⎿  Wrote 84 lines to manifests_v2/overlays/dev/postgres-cluster.yaml
+       1 apiVersion: postgresql.cnpg.io/v1
+       2 kind: Cluster
+       3 metadata:
+       4   name: postgres-dev
+       5   labels:
+       6     app.kubernetes.io/name: postgres
+       7     app.kubernetes.io/component: database
+       8     app.kubernetes.io/part-of: microservice-app
+       9     environment: dev
+      10 spec:
+     … +74 lines (ctrl+o to expand)
+
+⏺ Write(manifests_v2/overlays/staging/postgres-cluster.yaml)
+  ⎿  Wrote 84 lines to manifests_v2/overlays/staging/postgres-cluster.yaml
+       1 apiVersion: postgresql.cnpg.io/v1
+       2 kind: Cluster
+       3 metadata:
+       4   name: postgres-staging
+       5   labels:
+       6     app.kubernetes.io/name: postgres
+       7     app.kubernetes.io/component: database
+       8     app.kubernetes.io/part-of: microservice-app
+       9     environment: staging
+      10 spec:
+     … +74 lines (ctrl+o to expand)
+
+⏺ Write(manifests_v2/overlays/prod/postgres-cluster.yaml)
+  ⎿  Wrote 110 lines to manifests_v2/overlays/prod/postgres-cluster.yaml
+       1 apiVersion: postgresql.cnpg.io/v1
+       2 kind: Cluster
+       3 metadata:
+       4   name: postgres-prod
+       5   labels:
+       6     app.kubernetes.io/name: postgres
+       7     app.kubernetes.io/component: database
+       8     app.kubernetes.io/part-of: microservice-app
+       9     environment: prod
+      10 spec:
+     … +100 lines (ctrl+o to expand)
+
+⏺ Now let me update the overlay kustomization files to include the CNPG clusters:
+
+⏺ Read(manifests_v2/overlays/dev/kustomization.yaml)
+  ⎿  Read 58 lines
+
+⏺ Read(manifests_v2/overlays/staging/kustomization.yaml)
+  ⎿  Read 58 lines
+
+⏺ Read(manifests_v2/overlays/prod/kustomization.yaml)
+  ⎿  Read 94 lines
+
+⏺ Update(manifests_v2/overlays/dev/kustomization.yaml)
+  ⎿  Added 1 line                                                        
+       7  # Reference the base configuration
+       8  resources:
+       9    - ../../
+      10 +  - postgres-cluster.yaml                                      
+      11  
+      12  # Override namespace for dev environment
+      13  namespace: microservice-app-dev
+
+⏺ Update(manifests_v2/overlays/dev/kustomization.yaml)
+  ⎿  Added 4 lines, removed 2 lines                                      
+      47    - name: auth-service-config
+      48      behavior: merge
+      49      literals:
+      50 -      - POSTGRES_HOST=postgres-rw.microservice-app-dev.svc.clus
+         -ter.local                                                      
+      50 +      - POSTGRES_HOST=postgres-dev-rw                          
+      51 +      - POSTGRES_DB=gamedb                                     
+      52        - FLASK_ENV=development
+      53        - LOG_LEVEL=debug
+      54    - name: game-service-config
+      55      behavior: merge
+      56      literals:
+      56 -      - POSTGRES_HOST=postgres-rw.microservice-app-dev.svc.clus
+         -ter.local                                                      
+      57 +      - POSTGRES_HOST=postgres-dev-rw                          
+      58 +      - POSTGRES_DB=gamedb                                     
+      59        - FLASK_ENV=development
+      60        - LOG_LEVEL=debug
+
+⏺ Update(manifests_v2/overlays/staging/kustomization.yaml)
+  ⎿  Added 1 line                                                        
+       7  # Reference the base configuration
+       8  resources:
+       9    - ../../
+      10 +  - postgres-cluster.yaml                                      
+      11  
+      12  # Override namespace for staging environment
+      13  namespace: microservice-app-staging
+
+⏺ Update(manifests_v2/overlays/staging/kustomization.yaml)
+  ⎿  Added 4 lines, removed 2 lines                                      
+      47    - name: auth-service-config
+      48      behavior: merge
+      49      literals:
+      50 -      - POSTGRES_HOST=postgres-rw.microservice-app-staging.svc.
+         -cluster.local                                                  
+      50 +      - POSTGRES_HOST=postgres-staging-rw                      
+      51 +      - POSTGRES_DB=gamedb                                     
+      52        - FLASK_ENV=staging
+      53        - LOG_LEVEL=info
+      54    - name: game-service-config
+      55      behavior: merge
+      56      literals:
+      56 -      - POSTGRES_HOST=postgres-rw.microservice-app-staging.svc.
+         -cluster.local                                                  
+      57 +      - POSTGRES_HOST=postgres-staging-rw                      
+      58 +      - POSTGRES_DB=gamedb                                     
+      59        - FLASK_ENV=staging
+      60        - LOG_LEVEL=info
+
+⏺ Update(manifests_v2/overlays/prod/kustomization.yaml)
+  ⎿  Added 1 line                                                        
+       7  # Reference the base configuration
+       8  resources:
+       9    - ../../
+      10 +  - postgres-cluster.yaml                                      
+      11    - hpa.yaml
+      12  
+      13  # Override namespace for production environment
+
+⏺ Update(manifests_v2/overlays/prod/kustomization.yaml)
+  ⎿  Added 4 lines, removed 2 lines                                      
+      81    - name: auth-service-config
+      82      behavior: merge
+      83      literals:
+      84 -      - POSTGRES_HOST=postgres-rw.microservice-app-prod.svc.clu
+         -ster.local                                                     
+      84 +      - POSTGRES_HOST=postgres-prod-rw                         
+      85 +      - POSTGRES_DB=gamedb                                     
+      86        - FLASK_ENV=production
+      87        - LOG_LEVEL=warning
+      88        - GUNICORN_WORKERS=8
+      89    - name: game-service-config
+      90      behavior: merge
+      91      literals:
+      91 -      - POSTGRES_HOST=postgres-rw.microservice-app-prod.svc.clu
+         -ster.local                                                     
+      92 +      - POSTGRES_HOST=postgres-prod-rw                         
+      93 +      - POSTGRES_DB=gamedb                                     
+      94        - FLASK_ENV=production
+      95        - LOG_LEVEL=warning
+      96        - GUNICORN_WORKERS=8
+
+⏺ Read(manifests_v2/auth-service/deployment.yaml)
+  ⎿  Read 72 lines
+
+⏺ Read(manifests_v2/game-service/deployment.yaml)
+  ⎿  Read 72 lines
+
+⏺ I'll update the deployments to use CNPG secrets. Since the secret name varies by environment, I'll use individual env entries with secretKeyRef in the base and add patches in each overlay to set the correct secret name.
+
+⏺ Update(manifests_v2/auth-service/deployment.yaml)
+  ⎿  Added 18 lines, removed 2 lines                                     
+      36            envFrom:
+      37              - configMapRef:
+      38                  name: auth-service-config
+      39 -            - secretRef:                                       
+      40 -                name: auth-service-secret                      
+      39 +          env:                                                 
+      40 +            # Database credentials from CNPG-generated secret  
+      41 +            - name: POSTGRES_USER                              
+      42 +              valueFrom:                                       
+      43 +                secretKeyRef:                                  
+      44 +                  name: postgres-cluster-app                   
+      45 +                  key: username                                
+      46 +            - name: POSTGRES_PASSWORD                          
+      47 +              valueFrom:                                       
+      48 +                secretKeyRef:                                  
+      49 +                  name: postgres-cluster-app                   
+      50 +                  key: password                                
+      51 +            # JWT secret key (still from app secret)           
+      52 +            - name: JWT_SECRET_KEY                             
+      53 +              valueFrom:                                       
+      54 +                secretKeyRef:                                  
+      55 +                  name: auth-service-secret                    
+      56 +                  key: JWT_SECRET_KEY                          
+      57            resources:
+      58              requests:
+      59                memory: "64Mi"
+
+⏺ Update(manifests_v2/game-service/deployment.yaml)
+  ⎿  Added 18 lines, removed 2 lines                                     
+      36            envFrom:
+      37              - configMapRef:
+      38                  name: game-service-config
+      39 -            - secretRef:                                       
+      40 -                name: game-service-secret                      
+      39 +          env:                                                 
+      40 +            # Database credentials from CNPG-generated secret  
+      41 +            - name: POSTGRES_USER                              
+      42 +              valueFrom:                                       
+      43 +                secretKeyRef:                                  
+      44 +                  name: postgres-cluster-app                   
+      45 +                  key: username                                
+      46 +            - name: POSTGRES_PASSWORD                          
+      47 +              valueFrom:                                       
+      48 +                secretKeyRef:                                  
+      49 +                  name: postgres-cluster-app                   
+      50 +                  key: password                                
+      51 +            # JWT secret key for token verification (must match
+         + auth-service)                                                 
+      52 +            - name: JWT_SECRET_KEY                             
+      53 +              valueFrom:                                       
+      54 +                secretKeyRef:                                  
+      55 +                  name: game-service-secret                    
+      56 +                  key: JWT_SECRET_KEY                          
+      57            resources:
+      58              requests:
+      59                memory: "64Mi"
+
+⏺ Now let me add patches in each overlay to set the correct CNPG secret name and update the secrets to only contain JWT_SECRET_KEY:
+
+⏺ Write(manifests_v2/overlays/dev/cnpg-secret-patch.yaml)
+  ⎿  Wrote 53 lines to manifests_v2/overlays/dev/cnpg-secret-patch.yaml
+       1 # Patch to update CNPG secret reference for dev environment
+       2 apiVersion: apps/v1
+       3 kind: Deployment
+       4 metadata:
+       5   name: auth-service
+       6 spec:
+       7   template:
+       8     spec:
+       9       containers:
+      10         - name: auth-service
+     … +43 lines (ctrl+o to expand)
+
+⏺ Write(manifests_v2/overlays/staging/cnpg-secret-patch.yaml)
+  ⎿  Wrote 53 lines to manifests_v2/overlays/staging/cnpg-secret-patch.yaml
+       1 # Patch to update CNPG secret reference for staging environment
+       2 apiVersion: apps/v1
+       3 kind: Deployment
+       4 metadata:
+       5   name: auth-service
+       6 spec:
+       7   template:
+       8     spec:
+       9       containers:
+      10         - name: auth-service
+     … +43 lines (ctrl+o to expand)
+
+⏺ Write(manifests_v2/overlays/prod/cnpg-secret-patch.yaml)
+  ⎿  Wrote 53 lines to manifests_v2/overlays/prod/cnpg-secret-patch.yaml
+       1 # Patch to update CNPG secret reference for prod environment
+       2 apiVersion: apps/v1
+       3 kind: Deployment
+       4 metadata:
+       5   name: auth-service
+       6 spec:
+       7   template:
+       8     spec:
+       9       containers:
+      10         - name: auth-service
+     … +43 lines (ctrl+o to expand)
+
+⏺ Now let me update the overlay kustomization files to include these patches:
+
+⏺ Update(manifests_v2/overlays/dev/kustomization.yaml)
+  ⎿  Added 4 lines                                                       
+      42      target:
+      43        kind: Deployment
+      44  
+      45 +# Strategic merge patches for CNPG secret references           
+      46 +patchesStrategicMerge:                                         
+      47 +  - cnpg-secret-patch.yaml                                     
+      48 +                                                               
+      49  # ConfigMap overrides for dev
+      50  configMapGenerator:
+      51    - name: auth-service-config
+
+⏺ Update(manifests_v2/overlays/staging/kustomization.yaml)
+  ⎿  Added 4 lines                                                       
+      42      target:
+      43        kind: Deployment
+      44  
+      45 +# Strategic merge patches for CNPG secret references           
+      46 +patchesStrategicMerge:                                         
+      47 +  - cnpg-secret-patch.yaml                                     
+      48 +                                                               
+      49  # ConfigMap overrides for staging
+      50  configMapGenerator:
+      51    - name: auth-service-config
+
+⏺ Update(manifests_v2/overlays/prod/kustomization.yaml)
+  ⎿  Added 4 lines                                                       
+      76        kind: Deployment
+      77        name: game-service
+      78  
+      79 +# Strategic merge patches for CNPG secret references           
+      80 +patchesStrategicMerge:                                         
+      81 +  - cnpg-secret-patch.yaml                                     
+      82 +                                                               
+      83  # ConfigMap overrides for production
+      84  configMapGenerator:
+      85    - name: auth-service-config
+
+⏺ Now let me update the secret files to only contain JWT_SECRET_KEY:
+
+⏺ Write(manifests_v2/auth-service/secret.yaml)
+  ⎿  Added 3 lines, removed 4 lines                                      
+       9      app.kubernetes.io/part-of: microservice-app
+      10  type: Opaque
+      11  stringData:
+      12 -  # IMPORTANT: Replace these placeholder values with actual cre
+         -dentials                                                       
+      13 -  # For production, use sealed-secrets, external-secrets, or va
+         -ult                                                            
+      14 -  POSTGRES_USER: "REPLACE_WITH_ACTUAL_USERNAME"                
+      15 -  POSTGRES_PASSWORD: "REPLACE_WITH_ACTUAL_PASSWORD"            
+      12    # JWT secret key for token signing (generate a strong random 
+          string)
+      13 +  # IMPORTANT: This must be the same value in both auth-service
+         + and game-service                                              
+      14 +  # For production, use sealed-secrets, external-secrets, or va
+         +ult                                                            
+      15 +  # Generate with: openssl rand -base64 32                     
+      16    JWT_SECRET_KEY: "REPLACE_WITH_STRONG_SECRET_KEY"
+
+⏺ Write(manifests_v2/game-service/secret.yaml)
+  ⎿  Added 3 lines, removed 4 lines                                      
+       9      app.kubernetes.io/part-of: microservice-app
+      10  type: Opaque
+      11  stringData:
+      12 -  # IMPORTANT: Replace these placeholder values with actual cre
+         -dentials                                                       
+      12 +  # JWT secret key for token verification (must match auth-serv
+         +ice)                                                           
+      13 +  # IMPORTANT: This must be the same value as auth-service JWT_
+         +SECRET_KEY                                                     
+      14    # For production, use sealed-secrets, external-secrets, or va
+          ult
+      14 -  POSTGRES_USER: "REPLACE_WITH_ACTUAL_USERNAME"                
+      15 -  POSTGRES_PASSWORD: "REPLACE_WITH_ACTUAL_PASSWORD"            
+      16 -  # JWT secret key must match auth-service for token verificati
+         -on                                                             
+      15 +  # Generate with: openssl rand -base64 32                     
+      16    JWT_SECRET_KEY: "REPLACE_WITH_STRONG_SECRET_KEY"
+
+⏺ Read(manifests_v2/README.md)
+  ⎿  Read 474 lines
+
+⏺ Write(manifests_v2/README.md)
+  ⎿  Added 324 lines, removed 270 lines                                  
+      1  # OpenShift/Kubernetes Manifests for Microservice App
+      2  
+      3 -This directory contains Kubernetes manifests for deploying the m
+        -icroservice application to OpenShift, with full Kustomize suppor
+        -t for managing multiple environments.                           
+      3 +This directory contains Kubernetes manifests for deploying the m
+        +icroservice application to OpenShift, with full Kustomize suppor
+        +t for managing multiple environments and CloudNativePG for Postg
+        +reSQL.                                                          
+      4  
+      5  ## Directory Structure
+      6  
+     ...
+      17  │   ├── deployment.yaml
+      18  │   ├── service.yaml
+      19  │   ├── configmap.yaml
+      20 -│   └── secret.yaml                                            
+      20 +│   └── secret.yaml                 # JWT secret only          
+      21  ├── game-service/                   # Game statistics service
+      22  │   ├── kustomization.yaml
+      23  │   ├── deployment.yaml
+      24  │   ├── service.yaml
+      25  │   ├── configmap.yaml
+      26 -│   └── secret.yaml                                            
+      26 +│   └── secret.yaml                 # JWT secret only          
+      27  ├── frontend/                       # React frontend
+      28  │   ├── kustomization.yaml
+      29  │   ├── deployment.yaml
+     ...
+       34  └── overlays/                       # Environment-specific con
+           figurations
+       35      ├── dev/
+       36      │   ├── kustomization.yaml
+       37 -    │   └── namespace.yaml                                    
+       37 +    │   ├── namespace.yaml                                    
+       38 +    │   ├── postgres-cluster.yaml   # CNPG cluster (1 instance
+          +)                                                             
+       39 +    │   └── cnpg-secret-patch.yaml  # Links apps to CNPG secre
+          +ts                                                            
+       40      ├── staging/
+       41      │   ├── kustomization.yaml
+       40 -    │   └── namespace.yaml                                    
+       42 +    │   ├── namespace.yaml                                    
+       43 +    │   ├── postgres-cluster.yaml   # CNPG cluster (2 instance
+          +s)                                                            
+       44 +    │   └── cnpg-secret-patch.yaml                            
+       45      └── prod/
+       46          ├── kustomization.yaml
+       47          ├── namespace.yaml
+       44 -        └── hpa.yaml                # HorizontalPodAutoscaler 
+          -for production                                                
+       48 +        ├── postgres-cluster.yaml   # CNPG cluster (3 instance
+          +s HA)                                                         
+       49 +        ├── cnpg-secret-patch.yaml                            
+       50 +        └── hpa.yaml                # HorizontalPodAutoscaler 
+       51  ```
+       52  
+       53 +## Prerequisites                                              
+       54 +                                                              
+       55 +1. **OpenShift CLI (oc)** or **kubectl** (v1.14+) installed   
+       56 +2. **CloudNativePG Operator** installed (see below)           
+       57 +3. **Docker Hub credentials** (if using external registry)    
+       58 +                                                              
+       59 +---                                                           
+       60 +                                                              
+       61 +## CloudNativePG (CNPG) Database                              
+       62 +                                                              
+       63 +This application uses CloudNativePG to manage PostgreSQL datab
+          +ases declaratively. Each environment gets its own dedicated Po
+          +stgreSQL cluster.                                             
+       64 +                                                              
+       65 +### What is CloudNativePG?                                    
+       66 +                                                              
+       67 +CloudNativePG is a Kubernetes operator that manages the full l
+          +ifecycle of PostgreSQL clusters:                              
+       68 +- Automated provisioning and scaling                          
+       69 +- High availability with automatic failover                   
+       70 +- Continuous backup and point-in-time recovery                
+       71 +- Declarative configuration (GitOps-friendly)                 
+       72 +                                                              
+       73 +### Installing the Operator                                   
+       74 +                                                              
+       75 +**Before deploying the application**, install CloudNativePG vi
+          +a OperatorHub:                                                
+       76 +                                                              
+       77 +```                                                           
+       78 +OpenShift Console → Operators → OperatorHub → Search "CloudNat
+          +ivePG" → Install                                              
+       79 +```                                                           
+       80 +                                                              
+       81 +Configuration:                                                
+       82 +- **Installation mode**: All namespaces (cluster-wide)        
+       83 +- **Update approval**: Automatic (recommended)                
+       84 +                                                              
+       85 +Verify installation:                                          
+       86 +```bash                                                       
+       87 +oc get pods -n openshift-operators | grep cnpg                
+       88 +```                                                           
+       89 +                                                              
+       90 +### Database Architecture Per Environment                     
+       91 +                                                              
+       92 +| Environment | Cluster Name | Instances | Storage | Purpose |
+       93 +|-------------|--------------|-----------|---------|---------|
+       94 +| Dev | `postgres-dev` | 1 | 5Gi | Development/testing |      
+       95 +| Staging | `postgres-staging` | 2 | 10Gi | Pre-production val
+          +idation |                                                     
+       96 +| Prod | `postgres-prod` | 3 (HA) | 50Gi | Production with fai
+          +lover |                                                       
+       97 +                                                              
+       98 +### How CNPG Secrets Work                                     
+       99 +                                                              
+      100 +When CNPG creates a PostgreSQL cluster, it automatically gener
+          +ates secrets:                                                 
+      101 +                                                              
+      102 +```                                                           
+      103 +postgres-dev-app          # Application credentials (username,
+          + password, host, etc.)                                        
+      104 +postgres-dev-superuser    # Superuser credentials (admin only)
+      105 +postgres-dev-ca           # TLS certificates                  
+      106 +```                                                           
+      107 +                                                              
+      108 +The `-app` secret contains:                                   
+      109 +```yaml                                                       
+      110 +username: app                                                 
+      111 +password: <auto-generated>                                    
+      112 +host: postgres-dev-rw                                         
+      113 +port: 5432                                                    
+      114 +dbname: gamedb                                                
+      115 +uri: postgresql://app:password@postgres-dev-rw:5432/gamedb    
+      116 +```                                                           
+      117 +                                                              
+      118 +**Our deployments reference these secrets directly** - no manu
+          +al password management needed!                                
+      119 +                                                              
+      120 +### CNPG Services                                             
+      121 +                                                              
+      122 +Each CNPG cluster creates three services:                     
+      123 +                                                              
+      124 +| Service | Purpose |                                         
+      125 +|---------|---------|                                         
+      126 +| `postgres-dev-rw` | Read-write (primary) - **use this for ap
+          +ps** |                                                        
+      127 +| `postgres-dev-ro` | Read-only (replicas) - for read scaling 
+          +|                                                             
+      128 +| `postgres-dev-r` | Read (any instance) |                    
+      129 +                                                              
+      130 +### Database Schema                                           
+      131 +                                                              
+      132 +The PostgreSQL clusters are bootstrapped with this schema:    
+      133 +                                                              
+      134 +```sql                                                        
+      135 +-- Users table                                                
+      136 +CREATE TABLE users (                                          
+      137 +  id SERIAL PRIMARY KEY,                                      
+      138 +  username VARCHAR(255) UNIQUE NOT NULL,                      
+      139 +  password_hash BYTEA NOT NULL                                
+      140 +);                                                            
+      141 +                                                              
+      142 +-- Snake game high scores                                     
+      143 +CREATE TABLE snake_high_scores (                              
+      144 +  id SERIAL PRIMARY KEY,                                      
+      145 +  user_id INTEGER REFERENCES users(id),                       
+      146 +  score INTEGER DEFAULT 0                                     
+      147 +);                                                            
+      148 +                                                              
+      149 +-- Game statistics (tic-tac-toe, rock-paper-scissors, memory) 
+      150 +CREATE TABLE games_stats (                                    
+      151 +  id SERIAL PRIMARY KEY,                                      
+      152 +  user_id INTEGER REFERENCES users(id),                       
+      153 +  game_type VARCHAR(50) NOT NULL,                             
+      154 +  wins INTEGER DEFAULT 0,                                     
+      155 +  losses INTEGER DEFAULT 0                                    
+      156 +);                                                            
+      157 +```                                                           
+      158 +                                                              
+      159 +---                                                           
+      160 +                                                              
+      161 +## Deployment Guide                                           
+      162 +                                                              
+      163 +### Step 1: Install CloudNativePG Operator                    
+      164 +                                                              
+      165 +Via OpenShift Console (OperatorHub) - see above.              
+      166 +                                                              
+      167 +### Step 2: Configure Secrets                                 
+      168 +                                                              
+      169 +#### JWT Secret (Required)                                    
+      170 +                                                              
+      171 +Both auth-service and game-service need the same JWT secret fo
+          +r token signing/verification:                                 
+      172 +                                                              
+      173 +```bash                                                       
+      174 +# Generate a strong secret                                    
+      175 +JWT_SECRET=$(openssl rand -base64 32)                         
+      176 +                                                              
+      177 +# Update the secret files before deploying                    
+      178 +# In auth-service/secret.yaml and game-service/secret.yaml    
+      179 +# Replace: REPLACE_WITH_STRONG_SECRET_KEY                     
+      180 +# With: your generated secret                                 
+      181 +```                                                           
+      182 +                                                              
+      183 +#### Docker Registry Secret (If using external registry)      
+      184 +                                                              
+      185 +```bash                                                       
+      186 +oc create secret docker-registry dockerhub-cred \             
+      187 +  --docker-server=https://index.docker.io/v1/ \               
+      188 +  --docker-username=YOUR_USERNAME \                           
+      189 +  --docker-password=YOUR_PASSWORD \                           
+      190 +  --docker-email=YOUR_EMAIL \                                 
+      191 +  -n microservice-app-dev  # Adjust per environment           
+      192 +```                                                           
+      193 +                                                              
+      194 +### Step 3: Deploy to Environment                             
+      195 +                                                              
+      196 +```bash                                                       
+      197 +# Development                                                 
+      198 +oc apply -k manifests_v2/overlays/dev/                        
+      199 +                                                              
+      200 +# Staging                                                     
+      201 +oc apply -k manifests_v2/overlays/staging/                    
+      202 +                                                              
+      203 +# Production                                                  
+      204 +oc apply -k manifests_v2/overlays/prod/                       
+      205 +```                                                           
+      206 +                                                              
+      207 +### Step 4: Verify Deployment                                 
+      208 +                                                              
+      209 +```bash                                                       
+      210 +# Check PostgreSQL cluster status                             
+      211 +oc get cluster -n microservice-app-dev                        
+      212 +# Expected: postgres-dev   1/1   Cluster in healthy state     
+      213 +                                                              
+      214 +# Check all pods                                              
+      215 +oc get pods -n microservice-app-dev                           
+      216 +                                                              
+      217 +# Check services                                              
+      218 +oc get svc -n microservice-app-dev                            
+      219 +                                                              
+      220 +# Get application route                                       
+      221 +oc get route -n microservice-app-dev                          
+      222 +```                                                           
+      223 +                                                              
+      224 +### Step 5: Wait for Database Ready                           
+      225 +                                                              
+      226 +The application pods will wait for PostgreSQL to be ready (ret
+          +ry logic built-in).                                           
+      227 +                                                              
+      228 +```bash                                                       
+      229 +# Watch cluster become ready                                  
+      230 +oc get cluster postgres-dev -n microservice-app-dev -w        
+      231 +                                                              
+      232 +# Check CNPG-generated secrets exist                          
+      233 +oc get secret postgres-dev-app -n microservice-app-dev        
+      234 +```                                                           
+      235 +                                                              
+      236 +---                                                           
+      237 +                                                              
+      238  ## What is Kustomize?
+      239  
+      240  Kustomize is a Kubernetes-native configuration management tool
+            that allows you to customize YAML manifests without using tem
+           plates. It's built into `kubectl` (v1.14+) and `oc`.
+     ...
+      275  4. **GitOps Friendly**: Each environment is a directory, easy 
+           to track in version control
+      276  5. **Composable**: Combine multiple bases and overlays as need
+           ed
+      277  
+       87 -## Prerequisites                                              
+      278 +---                                                           
+      279  
+       89 -1. **OpenShift CLI (oc)** or **kubectl** (v1.14+) installed   
+       90 -2. **PostgreSQL database** deployed and accessible            
+       91 -3. **Docker Hub credentials** for pulling container images    
+       92 -                                                              
+       93 -## Deployment Options                                         
+       94 -                                                              
+       95 -### Option 1: Deploy Base Configuration (Default)             
+       96 -                                                              
+       97 -Deploy the base manifests directly:                           
+       98 -                                                              
+       99 -```bash                                                       
+      100 -# Preview what will be applied                                
+      101 -oc kustomize manifests_v2/                                    
+      102 -                                                              
+      103 -# Apply base configuration                                    
+      104 -oc apply -k manifests_v2/                                     
+      105 -```                                                           
+      106 -                                                              
+      107 -### Option 2: Deploy to Specific Environment (Recommended)    
+      108 -                                                              
+      109 -Use overlays for environment-specific deployments:            
+      110 -                                                              
+      111 -```bash                                                       
+      112 -# Development environment                                     
+      113 -oc apply -k manifests_v2/overlays/dev/                        
+      114 -                                                              
+      115 -# Staging environment                                         
+      116 -oc apply -k manifests_v2/overlays/staging/                    
+      117 -                                                              
+      118 -# Production environment                                      
+      119 -oc apply -k manifests_v2/overlays/prod/                       
+      120 -```                                                           
+      121 -                                                              
+      122 -### Option 3: Preview Before Applying                         
+      123 -                                                              
+      124 -Always preview changes before applying:                       
+      125 -                                                              
+      126 -```bash                                                       
+      127 -# See what will be created for dev                            
+      128 -oc kustomize manifests_v2/overlays/dev/                       
+      129 -                                                              
+      130 -# Diff against current state                                  
+      131 -oc diff -k manifests_v2/overlays/prod/                        
+      132 -                                                              
+      133 -# Save to file for review                                     
+      134 -oc kustomize manifests_v2/overlays/prod/ > prod-manifests.yaml
+      135 -```                                                           
+      136 -                                                              
+      280  ## Environment Comparison
+      281  
+      282  | Feature | Dev | Staging | Prod |
+      283  |---------|-----|---------|------|
+      284  | Namespace | `microservice-app-dev` | `microservice-app-stagi
+           ng` | `microservice-app-prod` |
+      142 -| Replicas | 1 | 2 | 3 |                                      
+      285 +| App Replicas | 1 | 2 | 3 |                                  
+      286 +| PostgreSQL Instances | 1 | 2 | 3 (HA) |                     
+      287 +| PostgreSQL Storage | 5Gi | 10Gi | 50Gi |                    
+      288  | Image Tag | `dev` | `staging` | `v1.0.0` |
+      289  | Log Level | `debug` | `info` | `warning` |
+      145 -| Resources | Default | Default | Increased |                 
+      146 -| HPA | No | No | Yes (3-10 pods) |                           
+      290 +| App HPA | No | No | Yes (3-10 pods) |                       
+      291 +| DB Backups | No | No | Configurable |                       
+      292  | Name Prefix | `dev-` | `staging-` | `prod-` |
+      293  
+      149 -## Kustomization Features Used                                
+      294 +---                                                           
+      295  
+      151 -### 1. Resource Composition                                   
+      296 +## Common Commands                                            
+      297  
+      153 -The root `kustomization.yaml` combines all service components:
+      298 +### Kustomize                                                 
+      299  
+      155 -```yaml                                                       
+      156 -resources:                                                    
+      157 -  - base                                                      
+      158 -  - auth-service                                              
+      159 -  - game-service                                              
+      160 -  - frontend                                                  
+      161 -```                                                           
+      300 +```bash                                                       
+      301 +# Preview manifests                                           
+      302 +oc kustomize manifests_v2/overlays/dev/                       
+      303  
+      163 -### 2. Common Labels                                          
+      304 +# Apply manifests                                             
+      305 +oc apply -k manifests_v2/overlays/dev/                        
+      306  
+      165 -Labels applied automatically to all resources:                
+      307 +# Delete all resources                                        
+      308 +oc delete -k manifests_v2/overlays/dev/                       
+      309  
+      167 -```yaml                                                       
+      168 -commonLabels:                                                 
+      169 -  app.kubernetes.io/managed-by: kustomize                     
+      170 -  app.kubernetes.io/part-of: microservice-app                 
+      171 -  environment: dev  # varies by overlay                       
+      172 -```                                                           
+      310 +# Diff against cluster state                                  
+      311 +oc diff -k manifests_v2/overlays/prod/                        
+      312  
+      174 -### 3. Namespace Override                                     
+      175 -                                                              
+      176 -Each overlay sets its own namespace:                          
+      177 -                                                              
+      178 -```yaml                                                       
+      179 -namespace: microservice-app-dev                               
+      313 +# Dry-run validation                                          
+      314 +oc apply -k manifests_v2/overlays/dev/ --dry-run=server       
+      315  ```
+      316  
+      182 -### 4. Name Prefix                                            
+      317 +### PostgreSQL (CNPG)                                         
+      318  
+      184 -Resources are prefixed per environment:                       
+      319 +```bash                                                       
+      320 +# Check cluster status                                        
+      321 +oc get cluster -n microservice-app-dev                        
+      322  
+      186 -```yaml                                                       
+      187 -namePrefix: dev-  # Results in: dev-auth-service, dev-frontend
+          -, etc.                                                        
+      188 -```                                                           
+      323 +# View cluster details                                        
+      324 +oc describe cluster postgres-dev -n microservice-app-dev      
+      325  
+      190 -### 5. Image Tags                                             
+      326 +# Connect to database (via pod)                               
+      327 +oc exec -it postgres-dev-1 -n microservice-app-dev -- psql -U 
+          +app -d gamedb                                                 
+      328  
+      192 -Override image tags without editing base manifests:           
+      329 +# View CNPG logs                                              
+      330 +oc logs postgres-dev-1 -n microservice-app-dev                
+      331  
+      194 -```yaml                                                       
+      195 -images:                                                       
+      196 -  - name: badex/auth-service                                  
+      197 -    newTag: v1.0.0                                            
+      198 -  - name: badex/game-service                                  
+      199 -    newTag: v1.0.0                                            
+      332 +# Check replication status (staging/prod)                     
+      333 +oc exec -it postgres-staging-1 -n microservice-app-staging -- 
+          +psql -c "SELECT * FROM pg_stat_replication;"                  
+      334  ```
+      335  
+      202 -### 6. JSON Patches                                           
+      336 +### Application                                               
+      337  
+      204 -Modify specific fields:                                       
+      205 -                                                              
+      206 -```yaml                                                       
+      207 -patches:                                                      
+      208 -  - patch: |-                                                 
+      209 -      - op: replace                                           
+      210 -        path: /spec/replicas                                  
+      211 -        value: 3                                              
+      212 -    target:                                                   
+      213 -      kind: Deployment                                        
+      214 -```                                                           
+      215 -                                                              
+      216 -### 7. ConfigMap Generator                                    
+      217 -                                                              
+      218 -Merge or create ConfigMaps:                                   
+      219 -                                                              
+      220 -```yaml                                                       
+      221 -configMapGenerator:                                           
+      222 -  - name: auth-service-config                                 
+      223 -    behavior: merge                                           
+      224 -    literals:                                                 
+      225 -      - POSTGRES_HOST=new-host.svc.cluster.local              
+      226 -      - LOG_LEVEL=debug                                       
+      227 -```                                                           
+      228 -                                                              
+      229 -## Configuration                                              
+      230 -                                                              
+      231 -### Before Deploying                                          
+      232 -                                                              
+      233 -#### 1. Configure Secrets                                     
+      234 -                                                              
+      235 -Create the Docker registry secret:                            
+      236 -                                                              
+      338  ```bash
+      238 -oc create secret docker-registry dockerhub-cred \             
+      239 -  --docker-server=https://index.docker.io/v1/ \               
+      240 -  --docker-username=YOUR_USERNAME \                           
+      241 -  --docker-password=YOUR_PASSWORD \                           
+      242 -  --docker-email=YOUR_EMAIL \                                 
+      243 -  -n microservice-app-dev  # Adjust namespace per environment 
+      244 -```                                                           
+      339 +# Check logs                                                  
+      340 +oc logs deployment/dev-auth-service -n microservice-app-dev   
+      341 +oc logs deployment/dev-game-service -n microservice-app-dev   
+      342 +oc logs deployment/dev-frontend -n microservice-app-dev       
+      343  
+      246 -Edit secret files and replace placeholders:                   
+      247 -- `REPLACE_WITH_ACTUAL_USERNAME` - PostgreSQL username        
+      248 -- `REPLACE_WITH_ACTUAL_PASSWORD` - PostgreSQL password        
+      249 -- `REPLACE_WITH_STRONG_SECRET_KEY` - JWT signing key          
+      344 +# Get route URL                                               
+      345 +oc get route dev-frontend -n microservice-app-dev -o jsonpath=
+          +'{.spec.host}'                                                
+      346  
+      251 -#### 2. Update Database Host                                  
+      252 -                                                              
+      253 -Edit the overlay's `kustomization.yaml` or base ConfigMaps:   
+      254 -                                                              
+      255 -```yaml                                                       
+      256 -# In overlays/dev/kustomization.yaml                          
+      257 -configMapGenerator:                                           
+      258 -  - name: auth-service-config                                 
+      259 -    behavior: merge                                           
+      260 -    literals:                                                 
+      261 -      - POSTGRES_HOST=your-postgres-host.namespace.svc.cluster
+          -.local                                                        
+      347 +# Debug pod                                                   
+      348 +oc debug deployment/dev-auth-service -n microservice-app-dev  
+      349  ```
+      350  
+      351 +---                                                           
+      352 +                                                              
+      353  ## Service Details
+      354  
+      355  ### Auth Service
+     ...
+      359  | Base Replicas | 2 |
+      360  | Image | `badex/auth-service` |
+      361  | Endpoints | `POST /register`, `POST /login`, `GET /health` |
+      362 +| DB Credentials | From CNPG secret `postgres-{env}-app` |    
+      363  
+      364  ### Game Service
+      365  | Property | Value |
+     ...
+      368  | Base Replicas | 2 |
+      369  | Image | `badex/game-service` |
+      370  | Endpoints | `GET /users/scores`, `POST /snake/score`, `POST 
+           /game/stats`, `GET /health` |
+      371 +| DB Credentials | From CNPG secret `postgres-{env}-app` |    
+      372  
+      373  ### Frontend
+      374  | Property | Value |
+     ...
+      378  | Image | `badex/frontend` |
+      379  | Features | React SPA, nginx reverse proxy |
+      380  
+      290 -## Common Kustomize Commands                                  
+      381 +---                                                           
+      382  
+      292 -```bash                                                       
+      293 -# Build and preview manifests                                 
+      294 -oc kustomize manifests_v2/overlays/dev/                       
+      295 -                                                              
+      296 -# Apply manifests                                             
+      297 -oc apply -k manifests_v2/overlays/dev/                        
+      298 -                                                              
+      299 -# Delete all resources                                        
+      300 -oc delete -k manifests_v2/overlays/dev/                       
+      301 -                                                              
+      302 -# Show difference with current cluster state                  
+      303 -oc diff -k manifests_v2/overlays/prod/                        
+      304 -                                                              
+      305 -# Build to file                                               
+      306 -oc kustomize manifests_v2/overlays/prod/ -o prod.yaml         
+      307 -                                                              
+      308 -# Validate without applying                                   
+      309 -oc apply -k manifests_v2/overlays/dev/ --dry-run=client       
+      310 -                                                              
+      311 -# Apply with server-side validation                           
+      312 -oc apply -k manifests_v2/overlays/dev/ --dry-run=server       
+      313 -```                                                           
+      314 -                                                              
+      315 -## Creating a New Environment                                 
+      316 -                                                              
+      317 -To create a new environment (e.g., `qa`):                     
+      318 -                                                              
+      319 -```bash                                                       
+      320 -mkdir -p manifests_v2/overlays/qa                             
+      321 -```                                                           
+      322 -                                                              
+      323 -Create `manifests_v2/overlays/qa/kustomization.yaml`:         
+      324 -                                                              
+      325 -```yaml                                                       
+      326 -apiVersion: kustomize.config.k8s.io/v1beta1                   
+      327 -kind: Kustomization                                           
+      328 -                                                              
+      329 -resources:                                                    
+      330 -  - ../../                                                    
+      331 -                                                              
+      332 -namespace: microservice-app-qa                                
+      333 -namePrefix: qa-                                               
+      334 -                                                              
+      335 -commonLabels:                                                 
+      336 -  environment: qa                                             
+      337 -                                                              
+      338 -images:                                                       
+      339 -  - name: badex/auth-service                                  
+      340 -    newTag: qa                                                
+      341 -  - name: badex/game-service                                  
+      342 -    newTag: qa                                                
+      343 -  - name: badex/frontend                                      
+      344 -    newTag: qa                                                
+      345 -                                                              
+      346 -patches:                                                      
+      347 -  - patch: |-                                                 
+      348 -      - op: replace                                           
+      349 -        path: /spec/replicas                                  
+      350 -        value: 2                                              
+      351 -    target:                                                   
+      352 -      kind: Deployment                                        
+      353 -```                                                           
+      354 -                                                              
+      383  ## Security Features
+      384  
+      385  ### Pod Security
+      386  - `runAsNonRoot: true` - Containers run as non-root user
+      387  - `allowPrivilegeEscalation: false` - No privilege escalation
+      360 -- `readOnlyRootFilesystem: true` - Read-only filesystem (backe
+          -nd services)                                                  
+      388 +- `readOnlyRootFilesystem: true` - Read-only filesystem (backe
+          +nd)                                                           
+      389  - `capabilities.drop: ALL` - All Linux capabilities dropped
+      390  
+      363 -### Network Policies                                          
+      364 -- Default deny ingress for all pods                           
+      365 -- Allow ingress to frontend from external traffic             
+      366 -- Allow backend services only from frontend pods              
+      391 +### Database Security                                         
+      392 +- Credentials auto-generated by CNPG (not stored in Git)      
+      393 +- Separate database per environment                           
+      394 +- Network policies restrict access                            
+      395  
+      396  ### TLS
+      369 -- OpenShift Route configured with edge TLS termination        
+      370 -- HTTP traffic automatically redirected to HTTPS              
+      397 +- OpenShift Route with edge TLS termination                   
+      398 +- HTTP automatically redirected to HTTPS                      
+      399  
+      372 -## Health Checks                                              
+      400 +---                                                           
+      401  
+      374 -All services include:                                         
+      375 -- **Liveness Probe**: Restarts unhealthy containers           
+      376 -- **Readiness Probe**: Controls traffic routing to ready pods 
+      402 +## Production Considerations                                  
+      403  
+      378 -## Monitoring                                                 
+      404 +### Database Backups                                          
+      405  
+      380 -Prometheus metrics are enabled via annotations:               
+      406 +Uncomment and configure the backup section in `overlays/prod/p
+          +ostgres-cluster.yaml`:                                        
+      407  
+      408  ```yaml
+      383 -prometheus.io/scrape: "true"                                  
+      384 -prometheus.io/port: "8080"                                    
+      409 +backup:                                                       
+      410 +  barmanObjectStore:                                          
+      411 +    destinationPath: "s3://your-bucket/postgres-backups"      
+      412 +    s3Credentials:                                            
+      413 +      accessKeyId:                                            
+      414 +        name: s3-creds                                        
+      415 +        key: ACCESS_KEY_ID                                    
+      416 +      secretAccessKey:                                        
+      417 +        name: s3-creds                                        
+      418 +        key: SECRET_ACCESS_KEY                                
+      419 +  retentionPolicy: "30d"                                      
+      420  ```
+      421  
+      387 -## Production Autoscaling                                     
+      422 +### Autoscaling                                               
+      423  
+      424  The production overlay includes HorizontalPodAutoscalers:
+      425  
+      426  ```bash
+      392 -# View HPA status                                             
+      427  oc get hpa -n microservice-app-prod
+      428 +```                                                           
+      429  
+      395 -# Example output:                                             
+      396 -# NAME                    REFERENCE                    TARGETS
+          -   MINPODS   MAXPODS                                          
+      397 -# prod-auth-service-hpa   Deployment/prod-auth-service   45%/7
+          -0%   3         10                                             
+      430 +### Monitoring                                                
+      431 +                                                              
+      432 +Prometheus metrics enabled via annotations:                   
+      433 +```yaml                                                       
+      434 +prometheus.io/scrape: "true"                                  
+      435 +prometheus.io/port: "8080"                                    
+      436  ```
+      437  
+      438 +CNPG also exposes metrics via PodMonitor.                     
+      439 +                                                              
+      440 +---                                                           
+      441 +                                                              
+      442  ## Troubleshooting
+      443  
+      402 -### Check Logs                                                
+      444 +### Database Not Ready                                        
+      445 +                                                              
+      446  ```bash
+      404 -oc logs deployment/dev-auth-service -n microservice-app-dev   
+      405 -oc logs deployment/prod-frontend -n microservice-app-prod     
+      447 +# Check CNPG cluster status                                   
+      448 +oc get cluster postgres-dev -n microservice-app-dev           
+      449 +                                                              
+      450 +# Check CNPG operator logs                                    
+      451 +oc logs -n openshift-operators -l app.kubernetes.io/name=cloud
+          +native-pg                                                     
+      452 +                                                              
+      453 +# Check postgres pod logs                                     
+      454 +oc logs postgres-dev-1 -n microservice-app-dev                
+      455  ```
+      456  
+      408 -### Debug Pod                                                 
+      457 +### Application Can't Connect to Database                     
+      458 +                                                              
+      459  ```bash
+      410 -oc debug deployment/dev-auth-service -n microservice-app-dev  
+      460 +# Verify secret exists                                        
+      461 +oc get secret postgres-dev-app -n microservice-app-dev        
+      462 +                                                              
+      463 +# Check if apps are using correct secret                      
+      464 +oc get deployment dev-auth-service -n microservice-app-dev -o 
+          +yaml | grep -A5 secretKeyRef                                  
+      465 +                                                              
+      466 +# Test connection from app pod                                
+      467 +oc exec -it deployment/dev-auth-service -n microservice-app-de
+          +v -- env | grep POSTGRES                                      
+      468  ```
+      469  
+      470  ### Common Issues
+      471  
+      415 -1. **ImagePullBackOff**: Check `dockerhub-cred` secret exists 
+          -in the namespace                                              
+      416 -2. **CrashLoopBackOff**: Check logs, verify DB connectivity   
+      417 -3. **ConfigMap hash suffix**: Kustomize adds hashes to ConfigM
+          -aps - this is expected                                        
+      418 -4. **Resource not found**: Ensure you're in the correct namesp
+          -ace                                                           
+      472 +| Issue | Solution |                                          
+      473 +|-------|----------|                                          
+      474 +| CNPG cluster not creating | Verify CNPG operator is installe
+          +d and running |                                               
+      475 +| ImagePullBackOff | Check `dockerhub-cred` secret exists |   
+      476 +| CrashLoopBackOff | Check logs, verify DB connectivity |     
+      477 +| Database connection timeout | Wait for CNPG cluster to be re
+          +ady |                                                         
+      478  
+      420 -### Verify Kustomize Output                                   
+      479 +---                                                           
+      480  
+      422 -```bash                                                       
+      423 -# Check if resources are generated correctly                  
+      424 -oc kustomize manifests_v2/overlays/dev/ | grep -A5 "kind: Depl
+          -oyment"                                                       
+      425 -```                                                           
+      426 -                                                              
+      481  ## Cleanup
+      482  
+      483  ```bash
+      430 -# Delete specific environment                                 
+      484 +# Delete specific environment (includes database!)            
+      485  oc delete -k manifests_v2/overlays/dev/
+      486  
+      433 -# Delete all environments                                     
+      434 -oc delete -k manifests_v2/overlays/dev/                       
+      435 -oc delete -k manifests_v2/overlays/staging/                   
+      436 -oc delete -k manifests_v2/overlays/prod/                      
+      437 -                                                              
+      438 -# Or delete namespaces directly                               
+      439 -oc delete namespace microservice-app-dev microservice-app-stag
+          -ing microservice-app-prod                                     
+      487 +# Or delete namespace directly                                
+      488 +oc delete namespace microservice-app-dev                      
+      489  ```
+      490  
+      491 +**Warning**: Deleting the namespace will delete the PostgreSQL
+          + cluster and all data!                                        
+      492 +                                                              
+      493 +---                                                           
+      494 +                                                              
+      495  ## CI/CD Integration
+      496  
+      444 -### GitHub Actions Example                                    
+      497 +### GitHub Actions                                            
+      498  
+      499  ```yaml
+      500  - name: Deploy to Dev
+      501    run: |
+      502      oc apply -k manifests_v2/overlays/dev/
+      450 -                                                              
+      451 -- name: Deploy to Prod                                        
+      452 -  run: |                                                      
+      453 -    # Update image tag in overlay                             
+      454 -    cd manifests_v2/overlays/prod                             
+      455 -    kustomize edit set image badex/auth-service:${{ github.sha
+          - }}                                                           
+      456 -    oc apply -k .                                             
+      503 +    # Wait for database                                       
+      504 +    oc wait --for=condition=Ready cluster/postgres-dev -n micr
+          +oservice-app-dev --timeout=300s                               
+      505 +    # Wait for apps                                           
+      506 +    oc rollout status deployment/dev-auth-service -n microserv
+          +ice-app-dev                                                   
+      507  ```
+      508  
+      459 -### ArgoCD Example                                            
+      509 +### ArgoCD                                                    
+      510  
+      511  ```yaml
+      512  apiVersion: argoproj.io/v1alpha1
+      513  kind: Application
+      514  metadata:
+      465 -  name: microservice-app-prod                                 
+      515 +  name: microservice-app-dev                                  
+      516  spec:
+      517    source:
+      518      repoURL: https://github.com/your-org/microservice-app
+      469 -    path: manifests_v2/overlays/prod                          
+      519 +    path: manifests_v2/overlays/dev                           
+      520    destination:
+      521      server: https://kubernetes.default.svc
+      472 -    namespace: microservice-app-prod                          
+      522 +    namespace: microservice-app-dev                           
+      523 +  syncPolicy:                                                 
+      524 +    automated:                                                
+      525 +      prune: true                                             
+      526 +      selfHeal: true                                          
+      527  ```
+
+⏺ Bash(find /Users/badex/Documents/microservice-app/manifests_v2 -type f \(
+      -name "*.yaml" -o -name "*.md" \) | sort)
+  ⎿ /Users/badex/Documents/microservice-app/manifests_v2/README.md         
+    /Users/badex/Documents/microservice-app/manifests_v2/auth-service/confi
+    gmap.yaml
+    … +65 lines (ctrl+o to expand)
+
+
+⏺ Done! Here's a summary of what was added:
+
+  CloudNativePG Integration
+
+  New Files Added
+
+  overlays/
+  ├── dev/
+  │   ├── postgres-cluster.yaml      # 1 instance, 5Gi, PostgreSQL 16
+  │   └── cnpg-secret-patch.yaml     # Links apps to postgres-dev-app secret
+  ├── staging/
+  │   ├── postgres-cluster.yaml      # 2 instances, 10Gi, PostgreSQL 16
+  │   └── cnpg-secret-patch.yaml     # Links apps to postgres-staging-app secret
+  └── prod/
+      ├── postgres-cluster.yaml      # 3 instances HA, 50Gi, PostgreSQL 16
+      └── cnpg-secret-patch.yaml     # Links apps to postgres-prod-app secret
+
+  Database Configuration Per Environment
+
+  | Environment | Instances | Storage | Logging            | Performance Tuning |
+  |-------------|-----------|---------|--------------------|--------------------|
+  | Dev         | 1         | 5Gi     | All statements     | Default            |
+  | Staging     | 2         | 10Gi    | DDL + slow queries | Default            |
+  | Prod        | 3 (HA)    | 50Gi    | DDL + very slow    | Optimized buffers  |
+
+  How Secrets Flow
+
+  CNPG creates:                    Apps reference:
+  ┌──────────────────┐            ┌─────────────────┐
+  │ postgres-dev-app │ ────────►  │ auth-service    │
+  │   username: app  │            │ game-service    │
+  │   password: xxx  │            └─────────────────┘
+  └──────────────────┘
+
+  Deployment Order
+
+  1. Install CloudNativePG operator (via OperatorHub UI)
+  2. Update JWT secret in auth-service/secret.yaml and game-service/secret.yaml
+  3. Deploy: oc apply -k manifests_v2/overlays/dev/
+  4. CNPG creates PostgreSQL cluster → generates secrets automatically
+  5. Apps connect using CNPG-generated credentials
+
+  The README has been updated with comprehensive CNPG documentation including installation, usage, and troubleshooting.
+
+> lets walk through the deployment guide - in step2, i presume i'll need to 
+create the namespaces for each environment first before creating the docker 
+credentials secret in each right? 
+
+⏺ Correct. The namespace must exist before you can create secrets in it.
+
+  Deployment Order Options
+
+  Option A: Create Namespace First (Recommended)
+
+  # 1. Create namespace
+  oc create namespace microservice-app-dev
+
+  # 2. Create docker registry secret in that namespace
+  oc create secret docker-registry dockerhub-cred \
+    --docker-server=https://index.docker.io/v1/ \
+    --docker-username=YOUR_USERNAME \
+    --docker-password=YOUR_PASSWORD \
+    --docker-email=YOUR_EMAIL \
+    -n microservice-app-dev
+
+  # 3. Apply the rest of the manifests
+  oc apply -k manifests_v2/overlays/dev/
+
+  Option B: Apply Namespace from Manifest
+
+  # 1. Apply just the namespace
+  oc apply -f manifests_v2/overlays/dev/namespace.yaml
+
+  # 2. Create secret
+  oc create secret docker-registry dockerhub-cred ...
+
+  # 3. Apply everything else
+  oc apply -k manifests_v2/overlays/dev/
+
+  Option C: Using Internal Registry (No Secret Needed)
+
+  If you're using OpenShift's internal registry:
+
+  # Just apply everything - no docker secret needed
+  oc apply -k manifests_v2/overlays/dev/
+
+  You'd update the image references to point to the internal registry instead.
+
+  ---
+  Note on the Base Secret File
+
+  The base/image-pull-secret.yaml has a placeholder value. You can either:
+
+  1. Delete it from the base and create imperatively (as shown above)
+  2. Keep it - your imperatively created secret will coexist (same name, yours takes precedence if created after)
+
+  Would you like me to remove the image-pull-secret.yaml from the base to avoid confusion, since you'll create it imperatively?
+
+> i want to follow gitops as close as possible. if i pointed argocd to this,
+ how would it discern the right order? namely running the namespace creation
+ first, image pull secret next and then other manifests? 
+
+⏺ Great question. ArgoCD applies all manifests together by default, but uses Sync Waves to control ordering.
+
+  ArgoCD Sync Waves
+
+  ArgoCD uses annotations to determine deployment order:
+
+  metadata:
+    annotations:
+      argocd.argoproj.io/sync-wave: "-1"  # Lower numbers sync first
+
+  Recommended Wave Order
+
+  | Wave | Resources                         | Why                             |
+  |------|-----------------------------------|---------------------------------|
+  | -2   | Namespace                         | Must exist before anything else |
+  | -1   | Secrets, ConfigMaps, CNPG Cluster | Apps depend on these            |
+  | 0    | Deployments, Services (default)   | Main application                |
+  | 1    | Routes, HPA                       | Needs deployments to exist      |
+
+  The Image Pull Secret Problem
+
+  For true GitOps, you shouldn't store Docker credentials in plain YAML in Git. Common solutions:
+
+  | Solution                    | How It Works                                          |
+  |-----------------------------|-------------------------------------------------------|
+  | Sealed Secrets              | Encrypt secret in Git, controller decrypts in cluster |
+  | External Secrets Operator   | References secrets from Vault/AWS/Azure               |
+  | ArgoCD Vault Plugin         | Injects secrets from Vault at sync time               |
+  | OpenShift Internal Registry | No pull secret needed at all                          |
+
+  Recommendation
+
+  Since you're on OpenShift, the cleanest GitOps approach is:
+
+  1. Use internal registry - eliminates dockerhub-cred entirely
+  2. Use External Secrets or Sealed Secrets for JWT_SECRET_KEY
+  3. Add sync wave annotations for proper ordering
+
+  Would you like me to:
+  1. Add sync wave annotations to all manifests for proper ArgoCD ordering?
+  2. Remove the dockerhub image-pull-secret (assuming internal registry)?
+  3. Show how to set up Sealed Secrets for the JWT key?
+
+> add sync wave, lets leave the image-pull-secret but i'd like you to show 
+me how to setup sealed secrets in openshift not just for the JWT keys but 
+for also the image-pull-secret 
+
+⏺ I'll add sync wave annotations to all manifests and then create a comprehensive Sealed Secrets guide.
+
+⏺ Read(manifests_v2/base/namespace.yaml)
+  ⎿  Read 10 lines
+
+⏺ Read(manifests_v2/base/image-pull-secret.yaml)
+  ⎿  Read 17 lines
+
+⏺ Read(manifests_v2/base/network-policy.yaml)
+  ⎿  Read 53 lines
+
+⏺ Update(manifests_v2/base/namespace.yaml)
+  ⎿  Added 1 line                                                        
+       7    annotations:
+       8      openshift.io/description: "Microservice application namespa
+          ce"
+       9      openshift.io/display-name: "Microservice App"
+      10 +    argocd.argoproj.io/sync-wave: "-2"                         
+
+⏺ Update(manifests_v2/base/image-pull-secret.yaml)
+  ⎿  Added 2 lines                                                       
+       4    name: dockerhub-cred
+       5    labels:
+       6      app.kubernetes.io/part-of: microservice-app
+       7 +  annotations:                                                 
+       8 +    argocd.argoproj.io/sync-wave: "-1"                         
+       9  type: kubernetes.io/dockerconfigjson
+      10  data:
+      11    # IMPORTANT: Replace with your base64-encoded Docker config J
+          SON
+
+⏺ Update(manifests_v2/base/network-policy.yaml)
+  ⎿  Added 2 lines                                                       
+       4    name: default-deny-ingress
+       5    labels:
+       6      app.kubernetes.io/part-of: microservice-app
+       7 +  annotations:                                                 
+       8 +    argocd.argoproj.io/sync-wave: "0"                          
+       9  spec:
+      10    podSelector: {}
+      11    policyTypes:
+
+⏺ Update(manifests_v2/base/network-policy.yaml)
+  ⎿  Added 2 lines                                                       
+      17    name: allow-frontend-ingress
+      18    labels:
+      19      app.kubernetes.io/part-of: microservice-app
+      20 +  annotations:                                                 
+      21 +    argocd.argoproj.io/sync-wave: "0"                          
+      22  spec:
+      23    podSelector:
+      24      matchLabels:
+
+⏺ Update(manifests_v2/base/network-policy.yaml)
+  ⎿  Added 2 lines                                                       
+      38    name: allow-backend-from-frontend
+      39    labels:
+      40      app.kubernetes.io/part-of: microservice-app
+      41 +  annotations:                                                 
+      42 +    argocd.argoproj.io/sync-wave: "0"                          
+      43  spec:
+      44    podSelector:
+      45      matchLabels:
+
+⏺ Now let me add sync waves to the service manifests:
+
+⏺ Read(manifests_v2/auth-service/configmap.yaml)
+  ⎿  Read 18 lines
+
+⏺ Read(manifests_v2/auth-service/secret.yaml)
+  ⎿  Read 17 lines
+
+⏺ Read(manifests_v2/auth-service/deployment.yaml)
+  ⎿  Read 88 lines
+
+⏺ Read(manifests_v2/auth-service/service.yaml)
+  ⎿  Read 18 lines
+
+⏺ Update(manifests_v2/auth-service/configmap.yaml)
+  ⎿  Added 2 lines                                                       
+       7      app.kubernetes.io/name: auth-service
+       8      app.kubernetes.io/component: backend
+       9      app.kubernetes.io/part-of: microservice-app
+      10 +  annotations:                                                 
+      11 +    argocd.argoproj.io/sync-wave: "-1"                         
+      12  data:
+      13    # PostgreSQL connection settings
+      14    POSTGRES_HOST: "postgres-rw.crash-course.svc.cluster.local"
+
+⏺ Update(manifests_v2/auth-service/secret.yaml)
+  ⎿  Added 2 lines                                                       
+       7      app.kubernetes.io/name: auth-service
+       8      app.kubernetes.io/component: backend
+       9      app.kubernetes.io/part-of: microservice-app
+      10 +  annotations:                                                 
+      11 +    argocd.argoproj.io/sync-wave: "-1"                         
+      12  type: Opaque
+      13  stringData:
+      14    # JWT secret key for token signing (generate a strong random 
+          string)
+
+⏺ Update(manifests_v2/auth-service/deployment.yaml)
+  ⎿  Added 2 lines                                                       
+       7      app.kubernetes.io/name: auth-service
+       8      app.kubernetes.io/component: backend
+       9      app.kubernetes.io/part-of: microservice-app
+      10 +  annotations:                                                 
+      11 +    argocd.argoproj.io/sync-wave: "0"                          
+      12  spec:
+      13    replicas: 2
+      14    selector:
+
+⏺ Update(manifests_v2/auth-service/service.yaml)
+  ⎿  Added 2 lines                                                       
+       7      app.kubernetes.io/name: auth-service
+       8      app.kubernetes.io/component: backend
+       9      app.kubernetes.io/part-of: microservice-app
+      10 +  annotations:                                                 
+      11 +    argocd.argoproj.io/sync-wave: "0"                          
+      12  spec:
+      13    type: ClusterIP
+      14    selector:
+
+⏺ Now let me update game-service manifests:
+
+⏺ Read(manifests_v2/game-service/configmap.yaml)
+  ⎿  Read 18 lines
+
+⏺ Read(manifests_v2/game-service/secret.yaml)
+  ⎿  Read 17 lines
+
+⏺ Read(manifests_v2/game-service/deployment.yaml)
+  ⎿  Read 88 lines
+
+⏺ Read(manifests_v2/game-service/service.yaml)
+  ⎿  Read 19 lines
+
+⏺ Update(manifests_v2/game-service/configmap.yaml)
+  ⎿  Added 2 lines                                                       
+       7      app.kubernetes.io/name: game-service
+       8      app.kubernetes.io/component: backend
+       9      app.kubernetes.io/part-of: microservice-app
+      10 +  annotations:                                                 
+      11 +    argocd.argoproj.io/sync-wave: "-1"                         
+      12  data:
+      13    # PostgreSQL connection settings
+      14    POSTGRES_HOST: "postgres-rw.crash-course.svc.cluster.local"
+
+⏺ Update(manifests_v2/game-service/secret.yaml)
+  ⎿  Added 2 lines                                                       
+       7      app.kubernetes.io/name: game-service
+       8      app.kubernetes.io/component: backend
+       9      app.kubernetes.io/part-of: microservice-app
+      10 +  annotations:                                                 
+      11 +    argocd.argoproj.io/sync-wave: "-1"                         
+      12  type: Opaque
+      13  stringData:
+      14    # JWT secret key for token verification (must match auth-serv
+          ice)
+
+⏺ Update(manifests_v2/game-service/deployment.yaml)
+  ⎿  Added 2 lines                                                       
+       7      app.kubernetes.io/name: game-service
+       8      app.kubernetes.io/component: backend
+       9      app.kubernetes.io/part-of: microservice-app
+      10 +  annotations:                                                 
+      11 +    argocd.argoproj.io/sync-wave: "0"                          
+      12  spec:
+      13    replicas: 2
+      14    selector:
+
+⏺ Update(manifests_v2/game-service/service.yaml)
+  ⎿  Added 2 lines                                                       
+       7      app.kubernetes.io/name: game-service
+       8      app.kubernetes.io/component: backend
+       9      app.kubernetes.io/part-of: microservice-app
+      10 +  annotations:                                                 
+      11 +    argocd.argoproj.io/sync-wave: "0"                          
+      12  spec:
+      13    type: ClusterIP
+      14    selector:
+
+⏺ Now let me update frontend manifests:
+
+⏺ Read(manifests_v2/frontend/configmap.yaml)
+  ⎿  Read 14 lines
+
+⏺ Read(manifests_v2/frontend/nginx-configmap.yaml)
+  ⎿  Read 71 lines
+
+⏺ Read(manifests_v2/frontend/deployment.yaml)
+  ⎿  Read 83 lines
+
+⏺ Read(manifests_v2/frontend/service.yaml)
+  ⎿  Read 19 lines
+
+⏺ Read(manifests_v2/frontend/route.yaml)
+  ⎿  Read 23 lines
+
+⏺ Update(manifests_v2/frontend/configmap.yaml)
+  ⎿  Added 2 lines                                                       
+       7      app.kubernetes.io/name: frontend
+       8      app.kubernetes.io/component: frontend
+       9      app.kubernetes.io/part-of: microservice-app
+      10 +  annotations:                                                 
+      11 +    argocd.argoproj.io/sync-wave: "-1"                         
+      12  data:
+      13    # React build-time environment variables are baked into the i
+          mage
+      14    # These are runtime configuration options if needed
+
+⏺ Update(manifests_v2/frontend/nginx-configmap.yaml)
+  ⎿  Added 2 lines                                                       
+       7      app.kubernetes.io/name: frontend
+       8      app.kubernetes.io/component: frontend
+       9      app.kubernetes.io/part-of: microservice-app
+      10 +  annotations:                                                 
+      11 +    argocd.argoproj.io/sync-wave: "-1"                         
+      12  data:
+      13    nginx.conf: |
+      14      server {
+
+⏺ Update(manifests_v2/frontend/deployment.yaml)
+  ⎿  Added 2 lines                                                       
+       7      app.kubernetes.io/name: frontend
+       8      app.kubernetes.io/component: frontend
+       9      app.kubernetes.io/part-of: microservice-app
+      10 +  annotations:                                                 
+      11 +    argocd.argoproj.io/sync-wave: "0"                          
+      12  spec:
+      13    replicas: 2
+      14    selector:
+
+⏺ Update(manifests_v2/frontend/service.yaml)
+  ⎿  Added 2 lines                                                       
+       7      app.kubernetes.io/name: frontend
+       8      app.kubernetes.io/component: frontend
+       9      app.kubernetes.io/part-of: microservice-app
+      10 +  annotations:                                                 
+      11 +    argocd.argoproj.io/sync-wave: "0"                          
+      12  spec:
+      13    type: ClusterIP
+      14    selector:
+
+⏺ Update(manifests_v2/frontend/route.yaml)
+  ⎿  Added 2 lines                                                       
+       7      app.kubernetes.io/name: frontend
+       8      app.kubernetes.io/component: frontend
+       9      app.kubernetes.io/part-of: microservice-app
+      10 +  annotations:                                                 
+      11 +    argocd.argoproj.io/sync-wave: "1"                          
+      12  spec:
+      13    # Uncomment and modify host for custom domain
+      14    # host: microservice-app.apps.your-cluster.com
+
+⏺ Now let me update the overlay-specific files with sync waves:
+
+⏺ Read(manifests_v2/overlays/dev/namespace.yaml)
+  ⎿  Read 11 lines
+
+⏺ Read(manifests_v2/overlays/dev/postgres-cluster.yaml)
+  ⎿  Read 84 lines
+
+⏺ Read(manifests_v2/overlays/prod/hpa.yaml)
+  ⎿  Read 122 lines
+
+⏺ Update(manifests_v2/overlays/dev/namespace.yaml)
+  ⎿  Added 1 line                                                        
+       8    annotations:
+       9      openshift.io/description: "Microservice application - Devel
+          opment environment"
+      10      openshift.io/display-name: "Microservice App (Dev)"
+      11 +    argocd.argoproj.io/sync-wave: "-2"                         
+
+⏺ Update(manifests_v2/overlays/dev/postgres-cluster.yaml)
+  ⎿  Added 2 lines                                                       
+       7      app.kubernetes.io/component: database
+       8      app.kubernetes.io/part-of: microservice-app
+       9      environment: dev
+      10 +  annotations:                                                 
+      11 +    argocd.argoproj.io/sync-wave: "-1"                         
+      12  spec:
+      13    description: "PostgreSQL cluster for microservice-app develop
+          ment"
+      14  
+
+⏺ Read(manifests_v2/overlays/staging/namespace.yaml)
+  ⎿  Read 11 lines
+
+⏺ Read(manifests_v2/overlays/staging/postgres-cluster.yaml)
+  ⎿  Read 84 lines
+
+⏺ Read(manifests_v2/overlays/prod/namespace.yaml)
+  ⎿  Read 11 lines
+
+⏺ Read(manifests_v2/overlays/prod/postgres-cluster.yaml)
+  ⎿  Read 110 lines
+
+⏺ Update(manifests_v2/overlays/staging/namespace.yaml)
+  ⎿  Added 1 line                                                        
+       8    annotations:
+       9      openshift.io/description: "Microservice application - Stagi
+          ng environment"
+      10      openshift.io/display-name: "Microservice App (Staging)"
+      11 +    argocd.argoproj.io/sync-wave: "-2"                         
+
+⏺ Update(manifests_v2/overlays/staging/postgres-cluster.yaml)
+  ⎿  Added 2 lines                                                       
+       7      app.kubernetes.io/component: database
+       8      app.kubernetes.io/part-of: microservice-app
+       9      environment: staging
+      10 +  annotations:                                                 
+      11 +    argocd.argoproj.io/sync-wave: "-1"                         
+      12  spec:
+      13    description: "PostgreSQL cluster for microservice-app staging
+          "
+      14  
+
+⏺ Update(manifests_v2/overlays/prod/namespace.yaml)
+  ⎿  Added 1 line                                                        
+       8    annotations:
+       9      openshift.io/description: "Microservice application - Produ
+          ction environment"
+      10      openshift.io/display-name: "Microservice App (Production)"
+      11 +    argocd.argoproj.io/sync-wave: "-2"                         
+
+⏺ Update(manifests_v2/overlays/prod/postgres-cluster.yaml)
+  ⎿  Added 2 lines                                                       
+       7      app.kubernetes.io/component: database
+       8      app.kubernetes.io/part-of: microservice-app
+       9      environment: prod
+      10 +  annotations:                                                 
+      11 +    argocd.argoproj.io/sync-wave: "-1"                         
+      12  spec:
+      13    description: "PostgreSQL cluster for microservice-app product
+          ion"
+      14  
+
+⏺ Update(manifests_v2/overlays/prod/hpa.yaml)
+  ⎿  Added 2 lines                                                       
+       4    name: prod-auth-service-hpa
+       5    labels:
+       6      app: auth-service
+       7 +  annotations:                                                 
+       8 +    argocd.argoproj.io/sync-wave: "1"                          
+       9  spec:
+      10    scaleTargetRef:
+      11      apiVersion: apps/v1
+
+⏺ Update(manifests_v2/overlays/prod/hpa.yaml)
+  ⎿  Added 2 lines                                                       
+      50    name: prod-game-service-hpa
+      51    labels:
+      52      app: game-service
+      53 +  annotations:                                                 
+      54 +    argocd.argoproj.io/sync-wave: "1"                          
+      55  spec:
+      56    scaleTargetRef:
+      57      apiVersion: apps/v1
+
+⏺ Update(manifests_v2/overlays/prod/hpa.yaml)
+  ⎿  Added 2 lines                                                       
+       96    name: prod-frontend-hpa
+       97    labels:
+       98      app: frontend
+       99 +  annotations:                                                
+      100 +    argocd.argoproj.io/sync-wave: "1"                         
+      101  spec:
+      102    scaleTargetRef:
+      103      apiVersion: apps/v1
+
+⏺ Now let me create the Sealed Secrets setup guide and templates:
+
+⏺ Bash(mkdir -p
+      /Users/badex/Documents/microservice-app/manifests_v2/sealed-secrets)
+  ⎿  (No content)
+
+⏺ Write(manifests_v2/sealed-secrets/README.md)
+  ⎿  Wrote 363 lines to manifests_v2/sealed-secrets/README.md            
+      1 # Sealed Secrets Setup Guide
+      2 This guide explains how to use Bitnami Sealed Secrets to securely
+         store secrets in Git for GitOps workflows.
+      3 ## What is Sealed Secrets?
+      4 Sealed Secrets is a Kubernetes controller that allows you to encr
+        ypt secrets so they can be safely stored in Git. Only the control
+        ler running in your cluster can decrypt them.
+      5 ```
+      6 ┌────────────────────────────────────────────────────────────────
+        ─┐
+     … +353 lines (ctrl+o to expand)
+
+⏺ Write(manifests_v2/sealed-secrets/example-sealed-secret.yaml)
+  ⎿  Wrote 33 lines to                                                     
+     manifests_v2/sealed-secrets/example-sealed-secret.yaml
+      1 # Example SealedSecret - This is what a sealed secret looks like 
+        after encryption
+      2 # DO NOT use this file directly - generate your own using kubesea
+        l
+      3 #
+      4 # This is safe to commit to Git because:
+      5 # 1. The encryptedData can only be decrypted by the Sealed Secret
+        s controller
+      6 # 2. It's bound to a specific namespace
+      7 # 3. It's bound to a specific cluster (the one with the matching 
+        private key)
+      8 apiVersion: bitnami.com/v1alpha1
+      9 kind: SealedSecret
+     … +23 lines (ctrl+o to expand)
+
+⏺ Write(manifests_v2/sealed-secrets/seal-all-secrets.sh)
+  ⎿  Wrote 172 lines to manifests_v2/sealed-secrets/seal-all-secrets.sh
+       1 #!/bin/bash
+       2 #
+       3 # seal-all-secrets.sh
+       4 #
+       5 # This script seals all secrets for a given environment.
+       6 # Run this locally - NEVER in CI/CD pipelines.
+       7 #
+       8 # Usage:
+       9 #   ./seal-all-secrets.sh dev
+      10 #   ./seal-all-secrets.sh staging
+     … +162 lines (ctrl+o to expand)
+
+⏺ Bash(chmod +x /Users/badex/Documents/microservice-app/manifests_v2/sealed-secr
+      ets/seal-all-secrets.sh)
+  ⎿  (No content)
+
+⏺ Read(manifests_v2/README.md)
+  ⎿  Read 100 lines
+
+⏺ Update(manifests_v2/README.md)
+  ⎿  Added 98 lines, removed 3 lines                                     
+      17  │   ├── deployment.yaml
+      18  │   ├── service.yaml
+      19  │   ├── configmap.yaml
+      20 -│   └── secret.yaml                 # JWT secret only          
+      20 +│   └── secret.yaml                 # JWT secret (use Sealed Se
+         +crets for GitOps)                                              
+      21  ├── game-service/                   # Game statistics service
+      22  │   ├── kustomization.yaml
+      23  │   ├── deployment.yaml
+      24  │   ├── service.yaml
+      25  │   ├── configmap.yaml
+      26 -│   └── secret.yaml                 # JWT secret only          
+      26 +│   └── secret.yaml                 # JWT secret (use Sealed Se
+         +crets for GitOps)                                              
+      27  ├── frontend/                       # React frontend
+      28  │   ├── kustomization.yaml
+      29  │   ├── deployment.yaml
+     ...
+      31  │   ├── configmap.yaml
+      32  │   ├── nginx-configmap.yaml
+      33  │   └── route.yaml
+      34 +├── sealed-secrets/                 # Sealed Secrets documentat
+         +ion                                                            
+      35 +│   ├── README.md                   # Setup guide              
+      36 +│   ├── seal-all-secrets.sh         # Helper script            
+      37 +│   └── example-sealed-secret.yaml  # Example format           
+      38  └── overlays/                       # Environment-specific conf
+          igurations
+      39      ├── dev/
+      40      │   ├── kustomization.yaml
+     ...
+       58  
+       59  1. **OpenShift CLI (oc)** or **kubectl** (v1.14+) installed
+       60  2. **CloudNativePG Operator** installed (see below)
+       57 -3. **Docker Hub credentials** (if using external registry)    
+       61 +3. **Sealed Secrets Controller** installed (for GitOps - see b
+          +elow)                                                         
+       62 +4. **Docker Hub credentials** (if using external registry)    
+       63  
+       64  ---
+       65  
+       66 +## ArgoCD Sync Waves                                          
+       67 +                                                              
+       68 +All manifests include ArgoCD sync wave annotations for proper 
+          +deployment ordering. This ensures resources are created in the
+          + correct order when using ArgoCD for GitOps.                  
+       69 +                                                              
+       70 +### Sync Wave Order                                           
+       71 +                                                              
+       72 +| Wave | Resources | Purpose |                                
+       73 +|------|-----------|---------|                                
+       74 +| -2 | Namespace | Must exist before all other resources |    
+       75 +| -1 | Secrets, ConfigMaps, CNPG Cluster | Dependencies for ap
+          +plications |                                                  
+       76 +| 0 | Deployments, Services, NetworkPolicies | Main applicatio
+          +n resources |                                                 
+       77 +| 1 | Routes, HPA | Depends on deployments existing |         
+       78 +                                                              
+       79 +### How ArgoCD Uses Sync Waves                                
+       80 +                                                              
+       81 +```                                                           
+       82 +Wave -2: Namespace created                                    
+       83 +    ↓                                                         
+       84 +Wave -1: Secrets, ConfigMaps, PostgreSQL cluster created      
+       85 +    ↓                                                         
+       86 +Wave 0: Deployments and Services created                      
+       87 +    ↓                                                         
+       88 +Wave 1: Routes and HPAs created                               
+       89 +```                                                           
+       90 +                                                              
+       91 +ArgoCD will:                                                  
+       92 +1. Apply all wave -2 resources and wait for them to be healthy
+       93 +2. Then apply wave -1 resources and wait                      
+       94 +3. Continue through all waves in order                        
+       95 +                                                              
+       96 +### Example Annotation                                        
+       97 +                                                              
+       98 +```yaml                                                       
+       99 +metadata:                                                     
+      100 +  annotations:                                                
+      101 +    argocd.argoproj.io/sync-wave: "-1"                        
+      102 +```                                                           
+      103 +                                                              
+      104 +---                                                           
+      105 +                                                              
+      106 +## Sealed Secrets (GitOps Secret Management)                  
+      107 +                                                              
+      108 +For true GitOps, secrets should not be stored in plain text in
+          + Git. We use Bitnami Sealed Secrets to encrypt secrets so they
+          + can be safely committed.                                     
+      109 +                                                              
+      110 +### What is Sealed Secrets?                                   
+      111 +                                                              
+      112 +Sealed Secrets encrypts your secrets client-side using a publi
+          +c key. Only the Sealed Secrets controller in your cluster has 
+          +the private key to decrypt them.                              
+      113 +                                                              
+      114 +```                                                           
+      115 +Plain Secret → kubeseal (encrypt) → SealedSecret → Git → Clust
+          +er → Secret                                                   
+      116 +```                                                           
+      117 +                                                              
+      118 +### Quick Setup                                               
+      119 +                                                              
+      120 +1. **Install Sealed Secrets Controller**:                     
+      121 +   ```bash                                                    
+      122 +   helm repo add sealed-secrets https://bitnami-labs.github.io
+          +/sealed-secrets                                               
+      123 +   helm install sealed-secrets sealed-secrets/sealed-secrets -
+          +n kube-system                                                 
+      124 +   ```                                                        
+      125 +                                                              
+      126 +2. **Install kubeseal CLI**:                                  
+      127 +   ```bash                                                    
+      128 +   brew install kubeseal  # macOS                             
+      129 +   ```                                                        
+      130 +                                                              
+      131 +3. **Fetch the public certificate**:                          
+      132 +   ```bash                                                    
+      133 +   kubeseal --fetch-cert --controller-name=sealed-secrets-cont
+          +roller \                                                      
+      134 +     --controller-namespace=kube-system > pub-sealed-secrets.p
+          +em                                                            
+      135 +   ```                                                        
+      136 +                                                              
+      137 +4. **Seal your secrets**:                                     
+      138 +   ```bash                                                    
+      139 +   # Use the helper script                                    
+      140 +   cd manifests_v2/sealed-secrets                             
+      141 +   ./seal-all-secrets.sh dev                                  
+      142 +   ```                                                        
+      143 +                                                              
+      144 +See `sealed-secrets/README.md` for the complete guide.        
+      145 +                                                              
+      146 +### Secrets to Seal                                           
+      147 +                                                              
+      148 +| Secret | Purpose |                                          
+      149 +|--------|---------|                                          
+      150 +| `dockerhub-cred` | Pull images from Docker Hub |            
+      151 +| `auth-service-secret` | JWT signing key |                   
+      152 +| `game-service-secret` | JWT verification key (same as auth) 
+          +|                                                             
+      153 +                                                              
+      154 +---                                                           
+      155 +                                                              
+      156  ## CloudNativePG (CNPG) Database
+      157  
+      158  This application uses CloudNativePG to manage PostgreSQL datab
+           ases declaratively. Each environment gets its own dedicated Po
+           stgreSQL cluster.
+
+⏺ Bash(find /Users/badex/Documents/microservice-app/manifests_v2 -type f \(
+      -name "*.yaml" -o -name "*.md" -o -name "*.sh" \) | sort)
+  ⎿ /Users/badex/Documents/microservice-app/manifests_v2/README.md         
+    /Users/badex/Documents/microservice-app/manifests_v2/auth-service/confi
+    gmap.yaml
+    … +71 lines (ctrl+o to expand)
+
+
+⏺ Done! Here's a summary of what was added:
+
+  ArgoCD Sync Waves
+
+  All manifests now have argocd.argoproj.io/sync-wave annotations:
+
+  | Wave | Resources                              |
+  |------|----------------------------------------|
+  | -2   | Namespace                              |
+  | -1   | Secrets, ConfigMaps, CNPG Cluster      |
+  | 0    | Deployments, Services, NetworkPolicies |
+  | 1    | Routes, HPA                            |
+
+  ArgoCD will deploy resources in wave order, waiting for each wave to be healthy before proceeding.
+
+  Sealed Secrets
+
+  New sealed-secrets/ directory with:
+
+  sealed-secrets/
+  ├── README.md                   # Complete setup guide
+  ├── seal-all-secrets.sh         # Interactive helper script
+  └── example-sealed-secret.yaml  # Example format
+
+  Workflow for GitOps
+
+  1. Install Sealed Secrets controller (via Helm or OperatorHub)
+  2. Install kubeseal CLI (brew install kubeseal)
+  3. Run the helper script:
+  cd manifests_v2/sealed-secrets
+  ./seal-all-secrets.sh dev      # Creates sealed secrets for dev
+  ./seal-all-secrets.sh staging  # Creates sealed secrets for staging
+  ./seal-all-secrets.sh prod     # Creates sealed secrets for prod
+  4. Commit the sealed secrets to Git (they're encrypted, safe to store)
+  5. Point ArgoCD to your repo - it handles the rest
+
+  What Gets Sealed
+
+  - dockerhub-cred - Docker registry credentials
+  - auth-service-secret - JWT signing key
+  - game-service-secret - JWT verification key
+
+  The sealed secrets can be safely committed to Git because only the Sealed Secrets controller in your cluster can decrypt them.
+
+
+

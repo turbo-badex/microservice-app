@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: microservice-app-dev
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: microservice-app
+    environment: dev
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/turbo-badex/microservice-app.git
+    path: manifests_v2/overlays/dev
+    targetRevision: main
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: microservice-app-dev
+
+  # Auto-sync enabled for dev - deploys on every Git push
+  syncPolicy:
+    automated:
+      prune: true          # Remove resources deleted from Git
+      selfHeal: true       # Revert manual changes in cluster
+      allowEmpty: false    # Don't sync if no resources
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m

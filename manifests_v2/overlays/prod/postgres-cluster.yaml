@@ -1,0 +1,111 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgres-prod
+  labels:
+    app.kubernetes.io/name: postgres
+    app.kubernetes.io/component: database
+    app.kubernetes.io/part-of: microservice-app
+    environment: prod
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  description: "PostgreSQL cluster for microservice-app production"
+
+  # Three instances for production HA (primary + 2 standby)
+  instances: 3
+
+  # PostgreSQL 16 - latest stable, compatible with psycopg2 2.9.9
+  imageName: ghcr.io/cloudnative-pg/postgresql:16.4
+
+  # Primary update strategy - supervised for production
+  primaryUpdateStrategy: supervised
+
+  # Storage configuration - uses default storage class
+  storage:
+    size: 50Gi
+
+  # Resource limits for production
+  resources:
+    requests:
+      memory: "1Gi"
+      cpu: "1000m"
+    limits:
+      memory: "2Gi"
+      cpu: "2000m"
+
+  # Bootstrap configuration - create database and run init SQL
+  bootstrap:
+    initdb:
+      database: gamedb
+      owner: app
+      postInitSQL:
+        - |
+          -- Create tables for auth-service
+          CREATE TABLE IF NOT EXISTS users (
+            id SERIAL PRIMARY KEY,
+            username VARCHAR(255) UNIQUE NOT NULL,
+            password_hash BYTEA NOT NULL
+          );
+
+          -- Create table for Snake game scores
+          CREATE TABLE IF NOT EXISTS snake_high_scores (
+            id SERIAL PRIMARY KEY,
+            user_id INTEGER REFERENCES users(id),
+            score INTEGER DEFAULT 0
+          );
+
+          -- Create table for other game stats
+          CREATE TABLE IF NOT EXISTS games_stats (
+            id SERIAL PRIMARY KEY,
+            user_id INTEGER REFERENCES users(id),
+            game_type VARCHAR(50) NOT NULL,
+            wins INTEGER DEFAULT 0,
+            losses INTEGER DEFAULT 0
+          );
+
+          -- Add indexes for performance
+          CREATE INDEX IF NOT EXISTS idx_snake_high_scores_user_id ON snake_high_scores(user_id);
+          CREATE INDEX IF NOT EXISTS idx_games_stats_user_id ON games_stats(user_id);
+          CREATE INDEX IF NOT EXISTS idx_games_stats_game_type ON games_stats(game_type);
+
+  # PostgreSQL configuration
+  postgresql:
+    parameters:
+      # Minimal logging for production performance
+      log_statement: "ddl"
+      log_min_duration_statement: "5000"
+      # Performance tuning
+      shared_buffers: "256MB"
+      effective_cache_size: "1GB"
+      maintenance_work_mem: "128MB"
+      checkpoint_completion_target: "0.9"
+      wal_buffers: "16MB"
+      default_statistics_target: "100"
+      random_page_cost: "1.1"
+      effective_io_concurrency: "200"
+    pg_hba:
+      - host all all 10.0.0.0/8 md5
+      - host all all 172.16.0.0/12 md5
+      - host all all 192.168.0.0/16 md5
+
+  # Monitoring
+  monitoring:
+    enablePodMonitor: true
+
+  # Backup configuration - uncomment and configure for production
+  # backup:
+  #   barmanObjectStore:
+  #     destinationPath: "s3://your-bucket/postgres-backups"
+  #     s3Credentials:
+  #       accessKeyId:
+  #         name: s3-creds
+  #         key: ACCESS_KEY_ID
+  #       secretAccessKey:
+  #         name: s3-creds
+  #         key: SECRET_ACCESS_KEY
+  #     wal:
+  #       compression: gzip
+  #     data:
+  #       compression: gzip
+  #   retentionPolicy: "30d"

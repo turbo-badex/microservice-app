@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: microservice-app-staging
+  labels:
+    app.kubernetes.io/part-of: microservice-app
+    environment: staging
+  annotations:
+    openshift.io/description: "Microservice application - Staging environment"
+    openshift.io/display-name: "Microservice App (Staging)"
+    argocd.argoproj.io/sync-wave: "-2"

@@ -15,6 +15,6 @@ spec:
         - name: dockerhub-cred
       containers:
       - name: frontend
-        image: badex/frontend:newest
+        image: badex/frontend:1.1.0
         imagePullPolicy: Always
         ports: [{ containerPort: 80 }]

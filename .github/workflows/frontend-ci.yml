@@ -122,6 +122,20 @@ jobs:
           docker push ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:staging
           echo "✅ Promoted staging-${{ github.sha }} → staging"
 
+      - name: Trigger GitOps promotion
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          event-type: promote-image
+          client-payload: |
+            {
+              "service": "${{ env.IMAGE_NAME }}",
+              "image": "${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}",
+              "tag": "staging",
+              "environment": "staging",
+              "sha": "${{ github.sha }}"
+            }
+
   # ============================================
   # PRODUCTION - Promote staging image (no rebuild)
   # ============================================
@@ -173,3 +187,17 @@ jobs:
           docker push ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
 
           echo "✅ Promoted staging → ${{ steps.version.outputs.version }}, latest"
+
+      - name: Trigger GitOps promotion
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          event-type: promote-image
+          client-payload: |
+            {
+              "service": "${{ env.IMAGE_NAME }}",
+              "image": "${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}",
+              "tag": "${{ steps.version.outputs.version }}",
+              "environment": "prod",
+              "sha": "${{ github.sha }}"
+            }

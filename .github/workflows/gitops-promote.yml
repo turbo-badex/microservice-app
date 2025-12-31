@@ -1,0 +1,136 @@
+name: GitOps - Update Kustomize Overlay
+
+on:
+  repository_dispatch:
+    types: [promote-image]
+
+  # Manual trigger for ad-hoc promotions
+  workflow_dispatch:
+    inputs:
+      service:
+        description: 'Service name (auth-service, game-service, frontend)'
+        required: true
+        type: choice
+        options:
+          - auth-service
+          - game-service
+          - frontend
+      image:
+        description: 'Full image name (e.g., badex/auth-service)'
+        required: true
+      tag:
+        description: 'Image tag to deploy'
+        required: true
+      environment:
+        description: 'Target environment'
+        required: true
+        type: choice
+        options:
+          - staging
+          - prod
+
+env:
+  # Use dispatch payload or workflow_dispatch inputs
+  SERVICE: ${{ github.event.client_payload.service || inputs.service }}
+  IMAGE: ${{ github.event.client_payload.image || inputs.image }}
+  TAG: ${{ github.event.client_payload.tag || inputs.tag }}
+  ENVIRONMENT: ${{ github.event.client_payload.environment || inputs.environment }}
+  SHA: ${{ github.event.client_payload.sha || github.sha }}
+
+jobs:
+  update-overlay:
+    name: Update ${{ github.event.client_payload.environment || inputs.environment }} overlay
+    runs-on: ubuntu-latest
+    # Use concurrency to serialize updates to the same environment
+    concurrency:
+      group: gitops-${{ github.event.client_payload.environment || inputs.environment }}
+      cancel-in-progress: false
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # Fetch latest to avoid conflicts
+          fetch-depth: 0
+
+      - name: Setup Kustomize
+        uses: imranismail/setup-kustomize@v2
+
+      - name: Validate inputs
+        run: |
+          echo "Service: ${{ env.SERVICE }}"
+          echo "Image: ${{ env.IMAGE }}"
+          echo "Tag: ${{ env.TAG }}"
+          echo "Environment: ${{ env.ENVIRONMENT }}"
+          echo "SHA: ${{ env.SHA }}"
+
+          if [[ ! "${{ env.ENVIRONMENT }}" =~ ^(staging|prod)$ ]]; then
+            echo "::error::Invalid environment: ${{ env.ENVIRONMENT }}"
+            exit 1
+          fi
+
+          if [[ ! "${{ env.SERVICE }}" =~ ^(auth-service|game-service|frontend)$ ]]; then
+            echo "::error::Invalid service: ${{ env.SERVICE }}"
+            exit 1
+          fi
+
+      - name: Pull latest changes
+        run: |
+          git pull --rebase origin ${{ github.ref_name }}
+
+      - name: Update kustomization overlay
+        run: |
+          cd manifests_v2/overlays/${{ env.ENVIRONMENT }}
+
+          echo "Before update:"
+          grep -A2 "images:" kustomization.yaml || true
+
+          kustomize edit set image ${{ env.IMAGE }}:${{ env.TAG }}
+
+          echo ""
+          echo "After update:"
+          grep -A10 "images:" kustomization.yaml
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+          git add manifests_v2/overlays/${{ env.ENVIRONMENT }}/kustomization.yaml
+
+          # Only commit if there are changes
+          if git diff --staged --quiet; then
+            echo "No changes to commit - image tag already set"
+          else
+            git commit -m "chore(${{ env.ENVIRONMENT }}): deploy ${{ env.SERVICE }}:${{ env.TAG }}
+
+          Service: ${{ env.SERVICE }}
+          Image: ${{ env.IMAGE }}:${{ env.TAG }}
+          Environment: ${{ env.ENVIRONMENT }}
+          Source SHA: ${{ env.SHA }}"
+
+            # Retry push with rebase in case of concurrent updates
+            for i in 1 2 3; do
+              if git push; then
+                echo "Successfully pushed changes"
+                break
+              else
+                echo "Push failed, retrying with rebase... (attempt $i)"
+                git pull --rebase origin ${{ github.ref_name }}
+              fi
+            done
+          fi
+
+      - name: Summary
+        run: |
+          echo "## GitOps Promotion Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Field | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Service | ${{ env.SERVICE }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Image | ${{ env.IMAGE }}:${{ env.TAG }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Environment | ${{ env.ENVIRONMENT }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Overlay | \`manifests_v2/overlays/${{ env.ENVIRONMENT }}/kustomization.yaml\` |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "ArgoCD will detect this change and show the application as **OutOfSync**." >> $GITHUB_STEP_SUMMARY

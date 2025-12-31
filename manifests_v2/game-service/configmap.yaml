@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: game-service-config
+  labels:
+    app: game-service
+    app.kubernetes.io/name: game-service
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/part-of: microservice-app
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+data:
+  # PostgreSQL connection settings
+  POSTGRES_HOST: "postgres-rw.crash-course.svc.cluster.local"
+  POSTGRES_DB: "dbname"
+  # Application settings
+  FLASK_ENV: "production"
+  GUNICORN_WORKERS: "4"
+  LOG_LEVEL: "info"

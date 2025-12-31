@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: microservice-app-prod
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: microservice-app
+    environment: prod
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/turbo-badex/microservice-app.git
+    path: manifests_v2/overlays/prod
+    targetRevision: main
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: microservice-app-prod
+
+  # Manual sync for production - requires explicit approval
+  # No automated sync to prevent accidental deployments
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+      - ApplyOutOfSyncOnly=true    # Only apply resources that are out of sync
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
