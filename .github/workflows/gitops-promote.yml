@@ -37,6 +37,9 @@ env:
   ENVIRONMENT: ${{ github.event.client_payload.environment || inputs.environment }}
   SHA: ${{ github.event.client_payload.sha || github.sha }}
 
+permissions:
+  contents: write
+
 jobs:
   update-overlay:
     name: Update ${{ github.event.client_payload.environment || inputs.environment }} overlay
@@ -77,7 +80,7 @@ jobs:
 
       - name: Pull latest changes
         run: |
-          git pull --rebase origin ${{ github.ref_name }}
+          git pull --rebase origin master
 
       - name: Update kustomization overlay
         run: |
@@ -112,14 +115,16 @@ jobs:
 
             # Retry push with rebase in case of concurrent updates
             for i in 1 2 3; do
-              if git push; then
-                echo "Successfully pushed changes"
-                break
+              if git push origin master; then
+                echo "✅ Successfully pushed changes"
+                exit 0
               else
                 echo "Push failed, retrying with rebase... (attempt $i)"
-                git pull --rebase origin ${{ github.ref_name }}
+                git pull --rebase origin master
               fi
             done
+            echo "❌ Failed to push after 3 attempts"
+            exit 1
           fi
 
       - name: Summary
