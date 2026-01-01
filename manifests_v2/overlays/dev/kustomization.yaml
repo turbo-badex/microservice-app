@@ -39,13 +39,28 @@ images:
   newTag: dev
 
 # Patches for dev-specific configurations
-  # Reduce replicas in dev
+  # Reduce replicas and resources in dev
   # Strategic merge patch for CNPG secret references
 patches:
 - patch: |-
     - op: replace
       path: /spec/replicas
       value: 1
+  target:
+    kind: Deployment
+- patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/resources/requests/cpu
+      value: "10m"
+    - op: replace
+      path: /spec/template/spec/containers/0/resources/requests/memory
+      value: "32Mi"
+    - op: replace
+      path: /spec/template/spec/containers/0/resources/limits/cpu
+      value: "100m"
+    - op: replace
+      path: /spec/template/spec/containers/0/resources/limits/memory
+      value: "128Mi"
   target:
     kind: Deployment
 - path: cnpg-secret-patch.yaml
