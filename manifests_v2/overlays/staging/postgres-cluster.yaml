@@ -12,6 +12,10 @@ metadata:
 spec:
   description: "PostgreSQL cluster for microservice-app staging"
 
+  # Propagate environment label to pods (required for network policies)
+  inheritedLabels:
+    - environment
+
   # Two instances for staging (primary + standby)
   instances: 2
 
