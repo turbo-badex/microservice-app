@@ -370,6 +370,19 @@ postgres-dev-superuser    # Superuser credentials
 
 **These secrets are NOT SealedSecrets** - they're created by the CNPG operator at runtime. Our deployments reference them directly.
 
+### CNPG Label Propagation
+
+CNPG creates pods dynamically, and they don't inherit labels from the Cluster resource by default. To ensure CNPG pods have the correct labels (important for network policies), use `inheritedLabels`:
+
+```yaml
+# postgres-cluster.yaml
+spec:
+  inheritedLabels:
+    - environment  # Pod will get environment: dev/staging/prod
+```
+
+This is already configured in all overlay postgres-cluster.yaml files.
+
 ---
 
 ## Environment Comparison
@@ -589,6 +602,58 @@ oc describe pod <pod-name> | grep -A5 "Liveness\|Readiness"
        port: 8080
    ```
 
+### CNPG Network Policy Issues (ArgoCD Stuck on PostgreSQL Health)
+
+**Symptom**: ArgoCD shows "OutOfSync" and keeps waiting:
+```
+waiting for healthy state of postgresql.cnpg.io/Cluster/postgres-dev
+```
+
+**Or CNPG reports**:
+```
+Instance Status Extraction Error: HTTP communication issue
+```
+
+**Why**: This happens when network policies block the CNPG operator from reaching the PostgreSQL pod's status endpoint (port 8000).
+
+**Root Cause**: Kustomize's `includeSelectors: true` adds the `environment` label to network policy selectors, but CNPG-created pods don't have this label by default.
+
+```yaml
+# Network policy expects:
+podSelector:
+  matchLabels:
+    cnpg.io/podRole: instance
+    environment: dev  # Added by includeSelectors: true
+
+# But CNPG pod only has:
+labels:
+  cnpg.io/podRole: instance
+  # No environment label!
+```
+
+**Solution** (already applied to all overlays):
+
+1. **Set `includeSelectors: false`** in kustomization.yaml:
+   ```yaml
+   labels:
+   - includeSelectors: false  # Don't add to selectors
+     pairs:
+       environment: dev
+   ```
+
+2. **Add `inheritedLabels`** to CNPG cluster spec:
+   ```yaml
+   spec:
+     inheritedLabels:
+       - environment  # CNPG will propagate this to pods
+   ```
+
+**Important**: If you're updating an existing deployment that was created with `includeSelectors: true`, you must delete the deployments first (Kubernetes doesn't allow changing deployment selectors):
+```bash
+oc delete deployment auth-service frontend game-service -n microservice-app-dev
+# ArgoCD will recreate them with the correct selectors
+```
+
 ### Common Issues Quick Reference
 
 | Symptom | Likely Cause | Solution |
@@ -601,6 +666,8 @@ oc describe pod <pod-name> | grep -A5 "Liveness\|Readiness"
 | `SealedSecret` not decrypting | Wrong cluster key | Re-seal with current cluster's key |
 | CNPG cluster not creating | Operator not installed | Install CloudNativePG via OperatorHub |
 | ArgoCD stuck on health check | Waiting for resource health | Force sync or check sync-wave order |
+| ArgoCD stuck on CNPG health | Network policy blocking CNPG | See "CNPG Network Policy Issues" above |
+| Deployment selector immutable | Changed `includeSelectors` setting | Delete deployments, let ArgoCD recreate |
 
 ---
 
