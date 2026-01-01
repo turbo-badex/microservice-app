@@ -13,6 +13,10 @@ metadata:
 spec:
   description: "PostgreSQL cluster for microservice-app development"
 
+  # Propagate environment label to pods (required for network policies)
+  inheritedLabels:
+    - environment
+
   # Single instance for development (no HA needed)
   instances: 1
 

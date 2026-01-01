@@ -20,8 +20,10 @@ resources:
 namespace: microservice-app-dev
 
 # Labels for dev environment
+# Note: includeSelectors=false to avoid adding environment label to network policy selectors
+# (CNPG-created pods don't automatically inherit the environment label)
 labels:
-- includeSelectors: true
+- includeSelectors: false
   pairs:
     environment: dev
 
