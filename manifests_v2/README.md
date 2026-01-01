@@ -506,14 +506,101 @@ oc get secret postgres-dev-app -n microservice-app-dev
 oc get deployment auth-service -n microservice-app-dev -o yaml | grep -A5 secretKeyRef
 ```
 
-### Common Issues
+### Pods Stuck in Pending (Insufficient CPU/Memory)
 
-| Issue | Solution |
-|-------|----------|
-| SealedSecret not decrypting | Verify Sealed Secrets controller is running |
-| ImagePullBackOff | Check `dockerhub-cred` SealedSecret exists |
-| CNPG cluster not creating | Verify CNPG operator is installed |
-| ArgoCD sync wave issues | Check sync-wave annotations are correct |
+```bash
+# Check why pod is pending
+oc describe pod <pod-name> -n microservice-app-dev | grep -A5 Events
+
+# Check node capacity
+oc describe nodes -l node-role.kubernetes.io/worker | grep -A10 "Allocated resources"
+```
+
+**Symptom**: `0/5 nodes are available: 2 Insufficient cpu`
+
+**Solution**: Reduce resource requests in the overlay:
+```yaml
+# overlays/dev/kustomization.yaml
+patches:
+- patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/resources/requests/cpu
+      value: "10m"
+  target:
+    kind: Deployment
+```
+
+### No Writable /tmp Directory (CrashLoopBackOff)
+
+**Symptom**:
+```
+FileNotFoundError: No usable temporary directory found in ['/tmp', '/var/tmp']
+```
+
+**Why**: OpenShift runs containers with `readOnlyRootFilesystem: true` by default. Apps that need temp files (Python/gunicorn, Java) will crash.
+
+**Solution**: Add an emptyDir volume for `/tmp`:
+```yaml
+# In deployment.yaml
+spec:
+  template:
+    spec:
+      containers:
+        - volumeMounts:
+            - name: tmp-volume
+              mountPath: /tmp
+      volumes:
+        - name: tmp-volume
+          emptyDir: {}
+```
+
+### Health Probe Failures (404 or Connection Refused)
+
+```bash
+# Check probe status
+oc describe pod <pod-name> | grep -A5 "Liveness\|Readiness"
+```
+
+**Symptom**: `Liveness probe failed: HTTP probe failed with statuscode: 404`
+
+**Why**: The `/health` endpoint doesn't exist in your image, or the app isn't listening on the expected port.
+
+**Solutions**:
+
+1. **Add health endpoint to your app**:
+   ```python
+   @app.route('/health')
+   def health():
+       return {'status': 'healthy'}, 200
+   ```
+
+2. **Remove probes for dev** (in overlay):
+   ```yaml
+   - op: remove
+     path: /spec/template/spec/containers/0/livenessProbe
+   - op: remove
+     path: /spec/template/spec/containers/0/readinessProbe
+   ```
+
+3. **Use TCP probe instead of HTTP**:
+   ```yaml
+   livenessProbe:
+     tcpSocket:
+       port: 8080
+   ```
+
+### Common Issues Quick Reference
+
+| Symptom | Likely Cause | Solution |
+|---------|--------------|----------|
+| `Pending` - Insufficient cpu | Resource requests too high | Reduce CPU/memory requests |
+| `CrashLoopBackOff` - No temp directory | `readOnlyRootFilesystem: true` | Add emptyDir volume for `/tmp` |
+| `CrashLoopBackOff` - Probe failed 404 | Missing `/health` endpoint | Add endpoint or remove probes |
+| `CrashLoopBackOff` - Connection refused | App not listening on port | Check containerPort matches app |
+| `ImagePullBackOff` | Missing registry credentials | Check `dockerhub-cred` SealedSecret |
+| `SealedSecret` not decrypting | Wrong cluster key | Re-seal with current cluster's key |
+| CNPG cluster not creating | Operator not installed | Install CloudNativePG via OperatorHub |
+| ArgoCD stuck on health check | Waiting for resource health | Force sync or check sync-wave order |
 
 ---
 

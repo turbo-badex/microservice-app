@@ -61,6 +61,10 @@ patches:
     - op: replace
       path: /spec/template/spec/containers/0/resources/limits/memory
       value: "128Mi"
+    - op: remove
+      path: /spec/template/spec/containers/0/livenessProbe
+    - op: remove
+      path: /spec/template/spec/containers/0/readinessProbe
   target:
     kind: Deployment
 - path: cnpg-secret-patch.yaml
