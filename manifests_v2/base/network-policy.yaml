@@ -56,3 +56,41 @@ spec:
           port: 8080
         - protocol: TCP
           port: 8081
+---
+# Allow all traffic to PostgreSQL pods (CNPG operator, apps, metrics)
+# CNPG operator connects directly to pod IPs from openshift-operators namespace
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-postgres-ingress
+  labels:
+    app.kubernetes.io/part-of: microservice-app
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  podSelector:
+    matchLabels:
+      cnpg.io/podRole: instance
+  policyTypes:
+    - Ingress
+  ingress:
+    # Allow from any namespace (needed for CNPG operator cross-namespace communication)
+    - from:
+        - namespaceSelector: {}
+      ports:
+        - protocol: TCP
+          port: 5432    # PostgreSQL
+        - protocol: TCP
+          port: 8000    # Status endpoint
+        - protocol: TCP
+          port: 9187    # Metrics
+    # Allow from same namespace
+    - from:
+        - podSelector: {}
+      ports:
+        - protocol: TCP
+          port: 5432
+        - protocol: TCP
+          port: 8000
+        - protocol: TCP
+          port: 9187

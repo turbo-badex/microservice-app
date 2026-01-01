@@ -20,6 +20,13 @@ spec:
     server: https://kubernetes.default.svc
     namespace: microservice-app-dev
 
+  # Ignore CNPG cluster status - operator has network issues reaching status endpoint
+  ignoreDifferences:
+    - group: postgresql.cnpg.io
+      kind: Cluster
+      jsonPointers:
+        - /status
+
   # Auto-sync enabled for dev - deploys on every Git push
   syncPolicy:
     automated:

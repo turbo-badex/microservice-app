@@ -9,6 +9,7 @@ metadata:
     environment: dev
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
+    argocd.argoproj.io/sync-options: SkipHealthCheck=true
 spec:
   description: "PostgreSQL cluster for microservice-app development"
 
