@@ -1,0 +1,44 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: microservice-app-prod-eks
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: microservice-app
+    environment: prod
+    cluster: eks
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/turbo-badex/microservice-app.git
+    path: manifests_v2/overlays/prod
+    targetRevision: master
+
+  destination:
+    server: https://D20887DF69A3E32BEDBFB7E9B9E2398C.gr7.us-east-1.eks.amazonaws.com
+    namespace: microservice-app-prod
+
+  # Manual sync for production - requires explicit approval
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+      - ApplyOutOfSyncOnly=true
+      - RespectIgnoreDifferences=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+
+  # Handle CNPG status differences and OpenShift Route (will be skipped on EKS)
+  ignoreDifferences:
+    - group: postgresql.cnpg.io
+      kind: Cluster
+      jsonPointers:
+        - /status

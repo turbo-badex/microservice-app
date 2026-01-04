@@ -1,0 +1,46 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cnpg-operator
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: cluster-bootstrap
+    app.kubernetes.io/component: database-operator
+  annotations:
+    argocd.argoproj.io/sync-wave: "-5"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+
+  source:
+    repoURL: https://cloudnative-pg.github.io/charts
+    chart: cloudnative-pg
+    targetRevision: 0.22.0
+    helm:
+      releaseName: cnpg
+      values: |
+        crds:
+          create: true
+        monitoring:
+          podMonitorEnabled: false
+          grafanaDashboard:
+            create: false
+
+  destination:
+    server: https://D20887DF69A3E32BEDBFB7E9B9E2398C.gr7.us-east-1.eks.amazonaws.com
+    namespace: cnpg-system
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m

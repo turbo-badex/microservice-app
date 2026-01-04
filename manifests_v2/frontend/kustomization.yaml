@@ -9,7 +9,8 @@ resources:
   - service.yaml
   - configmap.yaml
   - nginx-configmap.yaml
-  - route.yaml
+  - route.yaml    # OpenShift Route - ignored on EKS
+  - ingress.yaml  # Kubernetes Ingress for EKS - ignored on OpenShift
 
 labels:
   - pairs:
