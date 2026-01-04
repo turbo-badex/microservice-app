@@ -4,9 +4,8 @@ kind: Kustomization
 metadata:
   name: eks-cluster-bootstrap
 
+# Only raw Kubernetes resources here - no ArgoCD Applications
+# ArgoCD Applications for operators are in manifests_v2/argocd/
 resources:
   - namespace.yaml
   - gp3-storageclass.yaml
-  - cnpg-operator.yaml
-  - aws-lb-controller.yaml
-  - sealed-secrets.yaml

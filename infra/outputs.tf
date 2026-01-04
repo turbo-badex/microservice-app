@@ -89,3 +89,11 @@ output "cluster_version" {
   description = "The Kubernetes version of the cluster"
   value       = module.eks.cluster_version
 }
+
+# -----------------------------------------------------------------------------
+# IAM Role Outputs
+# -----------------------------------------------------------------------------
+
+output "lb_controller_role_arn" {
+    value = module.lb_controller_irsa.iam_role_arn
+    }

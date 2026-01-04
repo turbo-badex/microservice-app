@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: microservice-app-prod-eks
-  namespace: argocd
+  namespace: openshift-gitops  # ArgoCD runs here on OpenShift
   labels:
     app.kubernetes.io/part-of: microservice-app
     environment: prod

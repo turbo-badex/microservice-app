@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: eks-cluster-bootstrap
-  namespace: argocd
+  namespace: openshift-gitops  # ArgoCD runs here on OpenShift
   labels:
     app.kubernetes.io/part-of: cluster-bootstrap
     cluster: eks
