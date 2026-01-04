@@ -11,6 +11,27 @@ GameHub is a microservices-based gaming platform deployed on OpenShift/Kubernete
 Frontend (React:3000) → Auth Service (Flask:8080) → PostgreSQL (CNPG)
                      → Game Service (Flask:8081) → PostgreSQL (CNPG)
 ```
+## Documentation & Reference Guidelines
+
+  When implementing or reviewing OpenShift/Kubernetes features, ALWAYS use Context7 MCP to check up-to-date documentation:
+
+  **Required Context7 lookups:**
+  - **OpenShift** (`/openshift/openshift-docs`) - RBAC, NetworkPolicies, Routes, SCCs
+  - **CloudNativePG** - CNPG cluster configuration, backup/recovery
+  - **Kubernetes** - Core concepts, API resources
+  - **ArgoCD** - GitOps patterns, sync waves
+
+  **When to use Context7:**
+  - Implementing RBAC (Roles, RoleBindings, ServiceAccounts)
+  - Creating/modifying NetworkPolicies (ingress/egress rules)
+  - Configuring CNPG clusters (storage, HA, monitoring)
+  - Security configurations (SCCs, pod security standards)
+  - Any OpenShift-specific features
+
+  **Process:**
+  1. Use Context7 to lookup current best practices
+  2. Reference official docs before implementing
+  3. Validate against latest patterns and security standards
 
 ## Common Commands
 

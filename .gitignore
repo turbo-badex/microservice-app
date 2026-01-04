@@ -57,3 +57,17 @@ dist/
 *.pem
 manifests_v2/sealed-secrets/*.pem
 manifests_v2/base/*.pem
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+*.tfvars.json
+.terraformrc
+terraform.rc
