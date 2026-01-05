@@ -10,8 +10,8 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: prod-auth-service
-  minReplicas: 3
+    name: auth-service
+  minReplicas: 1
   maxReplicas: 10
   metrics:
     - type: Resource
@@ -56,8 +56,8 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: prod-game-service
-  minReplicas: 3
+    name: game-service
+  minReplicas: 1
   maxReplicas: 10
   metrics:
     - type: Resource
@@ -102,8 +102,8 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: prod-frontend
-  minReplicas: 3
+    name: frontend
+  minReplicas: 1
   maxReplicas: 8
   metrics:
     - type: Resource
