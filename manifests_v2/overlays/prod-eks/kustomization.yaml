@@ -41,8 +41,21 @@ images:
 - name: badex/game-service
   newTag: 1.1.4
 
-# Patches for production-specific configurations
+# Delete OpenShift Route (not supported on EKS)
 patches:
+- patch: |-
+    $patch: delete
+    apiVersion: route.openshift.io/v1
+    kind: Route
+    metadata:
+      name: frontend
+  target:
+    group: route.openshift.io
+    version: v1
+    kind: Route
+    name: frontend
+
+# Patches for production-specific configurations
 - patch: |-
     - op: replace
       path: /spec/replicas
