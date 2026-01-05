@@ -55,6 +55,20 @@ patches:
     kind: Route
     name: frontend
 
+# EKS requires numeric runAsUser with runAsNonRoot (OpenShift assigns automatically)
+- patch: |-
+    - op: add
+      path: /spec/template/spec/securityContext/runAsUser
+      value: 1000
+    - op: add
+      path: /spec/template/spec/securityContext/runAsGroup
+      value: 1000
+    - op: add
+      path: /spec/template/spec/securityContext/fsGroup
+      value: 1000
+  target:
+    kind: Deployment
+
 # Patches for production-specific configurations
 - patch: |-
     - op: replace
