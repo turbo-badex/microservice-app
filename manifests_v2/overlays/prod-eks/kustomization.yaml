@@ -94,10 +94,11 @@ patches:
     name: game-service
 
 # Patches for production-specific configurations
+# NOTE: Using 1 replica due to 2-node cluster capacity. Scale up nodes before increasing.
 - patch: |-
     - op: replace
       path: /spec/replicas
-      value: 3
+      value: 1
   target:
     kind: Deployment
 - patch: |-
