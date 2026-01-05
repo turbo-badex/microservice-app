@@ -69,6 +69,30 @@ patches:
   target:
     kind: Deployment
 
+# Fix health probe path - auth-service uses /metrics (PrometheusMetrics) not /health
+- patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/livenessProbe/httpGet/path
+      value: /metrics
+    - op: replace
+      path: /spec/template/spec/containers/0/readinessProbe/httpGet/path
+      value: /metrics
+  target:
+    kind: Deployment
+    name: auth-service
+
+# Fix health probe path - game-service uses /metrics (PrometheusMetrics) not /health
+- patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/livenessProbe/httpGet/path
+      value: /metrics
+    - op: replace
+      path: /spec/template/spec/containers/0/readinessProbe/httpGet/path
+      value: /metrics
+  target:
+    kind: Deployment
+    name: game-service
+
 # Patches for production-specific configurations
 - patch: |-
     - op: replace
