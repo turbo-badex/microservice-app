@@ -16,8 +16,8 @@ spec:
   inheritedLabels:
     - environment
 
-  # Three instances for production HA (primary + 2 standby)
-  instances: 3
+  # Reduced to 1 for initial testing (scale to 3 for production HA)
+  instances: 1
 
   # PostgreSQL 16 - latest stable, compatible with psycopg2 2.9.9
   imageName: ghcr.io/cloudnative-pg/postgresql:16.4

@@ -25,6 +25,7 @@ module "eks" {
   cluster_addons = {
     aws-ebs-csi-driver = {
       most_recent = true
+      
     }
     coredns = {
       most_recent = true
