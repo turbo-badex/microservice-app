@@ -24,9 +24,8 @@ spec:
         serviceAccount:
           create: true
           name: aws-load-balancer-controller
-          # TODO: Add IAM role ARN for IRSA
-           annotations:
-             eks.amazonaws.com/role-arn: arn:aws:iam::364129872708:role/AmazonEKSLoadBalancerControllerRole
+          annotations:
+            eks.amazonaws.com/role-arn: arn:aws:iam::364129872708:role/AmazonEKSLoadBalancerControllerRole
         region: us-east-1
         vpcId: null  # Auto-detected from instance metadata
         enableServiceMutatorWebhook: false
