@@ -22,8 +22,8 @@ spec:
   # PostgreSQL 16 - latest stable, compatible with psycopg2 2.9.9
   imageName: ghcr.io/cloudnative-pg/postgresql:16.4
 
-  # Primary update strategy - supervised for production
-  primaryUpdateStrategy: supervised
+  # Primary update strategy - unsupervised for single instance (use supervised for HA)
+  primaryUpdateStrategy: unsupervised
 
   # Storage configuration - EKS gp3 StorageClass
   storage:
