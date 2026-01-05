@@ -30,14 +30,14 @@ spec:
     size: 50Gi
     storageClass: gp3
 
-  # Resource limits for production
+  # Resource limits - reduced for 2-node cluster capacity
   resources:
     requests:
-      memory: "1Gi"
-      cpu: "1000m"
+      memory: "256Mi"
+      cpu: "250m"
     limits:
-      memory: "2Gi"
-      cpu: "2000m"
+      memory: "512Mi"
+      cpu: "500m"
 
   # Bootstrap configuration - create database and run init SQL
   bootstrap:
